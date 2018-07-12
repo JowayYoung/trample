@@ -16,16 +16,26 @@
 		"url": "https://github.com/JowayYoung/trample.git"
 	},
 	"scripts": {
+		"start": "parcel src/index.html",
 		"remove": "rimraf node_modules"
 	},
-	"dependencies": {},
+	"dependencies": {
+		"jsonp-fallback": "1.1.2",
+		"md5": "2.2.1"
+	},
 	"devDependencies": {
+		"babel-cli": "6.26.0",
+		"babel-plugin-transform-class-properties": "6.24.1",
+		"babel-plugin-transform-decorators-legacy": "1.3.5",
+		"babel-plugin-transform-object-rest-spread": "6.26.0",
+		"babel-preset-env": "1.7.0",
 		"eslint": "5.1.0",
 		"eslint-config-standard": "11.0.0",
 		"eslint-plugin-import": "2.13.0",
 		"eslint-plugin-node": "6.0.1",
 		"eslint-plugin-promise": "3.8.0",
 		"eslint-plugin-standard": "3.1.0",
+		"parcel-bundler": "1.9.6",
 		"rimraf": "2.6.2"
 	},
 	"engines": {
@@ -41,6 +51,16 @@
 		"Android >= 4.4.4",
 		"iOS >= 8"
 	],
+	"babel": {
+		"plugins": [
+			"transform-class-properties",
+			"transform-decorators-legacy",
+			"transform-object-rest-spread"
+		],
+		"presets": [
+			"env"
+		]
+	},
 	"eslintConfig": {
 		"env": {
 			"browser": true,
