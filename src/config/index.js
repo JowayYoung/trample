@@ -4,11 +4,8 @@ import Md5 from "md5";
 import FunctionUtils from "../function";
 
 async function consoleMsg(query = "", type = "warn", to = "zh") {
-	if (to === "zh" && type === "warn") {
-		return console.warn(query);
-	}
-	if (to === "zh" && type === "error") {
-		return new Error(query);
+	if (to === "zh" && type) {
+		return console[type](query);
 	}
 	const appid = "20180712000185027";
 	const key = "TjaueCXK0WoWdLIu6HHr";
@@ -19,8 +16,7 @@ async function consoleMsg(query = "", type = "warn", to = "zh") {
 		JsonpFallback("https://fanyi-api.baidu.com/api/trans/vip/translate", body)
 	);
 	if (!err && res && res.trans_result) {
-		type === "warn" && console.warn(res.trans_result[0].dst);
-		type === "error" && new Error(res.trans_result[0].dst);
+		console[type](res.trans_result[0].dst);
 	}
 }
 

@@ -20,7 +20,7 @@ function getUrlParams() {
 		params[decode(match[1])] = decode(match[2]);
 	}
 	if (Object.keys(params).length < 5) {
-		return Config.consoleMsg("URL查询字符小于5个，建议使用 getUrlParam(key) 方法");
+		Config.consoleMsg("URL查询字符小于5个，建议使用 getUrlParam(key) 方法");
 	}
 	return JSON.stringify(params) === "{}" ? null : params;
 }

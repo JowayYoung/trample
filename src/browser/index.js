@@ -2,10 +2,7 @@ import Config from "../config";
 
 function copyPaste(elem) {
 	if (!elem) {
-		return Config.errorMsg(
-			"参数elem只能为HTML DOM且不能为空",
-			"The elem can only be HTML DOM and cannot be empty"
-		);
+		return Config.consoleMsg("参数elem只能为HTML DOM且不能为空");
 	}
 	const range = document.createRange();
 	const end = elem.childNodes.length;
