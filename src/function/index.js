@@ -1,10 +1,11 @@
 import JsonpFallback from "jsonp-fallback";
 import Md5 from "md5";
 
-function asyncTo(func) {
+// 异步回调
+function async(func) {
 	if (!func || !Promise.prototype.isPrototypeOf(func)) {
 		return new Promise((resolve, reject) => {
-			reject(consoleMsg("参数func只能为Promise函数且不能为空", "error"));
+			reject(prompt("参数func只能为Promise函数且不能为空", "error"));
 		}).catch(err => [err, null]);
 	}
 	return func
@@ -12,7 +13,8 @@ function asyncTo(func) {
 		.catch(err => [err, null]);
 }
 
-async function consoleMsg(query = "", type = "warn", to = "zh") {
+// 提示信息
+async function prompt(query = "", type = "warn", to = "zh") {
 	if (to === "zh" && type) {
 		return console[type](query);
 	}
@@ -21,7 +23,7 @@ async function consoleMsg(query = "", type = "warn", to = "zh") {
 	const salt = new Date().getTime();
 	const sign = Md5(appid + query + salt + key);
 	const body = { appid, from: "zh", to, q: query, salt, sign };
-	const [err, res] = await asyncTo(
+	const [err, res] = await async(
 		JsonpFallback("https://fanyi-api.baidu.com/api/trans/vip/translate", body)
 	);
 	if (!err && res && res.trans_result) {
@@ -29,7 +31,14 @@ async function consoleMsg(query = "", type = "warn", to = "zh") {
 	}
 }
 
+// 函数节流
+function throttle(action, delay = 500, context = window) {
+	clearTimeout(action.tId);
+	action.tId = setTimeout(() => action.call(context), delay);
+}
+
 export default {
-	asyncTo,
-	consoleMsg
+	async, // 异步回调
+	prompt, // 提示信息
+	throttle // 函数节流
 };

@@ -1,9 +1,7 @@
-import F from "../function";
+import C from "../check";
 
 function copyPaste(elem) {
-	if (!elem) {
-		return F.consoleMsg("参数elem只能为HTML DOM且不能为空");
-	}
+	if (!C.isElement(elem)) return null;
 	const range = document.createRange();
 	const end = elem.childNodes.length;
 	range.setStart(elem, 0);
@@ -16,5 +14,5 @@ function copyPaste(elem) {
 }
 
 export default {
-	copyPaste
+	copyPaste // 复制粘贴
 };

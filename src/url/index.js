@@ -1,15 +1,16 @@
+import C from "../check";
 import F from "../function";
 
+// 获取URL指定参数
 function getUrlParam(key) {
-	if (!key || key.constructor !== String) {
-		return F.consoleMsg("参数key只能为字符串且不能为空", "error");
-	}
+	if (!C.isString(key)) return null;
 	const reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
 	const query = location.search.substr(1);
 	const result = query.match(reg);
 	return result ? decodeURIComponent(result[2]) : null;
 }
 
+// 获取URL全部参数
 function getUrlParams() {
 	let match;
 	const params = {};
@@ -20,9 +21,9 @@ function getUrlParams() {
 		params[decode(match[1])] = decode(match[2]);
 	}
 	if (Object.keys(params).length < 5) {
-		F.consoleMsg("URL查询字符小于5个，建议使用 getUrlParam(key) 方法");
+		F.prompt("URL查询字符小于5个，建议使用 getUrlParam(key) 方法");
 	}
-	return JSON.stringify(params) === "{}" ? null : params;
+	return C.isEmptyObject(params) ? null : params;
 }
 
 export default {
