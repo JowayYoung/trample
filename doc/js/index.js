@@ -5,11 +5,10 @@ import _ from "../../src/index";
 // Browser
 const btn = document.getElementById("btn");
 const target = document.getElementById("yzw");
-const copy = () => {
+btn.addEventListener("click", () => {
 	alert("复制成功");
 	_.copyPaste(target);
-};
-btn.onclick = copy;
+});
 
 // URL
 console.log("##### URL #####");
