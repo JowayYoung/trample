@@ -31,14 +31,7 @@ async function prompt(query = "", type = "warn", to = "zh") {
 	}
 }
 
-// 函数节流
-function throttle(action, delay = 500, context = window) {
-	clearTimeout(action.tId);
-	action.tId = setTimeout(() => action.call(context), delay);
-}
-
 export default {
 	async, // 异步回调
-	prompt, // 提示信息
-	throttle // 函数节流
+	prompt // 提示信息
 };

@@ -7,7 +7,7 @@ const btn = document.getElementById("btn");
 const target = document.getElementById("yzw");
 const copy = () => {
 	alert("复制成功");
-	_.copyPaste(123);
+	_.copyPaste(target);
 };
 btn.onclick = copy;
 
