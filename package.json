@@ -16,7 +16,7 @@
 		"url": "https://github.com/JowayYoung/trample.git"
 	},
 	"scripts": {
-		"start": "parcel src/index.html",
+		"start": "parcel doc/index.html",
 		"remove": "rimraf node_modules"
 	},
 	"dependencies": {

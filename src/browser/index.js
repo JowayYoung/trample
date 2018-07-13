@@ -1,8 +1,8 @@
-import Config from "../config";
+import F from "../function";
 
 function copyPaste(elem) {
 	if (!elem) {
-		return Config.consoleMsg("参数elem只能为HTML DOM且不能为空");
+		return F.consoleMsg("参数elem只能为HTML DOM且不能为空");
 	}
 	const range = document.createRange();
 	const end = elem.childNodes.length;
