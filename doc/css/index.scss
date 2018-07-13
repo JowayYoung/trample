@@ -1,0 +1,10 @@
+:root {
+	--bgcolor: #f66;
+}
+body {
+	background-color: var(--bgcolor);
+}
+.logo {
+	width: 128px;
+	height: 40px;
+}

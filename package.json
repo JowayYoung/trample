@@ -16,7 +16,7 @@
 		"url": "https://github.com/JowayYoung/trample.git"
 	},
 	"scripts": {
-		"start": "parcel doc/index.html",
+		"start": "parcel doc/index.html --open",
 		"remove": "rimraf node_modules"
 	},
 	"dependencies": {
@@ -36,7 +36,9 @@
 		"eslint-plugin-node": "6.0.1",
 		"eslint-plugin-promise": "3.8.0",
 		"eslint-plugin-standard": "3.1.0",
+		"node-sass": "4.9.2",
 		"parcel-bundler": "1.9.6",
+		"postcss-cssnext": "^3.1.0",
 		"rimraf": "2.6.2"
 	},
 	"engines": {
@@ -52,6 +54,11 @@
 		"Android >= 4.4.4",
 		"iOS >= 8"
 	],
+	"postcss": {
+		"plugins": {
+			"postcss-cssnext": true
+		}
+	},
 	"babel": {
 		"plugins": [
 			"transform-class-properties",

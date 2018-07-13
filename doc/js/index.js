@@ -1,4 +1,6 @@
-import Trample from "../src/index";
+import "../css/reset.css";
+import "../css/index.scss";
+import Trample from "../../src/index";
 
 // Browser
 console.log("##### Browser #####");
