@@ -1,5 +1,4 @@
 import C from "../check";
-import F from "../function";
 
 // 获取URL指定参数
 function getUrlParam(key) {
@@ -20,10 +19,7 @@ function getUrlParams() {
 	while ((match = reg.exec(query))) {
 		params[decode(match[1])] = decode(match[2]);
 	}
-	if (Object.keys(params).length < 5) {
-		F.prompt("URL查询字符小于5个，建议使用 getUrlParam(key) 方法");
-	}
-	return C.isEmptyObject(params) ? null : params;
+	return params;
 }
 
 export default {
