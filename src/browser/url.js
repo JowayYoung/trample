@@ -1,8 +1,10 @@
 import C from "../check";
 
 // 获取URL指定参数
-function getUrlParam(key) {
-	if (!C.isString(key)) return null;
+function getUrlParam(key = "") {
+	if (!C.isBrowser()) {
+		return new Error("请确保运行环境的正确性");
+	};
 	const reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
 	const query = location.search.substr(1);
 	const result = query.match(reg);
@@ -11,6 +13,9 @@ function getUrlParam(key) {
 
 // 获取URL全部参数
 function getUrlParams() {
+	if (!C.isBrowser()) {
+		return new Error("请确保运行环境的正确性");
+	};
 	let match;
 	const params = {};
 	const reg = /([^&=]+)=?([^&]*)/g;

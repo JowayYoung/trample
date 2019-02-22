@@ -21,6 +21,7 @@
 		"remove": "rimraf package-lock.json && rimraf yarn.lock && rimraf node_modules"
 	},
 	"dependencies": {
+		"iconv-lite": "0.4.24",
 		"jsonp-fallback": "1.1.2",
 		"md5": "2.2.1"
 	},

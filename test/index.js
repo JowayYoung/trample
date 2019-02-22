@@ -1,3 +1,3 @@
 import _ from "../src";
 
-console.log(_.getEnv());
+console.log(_.getUrlParam());
