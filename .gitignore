@@ -1,5 +1,4 @@
 .DS_Store
-.cache
 .gitattributes
 dist
 node_modules
