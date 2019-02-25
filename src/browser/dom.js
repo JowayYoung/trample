@@ -1,3 +1,4 @@
+/** DOM操作 **/
 import C from "../check";
 
 // 自适应页面
@@ -29,6 +30,9 @@ function copyPaste(elem) {
 	selection.removeRange(range);
 }
 
+// 懒加载图像
+function lazyloadImg() {}
+
 // 脚本回调
 function scriptCallback({ pst = "head", url, successCb, errorCb }) {
 	if (!C.isBrowser()) {
@@ -41,8 +45,25 @@ function scriptCallback({ pst = "head", url, successCb, errorCb }) {
 	document[pst].appendChild(script);
 }
 
+// 提示消息
+function toastMsg(msg, id = "toast", classNames = "") {
+	if (!C.isBrowser()) {
+		return new Error("请确保运行环境的正确性");
+	};
+	if (document.getElementById(id)) return;
+	const body = document.getElementsByTagName("body")[0];
+	const toast = document.createElement("div");
+	toast.setAttribute("class", classNames);
+	toast.setAttribute("id", id);
+	toast.innerHTML = msg;
+	body.appendChild(toast);
+	setTimeout(() => body.removeChild(toast), 2000);
+}
+
 export default {
 	autoResponse, // 自适应页面
 	copyPaste, // 复制粘贴
-	scriptCallback // 脚本回调
+	lazyloadImg, // 懒加载图像
+	scriptCallback, // 脚本回调
+	toastMsg // 提示消息
 };

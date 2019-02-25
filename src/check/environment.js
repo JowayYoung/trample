@@ -13,13 +13,20 @@ function GetNode(name) {
 // 返回运行环境信息
 function getEnv() {
 	if (isBrowser()) {
+		const ua = navigator.userAgent.toLowerCase();
+		// 系统
+		const WINDOWS = ua.includes("windows") || ua.includes("compatible");
+		const OSX = ua.includes("macintosh") || ua.includes("macintel");
+		const ANDROID = ua.includes("android") || ua.includes("adr");
+		const IOS = ua.includes("iphone") || ua.includes("ipad") || ua.includes("ipad");
+		const WP = ua.includes("windows mobile");
 		return {
 			core: "", // blink webkit gecko presto trident
 			mode: "browser",
 			platform: "", // decktop mobile
 			platformVersion: "",
 			supporter: "", // chrome safari firefox opera iexplore edge
-			system: "", // windows osx linux android ios
+			system: "", // windows osx android ios
 			systemVersion: ""
 		};
 	}
