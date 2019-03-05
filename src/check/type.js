@@ -1,12 +1,18 @@
 /** 数据类型 **/
 
-// 返回数据类型
+/**
+ * 返回数据类型
+ * @param {*} tgt 目标数据
+ */
 function getType(tgt) {
 	const type = Object.prototype.toString.call(tgt);
 	return type.replace(/\[object /g, "").replace(/\]/g, "").toLowerCase();
 }
 
-// 判断基础数据类型
+/**
+ * 判断基础数据类型
+ * @param {*} tgt 目标数据
+ */
 function isUndefined(tgt) {
 	return getType(tgt) === "undefined";
 }
@@ -56,7 +62,10 @@ function isClass(tgt) {
 	return getType(tgt) === "function" && classRegexp.test(tgt.toString());
 }
 
-// 判断复合数据类型
+/**
+ * 判断复合数据类型
+ * @param {*} tgt 目标数据
+ */
 function isSet(tgt) {
 	return getType(tgt) === "set";
 }
@@ -79,7 +88,10 @@ function isElement(tgt) {
 		: tgt ? typeof tgt === "object" && tgt.nodeType === 1 && typeof tgt.nodeName === "string" : false;
 }
 
-// 判断函数类型
+/**
+ * 判断函数类型
+ * @param {*} tgt 目标数据
+ */
 function isAsyncFunction(tgt) {
 	return getType(tgt) === "asyncfunction";
 }
@@ -92,7 +104,10 @@ function isArguments(tgt) {
 	return getType(tgt) === "arguments";
 }
 
-// 判断空类型
+/**
+ * 判断空类型
+ * @param {*} tgt 目标数据
+ */
 function isError(tgt) {
 	return tgt instanceof Error;
 }

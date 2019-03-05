@@ -2,20 +2,6 @@
 import ChildProcess from "child_process";
 
 /**
- * 判断环境是否为Browser
- */
-function isBrowser() {
-	return typeof window !== "undefined";
-}
-
-/**
- * 判断环境是否为Node
- */
-function isNode() {
-	return typeof global !== "undefined";
-}
-
-/**
  * 返回运行环境信息
  */
 function getEnv() {
@@ -184,6 +170,20 @@ function getEnv() {
 		};
 	}
 	return new Error("无法判断当前运行环境");
+}
+
+/**
+ * 判断环境是否为Browser
+ */
+function isBrowser() {
+	return typeof window !== "undefined";
+}
+
+/**
+ * 判断环境是否为Node
+ */
+function isNode() {
+	return typeof global !== "undefined";
 }
 
 export default {
