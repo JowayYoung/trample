@@ -1,27 +1,34 @@
 /** 运行环境 **/
 import ChildProcess from "child_process";
 
-// function GetBrowser() {
-// 	const result = {};
-// 	const ua = navigator.userAgent.toLocaleLowerCase();
-// }
-
-// 运行命令行
-function RunCommand(cmd) {
-	return ChildProcess.execSync(cmd, { encoding: "utf8" });
+/**
+ * 判断环境是否为Browser
+ */
+function isBrowser() {
+	return typeof window !== "undefined";
 }
 
-// 返回运行环境信息
+/**
+ * 判断环境是否为Node
+ */
+function isNode() {
+	return typeof global !== "undefined";
+}
+
+/**
+ * 返回运行环境信息
+ */
 function getEnv() {
 	if (isBrowser()) {
+		// 权重：系统 > 系统版本 > 平台 > 内核 > 载体 > 载体版本 > 载体外壳
 		const ua = navigator.userAgent.toLowerCase();
 		const testUa = regexp => regexp.test(ua);
-		const testVersion = regexp => (ua.match(regexp) + "")
+		const testVs = regexp => (ua.match(regexp) + "")
 			.replace(/[^0-9|_.]/ig, "")
 			.replace(/_/ig, ".");
 		// 系统
 		let system = "unknown";
-		if (testUa(/windows/ig)) {
+		if (testUa(/windows|win32|win64|wow32|wow64/ig)) {
 			system = "windows";
 		} else if (testUa(/macintosh|macintel/ig)) {
 			system = "osx";
@@ -29,7 +36,7 @@ function getEnv() {
 			system = "unix";
 		} else if (testUa(/android|adr/ig)) {
 			system = "android";
-		} else if (testUa(/ios|iphone|ipad|ipod/ig)) {
+		} else if (testUa(/ios|iphone|ipad|ipod|iwatch/ig)) {
 			system = "ios";
 		}
 		// 系统版本
@@ -53,20 +60,20 @@ function getEnv() {
 				systemVersion = "10";
 			}
 		}
-		if (system === "ios") {
-			systemVersion = testVersion(/os x [\d._]+/ig);
+		if (system === "osx") {
+			systemVersion = testVs(/os x [\d._]+/ig);
 		}
 		if (system === "android") {
-			systemVersion = testVersion(/android [\d._]+/ig);
+			systemVersion = testVs(/android [\d._]+/ig);
 		}
 		if (system === "ios") {
-			systemVersion = testVersion(/os [\d._]+/ig);
+			systemVersion = testVs(/os [\d._]+/ig);
 		}
 		// 平台
 		let platform = "unknow";
 		if (system === "windows" || system === "osx" || system === "unix") {
 			platform = "decktop";
-		} else if (system === "android" || system === "ios") {
+		} else if (system === "android" || system === "ios" || testUa(/mobile/ig)) {
 			platform = "mobile";
 		}
 		// 内核和载体
@@ -74,10 +81,10 @@ function getEnv() {
 		let supporter = "unknow";
 		if (testUa(/applewebkit/ig) && testUa(/safari/ig)) {
 			engine = "webkit";
-			if (testUa(/opr/ig)) {
-				supporter = "opera";
-			} else if (testUa(/edge/ig)) {
+			if (testUa(/edge/ig)) {
 				supporter = "edge";
+			} else if (testUa(/opr/ig)) {
+				supporter = "opera";
 			} else if (testUa(/chrome/ig)) {
 				supporter = "chrome";
 			} else {
@@ -89,69 +96,95 @@ function getEnv() {
 		} else if (testUa(/presto/ig)) {
 			engine = "presto";
 			supporter = "opera";
-		} else if (testUa(/trident/ig)) {
+		} else if (testUa(/trident|compatible|msie/ig)) {
 			engine = "trident";
 			supporter = "iexplore";
 		}
-		return {
+		// 内核版本
+		let engineVersion = "unknow";
+		if (engine === "webkit") {
+			engineVersion = testVs(/applewebkit\/[\d.]+/ig);
+		} else if (engine === "gecko") {
+			engineVersion = testVs(/gecko\/[\d.]+/ig);
+		} else if (engine === "presto") {
+			engineVersion = testVs(/presto\/[\d.]+/ig);
+		} else if (engine === "trident") {
+			engineVersion = testVs(/trident\/[\d.]+/ig);
+		}
+		// 载体版本
+		let supporterVersion = "unknow";
+		if (supporter === "chrome") {
+			supporterVersion = testVs(/chrome\/[\d.]+/ig);
+		} else if (supporter === "safari") {
+			supporterVersion = testVs(/version\/[\d.]+/ig);
+		} else if (supporter === "firefox") {
+			supporterVersion = testVs(/firefox\/[\d.]+/ig);
+		} else if (supporter === "opera") {
+			supporterVersion = testVs(/opr\/[\d.]+/ig);
+		} else if (supporter === "iexplore") {
+			supporterVersion = testVs(/(msie [\d.]+)|(rv:[\d.]+)/ig);
+		} else if (supporter === "edge") {
+			supporterVersion = testVs(/edge\/[\d.]+/ig);
+		}
+		// 外壳和外壳版本
+		let shell = "none";
+		let shellVersion = "unknow";
+		if (testUa(/micromessenger/ig)) {
+			shell = "wechat";
+			shellVersion = testVs(/micromessenger\/[\d.]+/ig);
+		} else if (testUa(/qqbrowser/ig)) {
+			shell = "qq";
+			shellVersion = testVs(/qqbrowser\/[\d.]+/ig);
+		} else if (testUa(/ubrowser/ig)) {
+			shell = "uc";
+			shellVersion = testVs(/ubrowser\/[\d.]+/ig);
+		} else if (testUa(/2345/ig)) {
+			shell = "2345";
+			shellVersion = testVs(/2345\/[\d.]+/ig);
+		} else if (testUa(/se 2.x/ig)) {
+			shell = "sougou";
+		} else if (testUa(/maxthon/ig)) {
+			shell = "maxthon";
+			shellVersion = testVs(/maxthon\/[\d.]+/ig);
+		} else if (testUa(/baidu/ig)) {
+			shell = "baidu";
+			shellVersion = testVs(/baidu\/[\d.]+/ig);
+		} else if (testUa(/tao/ig)) {
+			shell = "taobao";
+			shellVersion = testVs(/tao\/[\d.]+/ig);
+		} else if (testUa(/lb/ig)) {
+			shell = "liebao";
+			shellVersion = testVs(/lb\/[\d.]+/ig);
+		} else if (testUa(/world/ig)) {
+			shell = "world";
+			shellVersion = testVs(/world\/[\d.]+/ig);
+		} else if (testUa(/world/ig)) {
+
+		}
+		return Object.assign({
 			engine, // webkit gecko presto trident
+			engineVersion,
 			mode: "browser",
 			platform, // decktop mobile
-			supporter, // chrome safari firefox opera iexplore edge
+			supporter, // chrome safari firefox opera iexplore/edge
+			supporterVersion,
 			system, // windows osx unix android ios
 			systemVersion
-		};
+		}, shell !== "none" ? {
+			shell,
+			shellVersion
+		} : {});
 	}
 	if (isNode()) {
+		const runCmd = cmd => ChildProcess.execSync(cmd, { encoding: "utf8" });
 		return {
 			mode: "node",
-			nodeVersion: RunCommand("node -v").replace(/v/g, "").replace(/\r\n/g, ""),
-			npmVersion: RunCommand("npm -v").replace(/\n/g, "")
+			node: runCmd("node -v").replace(/v/g, "").replace(/\r\n/g, ""),
+			npm: runCmd("npm -v").replace(/\n/g, "")
 		};
 	}
 	return new Error("无法判断当前运行环境");
 }
-
-// 判断运行环境
-function isBrowser() {
-	return typeof window !== "undefined";
-}
-
-function isNode() {
-	return typeof global !== "undefined";
-}
-
-// function isDecktop() {
-
-// }
-
-// function isMobile() {
-
-// }
-
-// function isWindows() {
-
-// }
-
-// function isOSX() {
-
-// }
-
-// function isUnix() {
-
-// }
-
-// function isAndroid() {
-
-// }
-
-// function isIos() {
-
-// }
-
-// function isWeChat() {
-
-// }
 
 export default {
 	getEnv, // 返回运行环境信息

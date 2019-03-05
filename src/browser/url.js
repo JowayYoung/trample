@@ -1,10 +1,13 @@
 /** URL操作 **/
 import C from "../check";
 
-// 获取URL指定参数
-function getUrlParam(key = "") {
+/**
+ * 获取URL指定参数
+ * @param {string} [key=""] 参数
+ */
+function getQueryParam(key = "") {
 	if (!C.isBrowser()) {
-		return new Error("请确保运行环境的正确性");
+		return new Error("请确保运行环境为Browser");
 	};
 	const reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
 	const query = location.search.substr(1);
@@ -12,10 +15,12 @@ function getUrlParam(key = "") {
 	return result ? decodeURIComponent(result[2]) : null;
 }
 
-// 获取URL全部参数
-function getUrlParams() {
+/**
+ * 获取URL全部参数
+ */
+function getQueryParams() {
 	if (!C.isBrowser()) {
-		return new Error("请确保运行环境的正确性");
+		return new Error("请确保运行环境为Browser");
 	};
 	let match;
 	const params = {};
@@ -29,6 +34,6 @@ function getUrlParams() {
 }
 
 export default {
-	getUrlParam, // 获取URL指定参数
-	getUrlParams // 获取URL全部参数
+	getQueryParam, // 获取URL指定参数
+	getQueryParams // 获取URL全部参数
 };
