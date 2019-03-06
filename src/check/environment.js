@@ -6,7 +6,7 @@ import ChildProcess from "child_process";
  */
 function getEnv() {
 	if (isBrowser()) {
-		// 权重：系统 > 系统版本 > 平台 > 内核 > 载体 > 载体版本 > 载体外壳
+		// 权重：系统 > 系统版本 > 平台 > 内核 > 载体 > 载体版本 > 外壳 > 外壳版本
 		const ua = navigator.userAgent.toLowerCase();
 		const testUa = regexp => regexp.test(ua);
 		const testVs = regexp => (ua.match(regexp) + "")
