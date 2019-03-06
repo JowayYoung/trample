@@ -124,35 +124,26 @@ function getEnv() {
 		} else if (testUa(/ubrowser/ig)) {
 			shell = "uc";
 			shellVersion = testVs(/ubrowser\/[\d.]+/ig);
-		} else if (testUa(/2345/ig)) {
+		} else if (testUa(/2345explorer/ig)) {
 			shell = "2345";
-			shellVersion = testVs(/2345\/[\d.]+/ig);
-		} else if (testUa(/se 2.x/ig)) {
+			shellVersion = testVs(/2345explorer\/[\d.]+/ig);
+		} else if (testUa(/metasr/ig)) {
 			shell = "sougou";
+		} else if (testUa(/lbbrowser/ig)) {
+			shell = "liebao";
 		} else if (testUa(/maxthon/ig)) {
 			shell = "maxthon";
 			shellVersion = testVs(/maxthon\/[\d.]+/ig);
-		} else if (testUa(/baidu/ig)) {
+		} else if (testUa(/bidubrowser/ig)) {
 			shell = "baidu";
-			shellVersion = testVs(/baidu\/[\d.]+/ig);
-		} else if (testUa(/tao/ig)) {
-			shell = "taobao";
-			shellVersion = testVs(/tao\/[\d.]+/ig);
-		} else if (testUa(/lb/ig)) {
-			shell = "liebao";
-			shellVersion = testVs(/lb\/[\d.]+/ig);
-		} else if (testUa(/world/ig)) {
-			shell = "world";
-			shellVersion = testVs(/world\/[\d.]+/ig);
-		} else if (testUa(/world/ig)) {
-
+			shellVersion = testVs(/bidubrowser [\d.]+/ig);
 		}
 		return Object.assign({
 			engine, // webkit gecko presto trident
 			engineVersion,
 			mode: "browser",
 			platform, // decktop mobile
-			supporter, // chrome safari firefox opera iexplore/edge
+			supporter, // chrome safari firefox opera iexplore edge
 			supporterVersion,
 			system, // windows osx unix android ios
 			systemVersion
