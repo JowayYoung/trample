@@ -78,6 +78,9 @@ function scriptCallback({ pst = "head", url = "", success = null, error = null }
 	if (!C.isBrowser()) {
 		return new Error("请确保运行环境为Browser");
 	};
+	if ([...document.getElementsByTagName("script")].some(v => v.src === url || v.src.includes(url))) {
+		return success && success();
+	}
 	const script = document.createElement("script");
 	script.setAttribute("src", url);
 	success && script.addEventListener("load", success);
