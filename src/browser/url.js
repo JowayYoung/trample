@@ -2,7 +2,7 @@
 import C from "../check";
 
 /**
- * 返回URL参数
+ * 获取URL参数
  * @param {string} [key=""] 参数
  */
 function getQueryParam(key = "") {
@@ -38,6 +38,6 @@ function setQueryParam(key = "") {
 }
 
 export default {
-	getQueryParam, // 返回URL参数
+	getQueryParam, // 获取URL参数
 	setQueryParam // 设置URL参数
 };

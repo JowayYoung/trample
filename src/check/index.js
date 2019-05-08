@@ -1,7 +1,7 @@
-import Environment from "./environment";
-import Type from "./type";
+import Envs from "./env";
+import Types from "./type";
 
 export default {
-	...Environment,
-	...Type
+	...Envs,
+	...Types
 };

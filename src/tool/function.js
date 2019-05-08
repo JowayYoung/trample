@@ -44,7 +44,7 @@ function asyncTo(pfn = null) {
 }
 
 /**
- * 函数节流
+ * 函数防抖
  * @param {function} [fn=null] 函数
  * @param {number} [delay=0] 时延
  */
@@ -80,6 +80,6 @@ function throttle(fn, delay) {
 export default {
 	ajax, // 异步请求
 	asyncTo, // 异步格式化
-	debounce, // 函数节流
+	debounce, // 函数防抖
 	throttle // 函数节流
 };

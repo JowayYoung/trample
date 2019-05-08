@@ -62,11 +62,6 @@ function img2base64({ url = "", type = "image/png", success = null, error = null
 	error && img.addEventListener("error", error);
 }
 
-// 懒加载图像
-function lazyloadImg() {
-
-}
-
 /**
  * 脚本回调
  * @param {string} [pst="head"] 插入位置
@@ -74,7 +69,7 @@ function lazyloadImg() {
  * @param {function} [successCb=null] 成功回调函数
  * @param {function} [errorCb=null] 失败回调函数
  */
-function scriptCallback({ pst = "head", url = "", success = null, error = null }) {
+function scriptCb({ pst = "head", url = "", success = null, error = null }) {
 	if (!C.isBrowser()) {
 		return new Error("请确保运行环境为Browser");
 	};
@@ -113,7 +108,6 @@ export default {
 	autoResponse, // 自适应页面
 	copyPaste, // 复制粘贴
 	img2base64, // 图像转换base64
-	lazyloadImg, // 懒加载图像
-	scriptCallback, // 脚本回调
+	scriptCb, // 脚本回调
 	toastMsg // 提示消息
 };

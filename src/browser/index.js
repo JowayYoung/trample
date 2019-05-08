@@ -1,7 +1,7 @@
-import Dom from "./dom";
-import Url from "./url";
+import Doms from "./dom";
+import Urls from "./url";
 
 export default {
-	...Dom,
-	...Url
+	...Doms,
+	...Urls
 };
