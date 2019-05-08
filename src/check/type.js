@@ -4,9 +4,9 @@
  * 返回数据类型
  * @param {*} tgt 目标数据
  */
-function getType(tgt) {
-	const type = Object.prototype.toString.call(tgt);
-	return type.replace(/\[object /g, "").replace(/\]/g, "").toLowerCase();
+function dataType(tgt, type) {
+	const dataType = Object.prototype.toString.call(tgt).replace(/\[object /g, "").replace(/\]/g, "").toLowerCase();
+	return type ? dataType === type : dataType;
 }
 
 /**
@@ -14,52 +14,52 @@ function getType(tgt) {
  * @param {*} tgt 目标数据
  */
 function isUndefined(tgt) {
-	return getType(tgt) === "undefined";
+	return dataType(tgt, "undefined");
 }
 
 function isNull(tgt) {
-	return getType(tgt) === "null";
+	return dataType(tgt, "null");
 }
 
 function isString(tgt) {
-	return getType(tgt) === "string";
+	return dataType(tgt, "string");
 }
 
 function isNumber(tgt) {
-	return getType(tgt) === "number";
+	return dataType(tgt, "number");
 }
 
 function isBoolean(tgt) {
-	return getType(tgt) === "boolean";
+	return dataType(tgt, "boolean");
 }
 
 function isArray(tgt) {
-	return getType(tgt) === "array";
+	return dataType(tgt, "array");
 }
 
 function isObject(tgt) {
-	return getType(tgt) === "object";
+	return dataType(tgt, "object");
 }
 
 function isSymbol(tgt) {
-	return getType(tgt) === "symbol";
+	return dataType(tgt, "symbol");
 }
 
 function isDate(tgt) {
-	return getType(tgt) === "date";
+	return dataType(tgt, "date");
 }
 
 function isRegExp(tgt) {
-	return getType(tgt) === "regexp";
+	return dataType(tgt, "regexp");
 }
 
 function isFunction(tgt) {
-	return getType(tgt) === "function";
+	return dataType(tgt, "function");
 }
 
 function isClass(tgt) {
 	const classRegexp = /^class\s|^function\s+[A-Z]/;
-	return getType(tgt) === "function" && classRegexp.test(tgt.toString());
+	return dataType(tgt, "function") && classRegexp.test(tgt.toString());
 }
 
 /**
@@ -67,19 +67,19 @@ function isClass(tgt) {
  * @param {*} tgt 目标数据
  */
 function isSet(tgt) {
-	return getType(tgt) === "set";
+	return dataType(tgt, "set");
 }
 
 function isMap(tgt) {
-	return getType(tgt) === "map";
+	return dataType(tgt, "map");
 }
 
 function isWeakSet(tgt) {
-	return getType(tgt) === "weakset";
+	return dataType(tgt, "weakset");
 }
 
 function isWeakMap(tgt) {
-	return getType(tgt) === "weakmap";
+	return dataType(tgt, "weakmap");
 }
 
 function isElement(tgt) {
@@ -93,15 +93,15 @@ function isElement(tgt) {
  * @param {*} tgt 目标数据
  */
 function isAsyncFunction(tgt) {
-	return getType(tgt) === "asyncfunction";
+	return dataType(tgt, "asyncfunction");
 }
 
 function isSyncFunction(tgt) {
-	return getType(tgt) === "function";
+	return dataType(tgt, "function");
 }
 
 function isArguments(tgt) {
-	return getType(tgt) === "arguments";
+	return dataType(tgt, "arguments");
 }
 
 /**
@@ -113,7 +113,7 @@ function isError(tgt) {
 }
 
 function isEmpty(tgt) {
-	return !tgt; // undefined null "" 0 false
+	return !tgt; // undefined null "" 0 false NaN
 }
 
 function isEmptyArray(tgt) {
@@ -125,7 +125,7 @@ function isEmptyObject(tgt) {
 }
 
 export default {
-	getType, // 返回数据类型
+	dataType, // 返回数据类型
 	isArguments, // 判断数据是否为Arguments对象
 	isArray, // 判断数据是否为数组
 	isAsyncFunction, // 判断数据是否为异步函数
