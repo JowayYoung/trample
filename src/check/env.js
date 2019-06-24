@@ -15,141 +15,138 @@ function getEnv() {
 		// 系统
 		let system = "unknown";
 		if (testUa(/windows|win32|win64|wow32|wow64/ig)) {
-			system = "windows";
+			system = "windows"; // window系统
 		} else if (testUa(/macintosh|macintel/ig)) {
-			system = "osx";
+			system = "osx"; // osx系统
 		} else if (testUa(/x11/ig)) {
-			system = "linux";
+			system = "linux"; // linux系统
 		} else if (testUa(/android|adr/ig)) {
-			system = "android";
+			system = "android"; // android系统
 		} else if (testUa(/ios|iphone|ipad|ipod|iwatch/ig)) {
-			system = "ios";
+			system = "ios"; // ios系统
 		}
 		// 系统版本
-		let systemVersion = "unknown";
+		let systemVs = "unknown";
 		if (system === "windows") {
 			if (testUa(/windows nt 5.0|windows 2000/ig)) {
-				systemVersion = "2000";
+				systemVs = "2000";
 			} else if (testUa(/windows nt 5.1|windows xp/ig)) {
-				systemVersion = "xp";
+				systemVs = "xp";
 			} else if (testUa(/windows nt 5.2|windows 2003/ig)) {
-				systemVersion = "2003";
+				systemVs = "2003";
 			} else if (testUa(/windows nt 6.0|windows vista/ig)) {
-				systemVersion = "vista";
+				systemVs = "vista";
 			} else if (testUa(/windows nt 6.1|windows 7/ig)) {
-				systemVersion = "7";
+				systemVs = "7";
 			} else if (testUa(/windows nt 6.2|windows 8/ig)) {
-				systemVersion = "8";
+				systemVs = "8";
 			} else if (testUa(/windows nt 6.3|windows 8.1/ig)) {
-				systemVersion = "8.1";
+				systemVs = "8.1";
 			} else if (testUa(/windows nt 10.0|windows 10/ig)) {
-				systemVersion = "10";
+				systemVs = "10";
 			}
-		}
-		if (system === "osx") {
-			systemVersion = testVs(/os x [\d._]+/ig);
-		}
-		if (system === "android") {
-			systemVersion = testVs(/android [\d._]+/ig);
-		}
-		if (system === "ios") {
-			systemVersion = testVs(/os [\d._]+/ig);
+		} else if (system === "osx") {
+			systemVs = testVs(/os x [\d._]+/ig);
+		} else if (system === "android") {
+			systemVs = testVs(/android [\d._]+/ig);
+		} else if (system === "ios") {
+			systemVs = testVs(/os [\d._]+/ig);
 		}
 		// 平台
 		let platform = "unknow";
 		if (system === "windows" || system === "osx" || system === "linux") {
-			platform = "decktop";
+			platform = "decktop"; // 桌面端
 		} else if (system === "android" || system === "ios" || testUa(/mobile/ig)) {
-			platform = "mobile";
+			platform = "mobile"; // 移动端
 		}
 		// 内核和载体
 		let engine = "unknow";
 		let supporter = "unknow";
 		if (testUa(/applewebkit/ig) && testUa(/safari/ig)) {
-			engine = "webkit";
+			engine = "webkit"; // webkit内核
 			if (testUa(/edge/ig)) {
-				supporter = "edge";
+				supporter = "edge"; // edge浏览器
 			} else if (testUa(/opr/ig)) {
-				supporter = "opera";
+				supporter = "opera"; // opera浏览器
 			} else if (testUa(/chrome/ig)) {
-				supporter = "chrome";
+				supporter = "chrome"; // chrome浏览器
 			} else {
-				supporter = "safari";
+				supporter = "safari"; // safari浏览器
 			}
 		} else if (testUa(/gecko/ig) && testUa(/firefox/ig)) {
-			engine = "gecko";
-			supporter = "firefox";
+			engine = "gecko"; // gecko内核
+			supporter = "firefox"; // firefox浏览器
 		} else if (testUa(/presto/ig)) {
-			engine = "presto";
-			supporter = "opera";
+			engine = "presto"; // presto内核
+			supporter = "opera"; // opera浏览器
 		} else if (testUa(/trident|compatible|msie/ig)) {
-			engine = "trident";
-			supporter = "iexplore";
+			engine = "trident"; // trident内核
+			supporter = "iexplore"; // iexplore浏览器
 		}
 		// 内核版本
-		let engineVersion = "unknow";
+		let engineVs = "unknow";
 		if (engine === "webkit") {
-			engineVersion = testVs(/applewebkit\/[\d.]+/ig);
+			engineVs = testVs(/applewebkit\/[\d.]+/ig);
 		} else if (engine === "gecko") {
-			engineVersion = testVs(/gecko\/[\d.]+/ig);
+			engineVs = testVs(/gecko\/[\d.]+/ig);
 		} else if (engine === "presto") {
-			engineVersion = testVs(/presto\/[\d.]+/ig);
+			engineVs = testVs(/presto\/[\d.]+/ig);
 		} else if (engine === "trident") {
-			engineVersion = testVs(/trident\/[\d.]+/ig);
+			engineVs = testVs(/trident\/[\d.]+/ig);
 		}
 		// 载体版本
-		let supporterVersion = "unknow";
+		let supporterVs = "unknow";
 		if (supporter === "chrome") {
-			supporterVersion = testVs(/chrome\/[\d.]+/ig);
+			supporterVs = testVs(/chrome\/[\d.]+/ig);
 		} else if (supporter === "safari") {
-			supporterVersion = testVs(/version\/[\d.]+/ig);
+			supporterVs = testVs(/version\/[\d.]+/ig);
 		} else if (supporter === "firefox") {
-			supporterVersion = testVs(/firefox\/[\d.]+/ig);
+			supporterVs = testVs(/firefox\/[\d.]+/ig);
 		} else if (supporter === "opera") {
-			supporterVersion = testVs(/opr\/[\d.]+/ig);
+			supporterVs = testVs(/opr\/[\d.]+/ig);
 		} else if (supporter === "iexplore") {
-			supporterVersion = testVs(/(msie [\d.]+)|(rv:[\d.]+)/ig);
+			supporterVs = testVs(/(msie [\d.]+)|(rv:[\d.]+)/ig);
 		} else if (supporter === "edge") {
-			supporterVersion = testVs(/edge\/[\d.]+/ig);
+			supporterVs = testVs(/edge\/[\d.]+/ig);
 		}
 		// 外壳和外壳版本
 		let shell = "none";
-		let shellVersion = "unknow";
+		let shellVs = "unknow";
 		if (testUa(/micromessenger/ig)) {
-			shell = "wechat";
-			shellVersion = testVs(/micromessenger\/[\d.]+/ig);
+			shell = "wechat"; // 微信浏览器
+			shellVs = testVs(/micromessenger\/[\d.]+/ig);
 		} else if (testUa(/qqbrowser/ig)) {
-			shell = "qq";
-			shellVersion = testVs(/qqbrowser\/[\d.]+/ig);
+			shell = "qq"; // QQ浏览器
+			shellVs = testVs(/qqbrowser\/[\d.]+/ig);
 		} else if (testUa(/ubrowser/ig)) {
-			shell = "uc";
-			shellVersion = testVs(/ubrowser\/[\d.]+/ig);
+			shell = "uc"; // UC浏览器
+			shellVs = testVs(/ubrowser\/[\d.]+/ig);
 		} else if (testUa(/2345explorer/ig)) {
-			shell = "2345";
-			shellVersion = testVs(/2345explorer\/[\d.]+/ig);
+			shell = "2345"; // 2345浏览器
+			shellVs = testVs(/2345explorer\/[\d.]+/ig);
 		} else if (testUa(/metasr/ig)) {
-			shell = "sougou";
+			shell = "sougou"; // 搜狗浏览器
 		} else if (testUa(/lbbrowser/ig)) {
-			shell = "liebao";
+			shell = "liebao"; // 猎豹浏览器
 		} else if (testUa(/maxthon/ig)) {
-			shell = "maxthon";
-			shellVersion = testVs(/maxthon\/[\d.]+/ig);
+			shell = "maxthon"; // 遨游浏览器
+			shellVs = testVs(/maxthon\/[\d.]+/ig);
 		} else if (testUa(/bidubrowser/ig)) {
-			shell = "baidu";
-			shellVersion = testVs(/bidubrowser [\d.]+/ig);
+			shell = "baidu"; // 百度浏览器
+			shellVs = testVs(/bidubrowser [\d.]+/ig);
 		}
 		return Object.assign({
 			engine, // webkit gecko presto trident
-			engineVersion,
+			engineVs,
 			mode: "browser",
 			platform, // decktop mobile
 			supporter, // chrome safari firefox opera iexplore edge
-			supporterVersion,
+			supporterVs,
 			system, // windows osx linux android ios
-			systemVersion
+			systemVs
 		}, shell !== "none" ? {
 			shell,
-			shellVersion
+			shellVs
 		} : {});
 	}
 	if (isNode()) {
