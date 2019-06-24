@@ -19,7 +19,7 @@ function getEnv() {
 		} else if (testUa(/macintosh|macintel/ig)) {
 			system = "osx";
 		} else if (testUa(/x11/ig)) {
-			system = "unix";
+			system = "linux";
 		} else if (testUa(/android|adr/ig)) {
 			system = "android";
 		} else if (testUa(/ios|iphone|ipad|ipod|iwatch/ig)) {
@@ -57,7 +57,7 @@ function getEnv() {
 		}
 		// 平台
 		let platform = "unknow";
-		if (system === "windows" || system === "osx" || system === "unix") {
+		if (system === "windows" || system === "osx" || system === "linux") {
 			platform = "decktop";
 		} else if (system === "android" || system === "ios" || testUa(/mobile/ig)) {
 			platform = "mobile";
@@ -145,7 +145,7 @@ function getEnv() {
 			platform, // decktop mobile
 			supporter, // chrome safari firefox opera iexplore edge
 			supporterVersion,
-			system, // windows osx unix android ios
+			system, // windows osx linux android ios
 			systemVersion
 		}, shell !== "none" ? {
 			shell,
