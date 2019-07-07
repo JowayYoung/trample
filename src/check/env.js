@@ -17,7 +17,7 @@ function getEnv() {
 		if (testUa(/windows|win32|win64|wow32|wow64/ig)) {
 			system = "windows"; // window系统
 		} else if (testUa(/macintosh|macintel/ig)) {
-			system = "osx"; // osx系统
+			system = "macos"; // macos系统
 		} else if (testUa(/x11/ig)) {
 			system = "linux"; // linux系统
 		} else if (testUa(/android|adr/ig)) {
@@ -45,7 +45,7 @@ function getEnv() {
 			} else if (testUa(/windows nt 10.0|windows 10/ig)) {
 				systemVs = "10";
 			}
-		} else if (system === "osx") {
+		} else if (system === "macos") {
 			systemVs = testVs(/os x [\d._]+/ig);
 		} else if (system === "android") {
 			systemVs = testVs(/android [\d._]+/ig);
@@ -54,7 +54,7 @@ function getEnv() {
 		}
 		// 平台
 		let platform = "unknow";
-		if (system === "windows" || system === "osx" || system === "linux") {
+		if (system === "windows" || system === "macos" || system === "linux") {
 			platform = "desktop"; // 桌面端
 		} else if (system === "android" || system === "ios" || testUa(/mobile/ig)) {
 			platform = "mobile"; // 移动端
@@ -142,7 +142,7 @@ function getEnv() {
 			platform, // desktop mobile
 			supporter, // chrome safari firefox opera iexplore edge
 			supporterVs,
-			system, // windows osx linux android ios
+			system, // windows macos linux android ios
 			systemVs
 		}, shell === "none" ? {} : {
 			shell, // wechat qq uc 2345 sougou liebao maxthon baidu
