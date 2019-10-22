@@ -9,132 +9,117 @@ function getEnv() {
 		// 权重：系统 + 系统版本 > 平台 > 内核 + 载体 + 内核版本 + 载体版本 > 外壳 + 外壳版本
 		const ua = navigator.userAgent.toLowerCase();
 		const testUa = regexp => regexp.test(ua);
-		const testVs = regexp => (ua.match(regexp) + "")
-			.replace(/[^0-9|_.]/ig, "")
-			.replace(/_/ig, ".");
+		const testVs = regexp => ua.match(regexp)
+			.toString()
+			.replace(/[^0-9|_.]/g, "")
+			.replace(/_/g, ".");
+		/* eslint-disable sort-keys */
 		// 系统
-		let system = "unknown";
-		if (testUa(/windows|win32|win64|wow32|wow64/ig)) {
-			system = "windows"; // window系统
-		} else if (testUa(/macintosh|macintel/ig)) {
-			system = "macos"; // macos系统
-		} else if (testUa(/x11/ig)) {
-			system = "linux"; // linux系统
-		} else if (testUa(/android|adr/ig)) {
-			system = "android"; // android系统
-		} else if (testUa(/ios|iphone|ipad|ipod|iwatch/ig)) {
-			system = "ios"; // ios系统
-		}
-		// 系统版本
-		let systemVs = "unknown";
-		if (system === "windows") {
-			if (testUa(/windows nt 5.0|windows 2000/ig)) {
-				systemVs = "2000";
-			} else if (testUa(/windows nt 5.1|windows xp/ig)) {
-				systemVs = "xp";
-			} else if (testUa(/windows nt 5.2|windows 2003/ig)) {
-				systemVs = "2003";
-			} else if (testUa(/windows nt 6.0|windows vista/ig)) {
-				systemVs = "vista";
-			} else if (testUa(/windows nt 6.1|windows 7/ig)) {
-				systemVs = "7";
-			} else if (testUa(/windows nt 6.2|windows 8/ig)) {
-				systemVs = "8";
-			} else if (testUa(/windows nt 6.3|windows 8.1/ig)) {
-				systemVs = "8.1";
-			} else if (testUa(/windows nt 10.0|windows 10/ig)) {
-				systemVs = "10";
-			}
-		} else if (system === "macos") {
-			systemVs = testVs(/os x [\d._]+/ig);
-		} else if (system === "android") {
-			systemVs = testVs(/android [\d._]+/ig);
-		} else if (system === "ios") {
-			systemVs = testVs(/os [\d._]+/ig);
-		}
+		const systemMap = {
+			windows: /windows|win32|win64|wow32|wow64/g, // windows系统
+			macos: /macintosh|macintel/g, // macos系统
+			linux: /x11/g, // linux系统
+			android: /android|adr/g, // android系统
+			ios: /ios|iphone|ipad|ipod|iwatch/g // ios系统
+		};
+		const systemVsMap = {
+			windows() {
+				const ver = ua.match(/(windows nt [\d._]+)|(windows [\w._]+)/g)
+					.toString()
+					.replace(/windows( nt)? /g, "");
+				const map = {
+					2000: /5\.0|2000/g,
+					xp: /5\.1|xp/g,
+					2003: /5\.2|2003/g,
+					vista: /6\.0|vista/g,
+					7: /6\.1|7/g,
+					8: /6\.2|8/g,
+					8.1: /6\.3|8\.1/g,
+					10: /10\.0|10/g
+				};
+				return Object.keys(map).find(v => map[v].test(ver)) || "unknown";
+			},
+			macos: /os x [\d._]+/g,
+			android: /android [\d._]+/g,
+			ios: /os [\d._]+/g
+		};
+		const system = Object.keys(systemMap).find(v => testUa(systemMap[v])) || "unknown";
+		const systemVs = systemVsMap[system]
+			? system === "windows"
+				? systemVsMap.windows()
+				: testVs(systemVsMap[system])
+			: "unknown";
 		// 平台
-		let platform = "unknow";
-		if (system === "windows" || system === "macos" || system === "linux") {
-			platform = "desktop"; // 桌面端
-		} else if (system === "android" || system === "ios" || testUa(/mobile/ig)) {
-			platform = "mobile"; // 移动端
-		}
-		// 内核和载体
-		let engine = "unknow";
-		let supporter = "unknow";
-		if (testUa(/applewebkit/ig) && testUa(/safari/ig)) {
-			engine = "webkit"; // webkit内核
-			if (testUa(/edge/ig)) {
-				supporter = "edge"; // edge浏览器
-			} else if (testUa(/opr/ig)) {
-				supporter = "opera"; // opera浏览器
-			} else if (testUa(/chrome/ig)) {
-				supporter = "chrome"; // chrome浏览器
-			} else {
-				supporter = "safari"; // safari浏览器
-			}
-		} else if (testUa(/gecko/ig) && testUa(/firefox/ig)) {
-			engine = "gecko"; // gecko内核
-			supporter = "firefox"; // firefox浏览器
-		} else if (testUa(/presto/ig)) {
-			engine = "presto"; // presto内核
-			supporter = "opera"; // opera浏览器
-		} else if (testUa(/trident|compatible|msie/ig)) {
-			engine = "trident"; // trident内核
-			supporter = "iexplore"; // iexplore浏览器
-		}
-		// 内核版本
-		let engineVs = "unknow";
-		if (engine === "webkit") {
-			engineVs = testVs(/applewebkit\/[\d.]+/ig);
-		} else if (engine === "gecko") {
-			engineVs = testVs(/gecko\/[\d.]+/ig);
-		} else if (engine === "presto") {
-			engineVs = testVs(/presto\/[\d.]+/ig);
-		} else if (engine === "trident") {
-			engineVs = testVs(/trident\/[\d.]+/ig);
-		}
-		// 载体版本
-		let supporterVs = "unknow";
-		if (supporter === "chrome") {
-			supporterVs = testVs(/chrome\/[\d.]+/ig);
-		} else if (supporter === "safari") {
-			supporterVs = testVs(/version\/[\d.]+/ig);
-		} else if (supporter === "firefox") {
-			supporterVs = testVs(/firefox\/[\d.]+/ig);
-		} else if (supporter === "opera") {
-			supporterVs = testVs(/opr\/[\d.]+/ig);
-		} else if (supporter === "iexplore") {
-			supporterVs = testVs(/(msie [\d.]+)|(rv:[\d.]+)/ig);
-		} else if (supporter === "edge") {
-			supporterVs = testVs(/edge\/[\d.]+/ig);
-		}
-		// 外壳和外壳版本
-		let shell = "none";
-		let shellVs = "unknow";
-		if (testUa(/micromessenger/ig)) {
-			shell = "wechat"; // 微信浏览器
-			shellVs = testVs(/micromessenger\/[\d.]+/ig);
-		} else if (testUa(/qqbrowser/ig)) {
-			shell = "qq"; // QQ浏览器
-			shellVs = testVs(/qqbrowser\/[\d.]+/ig);
-		} else if (testUa(/ubrowser/ig)) {
-			shell = "uc"; // UC浏览器
-			shellVs = testVs(/ubrowser\/[\d.]+/ig);
-		} else if (testUa(/2345explorer/ig)) {
-			shell = "2345"; // 2345浏览器
-			shellVs = testVs(/2345explorer\/[\d.]+/ig);
-		} else if (testUa(/metasr/ig)) {
-			shell = "sougou"; // 搜狗浏览器
-		} else if (testUa(/lbbrowser/ig)) {
-			shell = "liebao"; // 猎豹浏览器
-		} else if (testUa(/maxthon/ig)) {
-			shell = "maxthon"; // 遨游浏览器
-			shellVs = testVs(/maxthon\/[\d.]+/ig);
-		} else if (testUa(/bidubrowser/ig)) {
-			shell = "baidu"; // 百度浏览器
-			shellVs = testVs(/bidubrowser [\d.]+/ig);
-		}
+		const platformMap = {
+			desktop: ["windows", "macos", "linux"], // 桌面端
+			mobile: ["android", "ios", testUa(/mobile/g)] // 移动端
+		};
+		const platform = Object.keys(platformMap).find(v => platformMap[v].includes(system) || v === true) || "unknow";
+		// 内核
+		const engineMap = {
+			webkit: /(?=.*applewebkit)(?=.*safari)/g, // webkit内核
+			gecko: /(?=.*gecko)(?=.*firefox)/g, // gecko内核
+			presto: /presto/g, // presto内核
+			trident: /trident|compatible|msie/g // trident内核
+		};
+		const engineVsMap = {
+			webkit: /applewebkit\/[\d._]+/g,
+			gecko: /gecko\/[\d._]+/g,
+			presto: /presto\/[\d._]+/g,
+			trident: /trident\/[\d._]+/g
+		};
+		const engine = Object.keys(engineMap).find(v => testUa(engineMap[v])) || "unknow";
+		const engineVs = engineVsMap[engine] ? testVs(engineVsMap[engine]) : "unknow";
+		// 载体
+		const supporterMap = {
+			webkit() {
+				const map = {
+					edge: /edge/g, // edge浏览器
+					opera: /opr/g, // opera浏览器
+					chrome: /chrome/g // chrome浏览器
+				};
+				return Object.keys(map).find(v => testUa(map[v])) || "safari"; // safari浏览器
+			},
+			gecko: "firefox", // firefox浏览器
+			presto: "opera", // opera浏览器
+			trident: "iexplore" // iexplore浏览器
+		};
+		const supporterVsMap = {
+			chrome: /chrome\/[\d._]+/g,
+			safari: /version\/[\d._]+/g,
+			firefox: /firefox\/[\d._]+/g,
+			opera: /opr\/[\d._]+/g,
+			iexplore: /(msie [\d._]+)|(rv:[\d._]+)/g,
+			edge: /edge\/[\d._]+/g
+		};
+		const supporter = supporterMap[engine]
+			? engine === "webkit" ? supporterMap.webkit() : supporterMap[engine]
+			: "unknow";
+		const supporterVs = supporterVsMap[supporter] ? testVs(supporterVsMap[supporter]) : "unknow";
+		// 外壳
+		const shellMap = {
+			wechat: /micromessenger/g, // 微信浏览器
+			qq: /qqbrowser/g, // QQ浏览器
+			uc: /ubrowser/g, // UC浏览器
+			2345: /2345explorer/g, // 2345浏览器
+			sougou: /metasr/g, // 搜狗浏览器
+			liebao: /lbbrowser/g, // 猎豹浏览器
+			maxthon: /maxthon/g, // 遨游浏览器
+			baidu: /bidubrowser/g // 百度浏览器
+		};
+		const shellVsMap = {
+			wechat: /micromessenger\/[\d._]+/g,
+			qq: /qqbrowser\/[\d._]+/g,
+			uc: /ubrowser\/[\d._]+/g,
+			2345: /2345explorer\/[\d._]+/g,
+			sougou: /metasr\/[\d._]+/g,
+			liebao: /lbbrowser\/[\d._]+/g,
+			maxthon: /maxthon\/[\d._]+/g,
+			baidu: /bidubrowser [\d._]+/g
+		};
+		const shell = Object.keys(shellMap).find(v => testUa(shellMap[v])) || "unknow";
+		const shellVs = shellVsMap[shell] ? testVs(shellVsMap[shell]) : "unknow";
+		/* eslint-enable */
 		return Object.assign({
 			engine, // webkit gecko presto trident
 			engineVs,
