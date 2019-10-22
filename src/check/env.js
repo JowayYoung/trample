@@ -6,13 +6,12 @@ import ChildProcess from "child_process";
  */
 function getEnv() {
 	if (isBrowser()) {
-		// 权重：系统 + 系统版本 > 平台 > 内核 + 载体 + 内核版本 + 载体版本 > 外壳 + 外壳版本
+		// 权重：系统 > 平台 > 内核 > 载体 > 外壳
 		const ua = navigator.userAgent.toLowerCase();
 		const testUa = regexp => regexp.test(ua);
-		const testVs = regexp => ua.match(regexp)
-			.toString()
-			.replace(/[^0-9|_.]/g, "")
-			.replace(/_/g, ".");
+		const testVs = regexp => regexp
+			? ua.match(regexp).toString().replace(/[^0-9|_.]/g, "").replace(/_/g, ".")
+			: "unknown";
 		/* eslint-disable sort-keys */
 		// 系统
 		const systemMap = {
@@ -44,11 +43,7 @@ function getEnv() {
 			ios: /os [\d._]+/g
 		};
 		const system = Object.keys(systemMap).find(v => testUa(systemMap[v])) || "unknown";
-		const systemVs = systemVsMap[system]
-			? system === "windows"
-				? systemVsMap.windows()
-				: testVs(systemVsMap[system])
-			: "unknown";
+		const systemVs = system === "windows" ? systemVsMap.windows() : testVs(systemVsMap[system]);
 		// 平台
 		const platformMap = {
 			desktop: ["windows", "macos", "linux"], // 桌面端
@@ -57,19 +52,13 @@ function getEnv() {
 		const platform = Object.keys(platformMap).find(v => platformMap[v].includes(system) || v === true) || "unknow";
 		// 内核
 		const engineMap = {
-			webkit: /(?=.*applewebkit)(?=.*safari)/g, // webkit内核
-			gecko: /(?=.*gecko)(?=.*firefox)/g, // gecko内核
-			presto: /presto/g, // presto内核
-			trident: /trident|compatible|msie/g // trident内核
+			webkit: [/(?=.*applewebkit)(?=.*safari)/g, /applewebkit\/[\d._]+/g], // webkit内核
+			gecko: [/(?=.*gecko)(?=.*firefox)/g, /gecko\/[\d._]+/g], // gecko内核
+			presto: [/presto/g, /presto\/[\d._]+/g], // presto内核
+			trident: [/trident|compatible|msie/g, /trident\/[\d._]+/g] // trident内核
 		};
-		const engineVsMap = {
-			webkit: /applewebkit\/[\d._]+/g,
-			gecko: /gecko\/[\d._]+/g,
-			presto: /presto\/[\d._]+/g,
-			trident: /trident\/[\d._]+/g
-		};
-		const engine = Object.keys(engineMap).find(v => testUa(engineMap[v])) || "unknow";
-		const engineVs = engineVsMap[engine] ? testVs(engineVsMap[engine]) : "unknow";
+		const engine = Object.keys(engineMap).find(v => testUa(engineMap[v][0])) || "unknow";
+		const engineVs = testVs(engineMap[engine] && engineMap[engine][1]);
 		// 载体
 		const supporterMap = {
 			webkit() {
@@ -95,30 +84,21 @@ function getEnv() {
 		const supporter = supporterMap[engine]
 			? engine === "webkit" ? supporterMap.webkit() : supporterMap[engine]
 			: "unknow";
-		const supporterVs = supporterVsMap[supporter] ? testVs(supporterVsMap[supporter]) : "unknow";
+		const supporterVs = testVs(supporterVsMap[supporter]);
 		// 外壳
 		const shellMap = {
-			wechat: /micromessenger/g, // 微信浏览器
-			qq: /qqbrowser/g, // QQ浏览器
-			uc: /ubrowser/g, // UC浏览器
-			2345: /2345explorer/g, // 2345浏览器
-			sougou: /metasr/g, // 搜狗浏览器
-			liebao: /lbbrowser/g, // 猎豹浏览器
-			maxthon: /maxthon/g, // 遨游浏览器
-			baidu: /bidubrowser/g // 百度浏览器
+			wechat: [/micromessenger/g, /micromessenger\/[\d._]+/g], // 微信浏览器
+			qq: [/qqbrowser/g, /qqbrowser\/[\d._]+/g], // QQ浏览器
+			uc: [/ubrowser/g, /ubrowser\/[\d._]+/g], // UC浏览器
+			360: [/qihu 360se/g, /qihu 360se\/[\d._]+/g], // 360浏览器(无版本)
+			2345: [/2345explorer/g, /2345explorer\/[\d._]+/g], // 2345浏览器
+			sougou: [/metasr/g, /metasr\/[\d._]+/g], // 搜狗浏览器(无版本)
+			liebao: [/lbbrowser/g, /lbbrowser\/[\d._]+/g], // 猎豹浏览器(无版本)
+			maxthon: [/maxthon/g, /maxthon\/[\d._]+/g], // 遨游浏览器
+			baidu: [/bidubrowser/g, /bidubrowser [\d._]+/g] // 百度浏览器
 		};
-		const shellVsMap = {
-			wechat: /micromessenger\/[\d._]+/g,
-			qq: /qqbrowser\/[\d._]+/g,
-			uc: /ubrowser\/[\d._]+/g,
-			2345: /2345explorer\/[\d._]+/g,
-			sougou: /metasr\/[\d._]+/g,
-			liebao: /lbbrowser\/[\d._]+/g,
-			maxthon: /maxthon\/[\d._]+/g,
-			baidu: /bidubrowser [\d._]+/g
-		};
-		const shell = Object.keys(shellMap).find(v => testUa(shellMap[v])) || "unknow";
-		const shellVs = shellVsMap[shell] ? testVs(shellVsMap[shell]) : "unknow";
+		const shell = Object.keys(shellMap).find(v => testUa(shellMap[v][0])) || "none";
+		const shellVs = testVs(shellMap[shell] && shellMap[shell][1]);
 		/* eslint-enable */
 		return Object.assign({
 			engine, // webkit gecko presto trident
