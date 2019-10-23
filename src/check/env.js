@@ -11,7 +11,7 @@ function getEnv() {
 		const testUa = regexp => regexp.test(ua);
 		const testVs = regexp => regexp
 			? ua.match(regexp).toString().replace(/[^0-9|_.]/g, "").replace(/_/g, ".")
-			: "unknown";
+			: "unknow";
 		/* eslint-disable sort-keys */
 		// 系统
 		const systemMap = {
@@ -36,13 +36,13 @@ function getEnv() {
 					8.1: /6\.3|8\.1/g,
 					10: /10\.0|10/g
 				};
-				return Object.keys(map).find(v => map[v].test(ver)) || "unknown";
+				return Object.keys(map).find(v => map[v].test(ver)) || "unknow";
 			},
 			macos: /os x [\d._]+/g,
 			android: /android [\d._]+/g,
 			ios: /os [\d._]+/g
 		};
-		const system = Object.keys(systemMap).find(v => testUa(systemMap[v])) || "unknown";
+		const system = Object.keys(systemMap).find(v => testUa(systemMap[v])) || "unknow";
 		const systemVs = system === "windows" ? systemVsMap.windows() : testVs(systemVsMap[system]);
 		// 平台
 		const platformMap = {
