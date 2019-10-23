@@ -94,8 +94,7 @@ function getEnv() {
 			2345: [/2345explorer/g, /2345explorer\/[\d._]+/g], // 2345浏览器
 			sougou: [/metasr/g, ""], // 搜狗浏览器(无版本)
 			liebao: [/lbbrowser/g, ""], // 猎豹浏览器(无版本)
-			maxthon: [/maxthon/g, /maxthon\/[\d._]+/g], // 遨游浏览器
-			baidu: [/bidubrowser/g, /bidubrowser [\d._]+/g] // 百度浏览器
+			maxthon: [/maxthon/g, /maxthon\/[\d._]+/g] // 遨游浏览器
 		};
 		const shell = Object.keys(shellMap).find(v => testUa(shellMap[v][0])) || "none";
 		const shellVs = testVs(shellMap[shell] && shellMap[shell][1]);
@@ -110,7 +109,7 @@ function getEnv() {
 			system, // windows macos linux android ios
 			systemVs
 		}, shell === "none" ? {} : {
-			shell, // wechat qq uc 360 2345 sougou liebao maxthon baidu
+			shell, // wechat qq uc 360 2345 sougou liebao maxthon
 			shellVs
 		});
 	}
