@@ -90,10 +90,10 @@ function getEnv() {
 			wechat: [/micromessenger/g, /micromessenger\/[\d._]+/g], // 微信浏览器
 			qq: [/qqbrowser/g, /qqbrowser\/[\d._]+/g], // QQ浏览器
 			uc: [/ubrowser/g, /ubrowser\/[\d._]+/g], // UC浏览器
-			360: [/qihu 360se/g, /qihu 360se\/[\d._]+/g], // 360浏览器(无版本)
+			360: [/qihu 360se/g, ""], // 360浏览器(无版本)
 			2345: [/2345explorer/g, /2345explorer\/[\d._]+/g], // 2345浏览器
-			sougou: [/metasr/g, /metasr\/[\d._]+/g], // 搜狗浏览器(无版本)
-			liebao: [/lbbrowser/g, /lbbrowser\/[\d._]+/g], // 猎豹浏览器(无版本)
+			sougou: [/metasr/g, ""], // 搜狗浏览器(无版本)
+			liebao: [/lbbrowser/g, ""], // 猎豹浏览器(无版本)
 			maxthon: [/maxthon/g, /maxthon\/[\d._]+/g], // 遨游浏览器
 			baidu: [/bidubrowser/g, /bidubrowser [\d._]+/g] // 百度浏览器
 		};
@@ -110,7 +110,7 @@ function getEnv() {
 			system, // windows macos linux android ios
 			systemVs
 		}, shell === "none" ? {} : {
-			shell, // wechat qq uc 2345 sougou liebao maxthon baidu
+			shell, // wechat qq uc 360 2345 sougou liebao maxthon baidu
 			shellVs
 		});
 	}
