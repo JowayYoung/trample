@@ -2,39 +2,49 @@
 import ChildProcess from "child_process";
 
 /**
- * 返回运行环境信息
+ * 错误提示
  */
-function getEnv() {
-	if (isBrowser()) {
+const BROWSER_ERROR = new Error("请确保运行环境为Browser");
+const NODE_ERROR = new Error("请确保运行环境为Node");
+
+/**
+ * 运行环境
+ */
+function JsRunEnv() {
+	if (IsBrowser()) {
 		// 等待完善
-	}
-	if (isNode()) {
+	} else if (IsNode()) {
 		const runCmd = cmd => ChildProcess.execSync(cmd, { encoding: "utf8" });
 		return {
 			mode: "node",
-			node: runCmd("node -v").replace(/v/g, "").replace(/\r\n/g, ""),
+			node: runCmd("node -v").replace(/(v|\r\n)/g, ""),
 			npm: runCmd("npm -v").replace(/\n/g, "")
 		};
+	} else {
+		return {
+			mode: "unknow"
+		};
 	}
-	return new Error("无法判断当前运行环境");
 }
 
 /**
- * 判断环境是否为Browser
+ * 判断运行环境是否为Browser
  */
-function isBrowser() {
+function IsBrowser() {
 	return typeof window !== "undefined";
 }
 
 /**
- * 判断环境是否为Node
+ * 判断运行环境是否为Node
  */
-function isNode() {
+function IsNode() {
 	return typeof global !== "undefined";
 }
 
 export default {
-	getEnv, // 返回运行环境信息
-	isBrowser, // 判断环境是否为Browser
-	isNode // 判断环境是否为Node
+	BROWSER_ERROR, // Browser错误
+	IsBrowser, // 判断运行环境是否为Browser
+	IsNode, // 判断运行环境是否为Node
+	JsRunEnv, // 运行环境
+	NODE_ERROR // Node错误
 };

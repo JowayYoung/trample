@@ -1,13 +1,13 @@
 /** DOM操作 **/
-import C from "../check";
+import { BROWSER_ERROR, IsBrowser } from "../check";
 
 /**
- * 自适应页面
+ * 自适应
  * @param {number} [width=750] 屏幕宽度
  */
-function autoResponse(width = 750) {
-	if (!C.isBrowser()) {
-		return new Error("请确保运行环境为Browser");
+function AutoResponse(width = 750) {
+	if (!IsBrowser()) {
+		return BROWSER_ERROR;
 	};
 	const target = document.documentElement;
 	if (target.clientWidth >= 600) {
@@ -21,9 +21,9 @@ function autoResponse(width = 750) {
  * 复制粘贴
  * @param {element} [elem=document.body] 元素节点
  */
-function copyPaste(elem = document.body) {
-	if (!C.isBrowser()) {
-		return new Error("请确保运行环境为Browser");
+function CopyPaste(elem = document.body) {
+	if (!IsBrowser()) {
+		return BROWSER_ERROR;
 	};
 	const range = document.createRange();
 	const end = elem.childNodes.length;
@@ -40,61 +40,65 @@ function copyPaste(elem = document.body) {
  * 图像转换base64
  * @param {string} [url=""] 图像地址
  * @param {string} [type="image/png"] 图像类型
- * @param {function} [success=null] 成功调函数
+ * @param {function} [success=null] 成功回调函数
  * @param {function} [error=null] 失败回调函数
  */
-function img2base64({ url = "", type = "image/png", success = null, error = null }) {
-	if (!C.isBrowser()) {
-		return new Error("请确保运行环境为Browser");
+function Img2base64(url = "", type = "image/png") {
+	if (!IsBrowser()) {
+		return BROWSER_ERROR;
 	};
-	const img = new Image();
-	img.setAttribute("src", url);
-	img.setAttribute("crossOrigin", "");
-	img.addEventListener("load", () => {
-		let canvas = document.createElement("canvas");
-		canvas.width = img.width;
-		canvas.height = img.height;
-		canvas.getContext("2d").drawImage(img, 0, 0);
-		const dataURL = canvas.toDataURL(type);
-		success && success.call(this, dataURL);
-		canvas = null;
+	return new Promise((resolve, reject) => {
+		const img = new Image();
+		img.setAttribute("src", url);
+		img.setAttribute("crossOrigin", "");
+		img.addEventListener("load", () => {
+			let canvas = document.createElement("canvas");
+			canvas.width = img.width;
+			canvas.height = img.height;
+			canvas.getContext("2d").drawImage(img, 0, 0);
+			const dataURL = canvas.toDataURL(type);
+			canvas = null;
+			resolve(dataURL);
+		});
+		img.addEventListener("error", err => reject(new Error(err)));
 	});
-	error && img.addEventListener("error", error);
 }
 
 /**
  * 脚本回调
- * @param {string} [pst="head"] 插入位置
  * @param {string} [url=""] 资源地址
- * @param {function} [successCb=null] 成功回调函数
- * @param {function} [errorCb=null] 失败回调函数
+ * @param {string} [pst="head"] 插入位置
  */
-function scriptCb({ pst = "head", url = "", success = null, error = null }) {
-	if (!C.isBrowser()) {
-		return new Error("请确保运行环境为Browser");
+function LoadScript(url = "", pst = "head") {
+	if (!IsBrowser()) {
+		return BROWSER_ERROR;
 	};
-	if ([...document.getElementsByTagName("script")].some(v => v.src === url || v.src.includes(url))) {
-		return success && success();
-	}
-	const script = document.createElement("script");
-	script.setAttribute("src", url);
-	success && script.addEventListener("load", success);
-	error && script.addEventListener("error", error);
-	document[pst].appendChild(script);
+	return new Promise((resolve, reject) => {
+		if ([...document.getElementsByTagName("script")].some(v => v.src === url || v.src.includes(url))) {
+			reject(new Error(`<${pst}>已存在此脚本`));
+		}
+		const script = document.createElement("script");
+		script.setAttribute("src", url);
+		script.addEventListener("load", () => resolve(true));
+		script.addEventListener("error", err => reject(new Error(err)));
+		document[pst].appendChild(script);
+	});
 }
 
 /**
  * 提示消息
- * @param {string} [msg="hello"] 消息
+ * @param {string} [msg="Tips"] 消息
  * @param {number} [delay=2000] 时延
  * @param {string} [classNames=""] 元素类名
  * @param {string} [id="toast"] 元素ID
  */
-function toastMsg({ msg = "hello", delay = 2000, classNames = "", id = "toast" }) {
-	if (!C.isBrowser()) {
-		return new Error("请确保运行环境为Browser");
+function ToastMsg({ msg = "Tips", delay = 2000, classNames = "", id = "toast" }) {
+	if (!IsBrowser()) {
+		return BROWSER_ERROR;
 	};
-	if (document.getElementById(id)) return;
+	if (document.getElementById(id)) {
+		return false;
+	};
 	const body = document.getElementsByTagName("body")[0];
 	const toast = document.createElement("div");
 	toast.setAttribute("class", classNames);
@@ -105,9 +109,9 @@ function toastMsg({ msg = "hello", delay = 2000, classNames = "", id = "toast" }
 }
 
 export default {
-	autoResponse, // 自适应页面
-	copyPaste, // 复制粘贴
-	img2base64, // 图像转换base64
-	scriptCb, // 脚本回调
-	toastMsg // 提示消息
+	AutoResponse, // 自适应
+	CopyPaste, // 复制粘贴
+	Img2base64, // 图像转换base64
+	LoadScript, // 脚本回调
+	ToastMsg // 提示消息
 };
