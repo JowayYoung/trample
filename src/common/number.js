@@ -2,9 +2,9 @@
 
 /**
  * 四百化数值(四舍五入和百分比)
- * @param {number} [num=0]
- * @param {number} [decimal=2]
- * @param {boolean} [percent=false]
+ * @param {number} [num=0] 数值
+ * @param {number} [decimal=2] 小数个数
+ * @param {boolean} [percent=false] 是否百分比
  */
 function RoundNum(num = 0, decimal = 2, percent = false) {
 	return percent
@@ -14,7 +14,7 @@ function RoundNum(num = 0, decimal = 2, percent = false) {
 
 /**
  * 千分化数值
- * @param {number} [num=0]
+ * @param {number} [num=0] 数值
  */
 function ThousandNum(num = 0) {
 	return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

@@ -73,9 +73,18 @@ function Throttle(fn, delay = 0) {
 	};
 }
 
+/**
+ * 等待时间
+ * @param {number} [duration=1000] 时延
+ */
+async function WaitFor(duration = 1000) {
+	return new Promise(resolve => setTimeout(() => resolve(true), duration));
+}
+
 export default {
 	Ajax, // 异步请求
 	AsyncTo, // 格式化异步函数返回值
 	Debounce, // 防抖函数
-	Throttle // 节流函数
+	Throttle, // 节流函数
+	WaitFor // 等待时间
 };

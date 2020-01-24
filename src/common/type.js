@@ -1,4 +1,4 @@
-/** 数据类型 **/
+/** 类型判断 **/
 
 /**
  * 数据类型
@@ -125,12 +125,39 @@ function IsEmptyObject(data) {
 	return IsObject(data) && !Object.keys(data).length;
 }
 
+/**
+ * 环境类型
+ */
+function EnvType() {
+	return typeof window !== "undefined"
+		? "browser"
+		: typeof global !== "undefined"
+			? "node"
+			: "unknow";
+}
+
+/**
+ * 判断环境是否为Browser
+ */
+function IsBrowser() {
+	return EnvType() === "browser";
+}
+
+/**
+ * 判断环境是否为Node
+ */
+function IsNode() {
+	return EnvType() === "node";
+}
+
 export default {
 	DataType, // 数据类型
+	EnvType, // 环境类型
 	IsArguments, // 判断数据是否为Arguments对象
 	IsArray, // 判断数据是否为数组
 	IsAsyncFunction, // 判断数据是否为异步函数
 	IsBoolean, // 判断数据是否为布尔值
+	IsBrowser, // 判断环境是否为Browser
 	IsClass, // 判断数据是否为类
 	IsDate, // 判断数据是否为日期
 	IsElement, // 判断数据是否为Element对象
@@ -140,6 +167,7 @@ export default {
 	IsError, // 判断数据是否为错误
 	IsFunction, // 判断数据是否为函数
 	IsMap, // 判断数据是否为Map
+	IsNode, // 判断环境是否为Node
 	IsNull, // 判断数据是否为空值
 	IsNumber, // 判断数据是否为数值
 	IsObject, // 判断数据是否为对象
