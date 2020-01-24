@@ -1,14 +1,10 @@
 /** DOM操作 **/
-import { BROWSER_ERROR, IsBrowser } from "../check";
 
 /**
  * 自适应
  * @param {number} [width=750] 屏幕宽度
  */
 function AutoResponse(width = 750) {
-	if (!IsBrowser()) {
-		return BROWSER_ERROR;
-	};
 	const target = document.documentElement;
 	if (target.clientWidth >= 600) {
 		target.style.fontSize = "80px";
@@ -19,12 +15,9 @@ function AutoResponse(width = 750) {
 
 /**
  * 复制粘贴
- * @param {element} [elem=document.body] 元素节点
+ * @param {element} [elem=document.body] 节点
  */
 function CopyPaste(elem = document.body) {
-	if (!IsBrowser()) {
-		return BROWSER_ERROR;
-	};
 	const range = document.createRange();
 	const end = elem.childNodes.length;
 	range.setStart(elem, 0);
@@ -38,15 +31,10 @@ function CopyPaste(elem = document.body) {
 
 /**
  * 图像转换base64
- * @param {string} [url=""] 图像地址
- * @param {string} [type="image/png"] 图像类型
- * @param {function} [success=null] 成功回调函数
- * @param {function} [error=null] 失败回调函数
+ * @param {string} [url=""] 地址
+ * @param {string} [type="image/png"] 类型
  */
 function Img2base64(url = "", type = "image/png") {
-	if (!IsBrowser()) {
-		return BROWSER_ERROR;
-	};
 	return new Promise((resolve, reject) => {
 		const img = new Image();
 		img.setAttribute("src", url);
@@ -65,14 +53,11 @@ function Img2base64(url = "", type = "image/png") {
 }
 
 /**
- * 脚本回调
- * @param {string} [url=""] 资源地址
+ * 加载脚本
+ * @param {string} [url=""] 地址
  * @param {string} [pst="head"] 插入位置
  */
 function LoadScript(url = "", pst = "head") {
-	if (!IsBrowser()) {
-		return BROWSER_ERROR;
-	};
 	return new Promise((resolve, reject) => {
 		if ([...document.getElementsByTagName("script")].some(v => v.src === url || v.src.includes(url))) {
 			reject(new Error(`<${pst}>已存在此脚本`));
@@ -89,16 +74,11 @@ function LoadScript(url = "", pst = "head") {
  * 提示消息
  * @param {string} [msg="Tips"] 消息
  * @param {number} [delay=2000] 时延
- * @param {string} [classNames=""] 元素类名
- * @param {string} [id="toast"] 元素ID
+ * @param {string} [classNames=""] 类名
+ * @param {string} [id="toast"] ID
  */
-function ToastMsg({ msg = "Tips", delay = 2000, classNames = "", id = "toast" }) {
-	if (!IsBrowser()) {
-		return BROWSER_ERROR;
-	};
-	if (document.getElementById(id)) {
-		return false;
-	};
+function ToastMsg({ msg = "Tips", delay = 1000, classNames = "", id = "toast" }) {
+	if (document.getElementById(id)) return false;
 	const body = document.getElementsByTagName("body")[0];
 	const toast = document.createElement("div");
 	toast.setAttribute("class", classNames);
@@ -112,6 +92,6 @@ export default {
 	AutoResponse, // 自适应
 	CopyPaste, // 复制粘贴
 	Img2base64, // 图像转换base64
-	LoadScript, // 脚本回调
+	LoadScript, // 加载脚本
 	ToastMsg // 提示消息
 };

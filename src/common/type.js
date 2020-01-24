@@ -64,7 +64,7 @@ function IsClass(data) {
 }
 
 /**
- * 判断复合数据类型：set、map、weakset、weakmap、element
+ * 判断复合数据类型：set、map、weakset、weakmap
  * @param {*} data 数据
  */
 function IsSet(data) {
@@ -81,12 +81,6 @@ function IsWeakSet(data) {
 
 function IsWeakMap(data) {
 	return DataType(data, "weakmap");
-}
-
-function IsElement(data) {
-	return typeof HTMLElement === "object"
-		? data instanceof HTMLElement
-		: data ? typeof data === "object" && data.nodeType === 1 && typeof data.nodeName === "string" : false;
 }
 
 /**
@@ -153,30 +147,29 @@ function IsNode() {
 export default {
 	DataType, // 数据类型
 	EnvType, // 环境类型
-	IsArguments, // 判断数据是否为Arguments对象
-	IsArray, // 判断数据是否为数组
-	IsAsyncFunction, // 判断数据是否为异步函数
-	IsBoolean, // 判断数据是否为布尔值
-	IsBrowser, // 判断环境是否为Browser
-	IsClass, // 判断数据是否为类
-	IsDate, // 判断数据是否为日期
-	IsElement, // 判断数据是否为Element对象
-	IsEmpty, // 判断数据是否为空
-	IsEmptyArray, // 判断数据是否为空数组
-	IsEmptyObject, // 判断数据是否为空对象
-	IsError, // 判断数据是否为错误
-	IsFunction, // 判断数据是否为函数
-	IsMap, // 判断数据是否为Map
-	IsNode, // 判断环境是否为Node
-	IsNull, // 判断数据是否为空值
-	IsNumber, // 判断数据是否为数值
-	IsObject, // 判断数据是否为对象
-	IsRegExp, // 判断数据是否为正则表达式
-	IsSet, // 判断数据是否为Set
-	IsString, // 判断数据是否为字符串
-	IsSymbol, // 判断数据是否为Symbol
-	IsSyncFunction, // 判断数据是否为同步函数
-	IsUndefined, // 判断数据是否为未定义
-	IsWeakMap, // 判断数据是否为WeakMap
-	IsWeakSet // 判断数据是否为WeakSet
+	IsArguments, // 判断Arguments对象
+	IsArray, // 判断数组
+	IsAsyncFunction, // 判断异步函数
+	IsBoolean, // 判断布尔值
+	IsBrowser, // 判断Browser
+	IsClass, // 判断类
+	IsDate, // 判断日期
+	IsEmpty, // 判断空
+	IsEmptyArray, // 判断空数组
+	IsEmptyObject, // 判断空对象
+	IsError, // 判断错误
+	IsFunction, // 判断函数
+	IsMap, // 判断Map
+	IsNode, // 判断Node
+	IsNull, // 判断空值
+	IsNumber, // 判断数值
+	IsObject, // 判断对象
+	IsRegExp, // 判断正则
+	IsSet, // 判断Set
+	IsString, // 判断字符串
+	IsSymbol, // 判断Symbol
+	IsSyncFunction, // 判断同步函数
+	IsUndefined, // 判断未定义
+	IsWeakMap, // 判断WeakMap
+	IsWeakSet // 判断WeakSet
 };

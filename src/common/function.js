@@ -11,7 +11,7 @@
 function Ajax({ data = {}, error = null, success = null, type = "get", url = "" }) {
 	const xhr = new XMLHttpRequest();
 	type = type.toUpperCase();
-	data = Object.entries(data).reduce((t, c) => `${t}${c[0]}=${c[1]}&`, "").replace(/&$/, "");
+	data = Object.entries(data).reduce((t, v) => `${t}${v[0]}=${v[1]}&`, "").replace(/&$/, "");
 	if (type === "GET") {
 		xhr.open("GET", data ? `${url}?${data}` : `${url}?t=${+new Date()}`, true);
 		xhr.send();
