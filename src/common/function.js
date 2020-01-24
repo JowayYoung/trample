@@ -2,22 +2,18 @@
 
 /**
  * 异步请求
- * @param {string} [type="get"] 请求类型
- * @param {string} [url=""] 请求地址
- * @param {object} [data={}] 请求数据
- * @param {function} [success=null] 成功回调函数
- * @param {function} [error=null] 失败回调函数
+ * @param {object} [data={}] 参数
+ * @param {function} [error=null] 失败回调
+ * @param {function} [success=null] 成功回调
+ * @param {string} [type="get"] 类型
+ * @param {string} [url=""] 地址
  */
-function ajax({ type = "get", url = "", data = {}, success = null, error = null }) {
+function Ajax({ data = {}, error = null, success = null, type = "get", url = "" }) {
 	const xhr = new XMLHttpRequest();
 	type = type.toUpperCase();
 	data = Object.entries(data).reduce((t, c) => `${t}${c[0]}=${c[1]}&`, "").replace(/&$/, "");
 	if (type === "GET") {
-		if (data) {
-			xhr.open("GET", url + "?" + data, true);
-		} else {
-			xhr.open("GET", url + "?t=" + new Date().getTime(), true);
-		}
+		xhr.open("GET", data ? `${url}?${data}` : `${url}?t=${+new Date()}`, true);
 		xhr.send();
 	} else if (type === "POST") {
 		xhr.open("POST", url, true);
@@ -36,19 +32,19 @@ function ajax({ type = "get", url = "", data = {}, success = null, error = null 
 }
 
 /**
- * 异步格式化
+ * 格式化异步函数返回值
  * @param {function} [pfn=null] Promise函数
  */
-function asyncTo(pfn = null) {
+function AsyncTo(pfn = null) {
 	return pfn.then(data => [null, data]).catch(err => [err]);
 }
 
 /**
- * 函数防抖
+ * 防抖函数
  * @param {function} [fn=null] 函数
  * @param {number} [delay=0] 时延
  */
-function debounce(fn = null, delay = 0) {
+function Debounce(fn = null, delay = 0) {
 	let timer = null;
 	return function() {
 		if (timer) clearTimeout(timer);
@@ -57,11 +53,11 @@ function debounce(fn = null, delay = 0) {
 }
 
 /**
- * 函数节流
+ * 节流函数
  * @param {function} [fn=null] 函数
  * @param {number} [delay=0] 时延
  */
-function throttle(fn, delay) {
+function Throttle(fn, delay = 0) {
 	let start = Date.now();
 	let now;
 	let timer;
@@ -78,8 +74,8 @@ function throttle(fn, delay) {
 }
 
 export default {
-	ajax, // 异步请求
-	asyncTo, // 异步格式化
-	debounce, // 函数防抖
-	throttle // 函数节流
+	Ajax, // 异步请求
+	AsyncTo, // 格式化异步函数返回值
+	Debounce, // 防抖函数
+	Throttle // 节流函数
 };

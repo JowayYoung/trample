@@ -3,6 +3,7 @@
 /**
  * 数据类型
  * @param {*} data 数据
+ * @param {*} type 类型
  */
 function DataType(data, type) {
 	const dataType = Object.prototype.toString.call(data).replace(/\[object (\w+)\]/, "$1").toLowerCase();
@@ -10,7 +11,7 @@ function DataType(data, type) {
 }
 
 /**
- * 判断基础数据类型
+ * 判断基础数据类型：undefined、null、string、number、boolean、array、object、symbol、date、regexp、function、class
  * @param {*} data 数据
  */
 function IsUndefined(data) {
@@ -63,7 +64,7 @@ function IsClass(data) {
 }
 
 /**
- * 判断复合数据类型
+ * 判断复合数据类型：set、map、weakset、weakmap、element
  * @param {*} data 数据
  */
 function IsSet(data) {
@@ -89,7 +90,7 @@ function IsElement(data) {
 }
 
 /**
- * 判断函数类型
+ * 判断函数类型：asyncfunction、function、arguments
  * @param {*} data 数据
  */
 function IsAsyncFunction(data) {
@@ -105,7 +106,7 @@ function IsArguments(data) {
 }
 
 /**
- * 判断空类型
+ * 判断空类型：error、empty、emptyarray、emptyobject
  * @param {*} data 数据
  */
 function IsError(data) {

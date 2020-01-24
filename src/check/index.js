@@ -1,5 +1,5 @@
 import Envs from "./env";
-import Types from "./type";
+import Types from "../common/type";
 
 export default {
 	...Envs,

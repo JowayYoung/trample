@@ -6,9 +6,7 @@ import { BROWSER_ERROR, IsBrowser } from "../check";
  * @param {string} [key=""] 参数
  */
 function GetUrlQuery(key = "") {
-	if (!IsBrowser()) {
-		return BROWSER_ERROR;
-	};
+	if (!IsBrowser()) return BROWSER_ERROR;
 	if (key) {
 		const reg = new RegExp(`(^|&)${key}=([^&]*)(&|$)`);
 		const result = location.search.substr(1).match(reg);
