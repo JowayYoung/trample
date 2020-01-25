@@ -1,7 +1,7 @@
 /** 类型判断 **/
 
 /**
- * 浏览器类型
+ * @name 浏览器类型
  * @param {string} [ua=navigator.userAgent.toLowerCase()] 用户代理
  */
 function BrowserType(ua = navigator.userAgent.toLowerCase()) {
@@ -113,7 +113,7 @@ function BrowserType(ua = navigator.userAgent.toLowerCase()) {
 }
 
 /**
- * Element判断
+ * @name Element判断
  * @param {*} data 数据
  */
 function IsElement(data) {

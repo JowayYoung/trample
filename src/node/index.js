@@ -4,7 +4,7 @@ import Fs from "fs";
 import Path from "path";
 
 /**
- * 绝对路径
+ * @name 绝对路径
  * @param {string} [path=""] 相对路径
  * @param {boolean} [mode=false] 是否运行模式
  */
@@ -15,7 +15,7 @@ function AbsPath(path = "", mode = false) {
 }
 
 /**
- * 路径存在判断
+ * @name 路径存在判断
  * @param {string} [path=""] 相对路径
  * @param {boolean} [mode=false] 是否运行模式
  */
@@ -24,7 +24,7 @@ function IsExistPath(path = "", mode = false) {
 }
 
 /**
- * Node类型
+ * @name Node类型
  */
 function NodeType() {
 	return {
@@ -35,7 +35,7 @@ function NodeType() {
 }
 
 /**
- * 命令运行
+ * @name 命令运行
  * @param {string} [cmd="node -v"] 命令
  */
 function RunCmd(cmd = "node -v") {

@@ -2,7 +2,7 @@
 import Common from "../common";
 
 /**
- * URL参数获取
+ * @name URL参数获取
  * @param {string} [key=""] 参数
  */
 function GetUrlQuery(key = "") {
@@ -24,7 +24,7 @@ function GetUrlQuery(key = "") {
 }
 
 /**
- * URL参数设置
+ * @name URL参数设置
  * @param {object} [query={}] 参数集合
  */
 function SetUrlQuery(query = {}) {

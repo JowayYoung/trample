@@ -1,14 +1,14 @@
 /** 字符串工具 **/
 
 /**
- * 随机HEX色值
+ * @name 随机HEX色值
  */
 function RandomColor() {
 	return "#" + Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, "0");
 }
 
 /**
- * 随机长度ID
+ * @name 随机长度ID
  * @param {number} [len=3] 长度
  */
 function RandomId(len = 5) {
@@ -17,7 +17,7 @@ function RandomId(len = 5) {
 }
 
 /**
- * 星级评分
+ * @name 星级评分
  * @param {number} [rate=0] 星级
  */
 function StartScore(rate = 0) {

@@ -1,7 +1,7 @@
 /** 函数工具 **/
 
 /**
- * 异步请求
+ * @name 异步请求
  * @param {object} [data={}] 参数
  * @param {function} [error=null] 失败回调
  * @param {function} [success=null] 成功回调
@@ -32,7 +32,7 @@ function Ajax({ data = {}, error = null, success = null, type = "get", url = "" 
 }
 
 /**
- * 异步返回值格式化
+ * @name 异步返回值格式化
  * @param {function} [pfn=null] Promise函数
  */
 function AsyncTo(pfn = null) {
@@ -40,7 +40,7 @@ function AsyncTo(pfn = null) {
 }
 
 /**
- * 函数防抖
+ * @name 函数防抖
  * @param {function} [fn=null] 函数
  * @param {number} [delay=500] 时延
  */
@@ -53,7 +53,7 @@ function Debounce(fn = null, delay = 500) {
 }
 
 /**
- * 函数节流
+ * @name 函数节流
  * @param {function} [fn=null] 函数
  * @param {number} [delay=500] 时延
  */
@@ -74,7 +74,7 @@ function Throttle(fn = null, delay = 500) {
 }
 
 /**
- * 等待
+ * @name 等待
  * @param {number} [duration=1000] 时延
  */
 async function WaitFor(duration = 1000) {

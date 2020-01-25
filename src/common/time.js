@@ -5,7 +5,7 @@ import DayPluginUtc from "dayjs-plugin-utc";
 Day.extend(DayPluginUtc, { parseToLocal: true });
 
 /**
- * 时间差格式化
+ * @name 时间差格式化
  * @param {string} [time=""] 日期
  */
 function FormatDiffTime(time = "") {

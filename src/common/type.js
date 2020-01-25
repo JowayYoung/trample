@@ -1,7 +1,7 @@
 /** 类型判断 **/
 
 /**
- * 数据类型
+ * @name 数据类型
  * @param {*} data 数据
  * @param {*} type 类型
  */
@@ -11,7 +11,7 @@ function DataType(data, type) {
 }
 
 /**
- * 基础数据类型判断：undefined、null、string、number、boolean、array、object、symbol、date、regexp、function、class
+ * @name 基础数据类型判断：undefined、null、string、number、boolean、array、object、symbol、date、regexp、function、class
  * @param {*} data 数据
  */
 function IsUndefined(data) {
@@ -64,7 +64,7 @@ function IsClass(data) {
 }
 
 /**
- * 复合数据类型判断：set、map、weakset、weakmap
+ * @name 复合数据类型判断：set、map、weakset、weakmap
  * @param {*} data 数据
  */
 function IsSet(data) {
@@ -84,7 +84,7 @@ function IsWeakMap(data) {
 }
 
 /**
- * 函数类型判断：asyncfunction、function、arguments
+ * @name 函数类型判断：asyncfunction、function、arguments
  * @param {*} data 数据
  */
 function IsAsyncFunction(data) {
@@ -100,7 +100,7 @@ function IsArguments(data) {
 }
 
 /**
- * 空类型判断：error、empty、emptyarray、emptyobject
+ * @name 空类型判断：error、empty、emptyarray、emptyobject
  * @param {*} data 数据
  */
 function IsError(data) {
@@ -120,7 +120,7 @@ function IsEmptyObject(data) {
 }
 
 /**
- * 环境类型
+ * @name 环境类型
  */
 function EnvType() {
 	return typeof window !== "undefined"
@@ -131,7 +131,7 @@ function EnvType() {
 }
 
 /**
- * 环境判断
+ * @name 环境判断
  */
 function IsBrowser() {
 	return EnvType() === "browser";

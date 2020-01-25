@@ -1,7 +1,7 @@
 /** DOM操作 **/
 
 /**
- * 自适应
+ * @name 自适应
  * @param {number} [width=750] 屏幕宽度
  */
 function AutoResponse(width = 750) {
@@ -14,7 +14,7 @@ function AutoResponse(width = 750) {
 }
 
 /**
- * 复制粘贴
+ * @name 复制粘贴
  * @param {element} [elem=document.body] 节点
  */
 function CopyPaste(elem = document.body) {
@@ -30,7 +30,7 @@ function CopyPaste(elem = document.body) {
 }
 
 /**
- * 文件下载
+ * @name 文件下载
  * @param {string} [url=""] 地址
  * @param {string} [name=""] 文件名
  */
@@ -44,7 +44,7 @@ function DownloadFile(url = "", name = "") {
 }
 
 /**
- * XSS过滤
+ * @name XSS过滤
  * @param {string} [content=""] 内容
  */
 function FilterXss(content = "") {
@@ -55,7 +55,7 @@ function FilterXss(content = "") {
 }
 
 /**
- * 图像B64化
+ * @name 图像B64化
  * @param {string} [url=""] 地址
  * @param {string} [type="image/png"] 类型
  */
@@ -78,7 +78,7 @@ function Img2base64(url = "", type = "image/png") {
 }
 
 /**
- * 脚本加载
+ * @name 脚本加载
  * @param {string} [url=""] 地址
  * @param {string} [pst="head"] 插入位置
  */
@@ -96,7 +96,7 @@ function LoadScript(url = "", pst = "head") {
 }
 
 /**
- * 消息提示
+ * @name 消息提示
  * @param {string} [msg="Tips"] 消息
  * @param {number} [delay=1000] 时延
  * @param {string} [classNames=""] 类名
