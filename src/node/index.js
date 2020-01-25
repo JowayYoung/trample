@@ -1,4 +1,4 @@
-/** Node **/
+/** Node工具 **/
 import ChildProcess from "child_process";
 import Fs from "fs";
 import Path from "path";
@@ -15,7 +15,7 @@ function AbsPath(path = "", mode = false) {
 }
 
 /**
- * 判断路径存在
+ * 路径存在判断
  * @param {string} [path=""] 相对路径
  * @param {boolean} [mode=false] 是否运行模式
  */
@@ -35,16 +35,16 @@ function NodeType() {
 }
 
 /**
- * 运行命令行
- * @param {string} [cmd="node -v"] 命令行
+ * 命令运行
+ * @param {string} [cmd="node -v"] 命令
  */
 function RunCmd(cmd = "node -v") {
 	return ChildProcess.execSync(cmd, { encoding: "utf8" });
 };
 
 export default {
-	AbsPath, // 绝对路径
-	IsExistPath, // 判断路径存在
-	NodeType, // Node类型
-	RunCmd // 运行命令行
+	AbsPath,
+	IsExistPath,
+	NodeType,
+	RunCmd
 };

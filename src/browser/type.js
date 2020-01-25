@@ -113,7 +113,7 @@ function BrowserType(ua = navigator.userAgent.toLowerCase()) {
 }
 
 /**
- * 判断Element对象
+ * Element判断
  * @param {*} data 数据
  */
 function IsElement(data) {
@@ -125,6 +125,6 @@ function IsElement(data) {
 }
 
 export default {
-	BrowserType, // 浏览器类型
-	IsElement // 判断Element对象
+	BrowserType,
+	IsElement
 };

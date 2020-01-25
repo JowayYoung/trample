@@ -30,7 +30,7 @@ function CopyPaste(elem = document.body) {
 }
 
 /**
- * 下载文件
+ * 文件下载
  * @param {string} [url=""] 地址
  * @param {string} [name=""] 文件名
  */
@@ -44,7 +44,7 @@ function DownloadFile(url = "", name = "") {
 }
 
 /**
- * 过滤XSS
+ * XSS过滤
  * @param {string} [content=""] 内容
  */
 function FilterXss(content = "") {
@@ -55,7 +55,7 @@ function FilterXss(content = "") {
 }
 
 /**
- * 图像转换base64
+ * 图像B64化
  * @param {string} [url=""] 地址
  * @param {string} [type="image/png"] 类型
  */
@@ -78,7 +78,7 @@ function Img2base64(url = "", type = "image/png") {
 }
 
 /**
- * 加载脚本
+ * 脚本加载
  * @param {string} [url=""] 地址
  * @param {string} [pst="head"] 插入位置
  */
@@ -96,7 +96,7 @@ function LoadScript(url = "", pst = "head") {
 }
 
 /**
- * 提示消息
+ * 消息提示
  * @param {string} [msg="Tips"] 消息
  * @param {number} [delay=1000] 时延
  * @param {string} [classNames=""] 类名
@@ -114,11 +114,11 @@ function ToastMsg(msg = "Tips", delay = 1000, classNames = "", id = "toast") {
 }
 
 export default {
-	AutoResponse, // 自适应
-	CopyPaste, // 复制粘贴
-	DownloadFile, // 文件名
-	FilterXss, // 过滤XSS
-	Img2base64, // 图像转换base64
-	LoadScript, // 加载脚本
-	ToastMsg // 提示消息
+	AutoResponse,
+	CopyPaste,
+	DownloadFile,
+	FilterXss,
+	Img2base64,
+	LoadScript,
+	ToastMsg
 };

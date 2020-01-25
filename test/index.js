@@ -1,3 +1,3 @@
 import _ from "../src";
 
-console.log(_.NodeType());
+console.log(_.FillNum(3, 9));

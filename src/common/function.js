@@ -32,7 +32,7 @@ function Ajax({ data = {}, error = null, success = null, type = "get", url = "" 
 }
 
 /**
- * 格式化异步函数返回值
+ * 异步返回值格式化
  * @param {function} [pfn=null] Promise函数
  */
 function AsyncTo(pfn = null) {
@@ -40,7 +40,7 @@ function AsyncTo(pfn = null) {
 }
 
 /**
- * 防抖函数
+ * 函数防抖
  * @param {function} [fn=null] 函数
  * @param {number} [delay=500] 时延
  */
@@ -53,7 +53,7 @@ function Debounce(fn = null, delay = 500) {
 }
 
 /**
- * 节流函数
+ * 函数节流
  * @param {function} [fn=null] 函数
  * @param {number} [delay=500] 时延
  */
@@ -74,7 +74,7 @@ function Throttle(fn = null, delay = 500) {
 }
 
 /**
- * 等待时间
+ * 等待
  * @param {number} [duration=1000] 时延
  */
 async function WaitFor(duration = 1000) {
@@ -82,9 +82,9 @@ async function WaitFor(duration = 1000) {
 }
 
 export default {
-	Ajax, // 异步请求
-	AsyncTo, // 格式化异步函数返回值
-	Debounce, // 防抖函数
-	Throttle, // 节流函数
-	WaitFor // 等待时间
+	Ajax,
+	AsyncTo,
+	Debounce,
+	Throttle,
+	WaitFor
 };

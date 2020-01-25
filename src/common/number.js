@@ -1,7 +1,16 @@
 /** 数值工具 **/
 
 /**
- * 指定范围随机数
+ * 补零数值
+ * @param {number} [num=0] 数值
+ * @param {number} [len=0] 补位
+ */
+function FillNum(num = 0, len = 0) {
+	return num.toString().padStart(len, "0");
+}
+
+/**
+ * 范围随机数
  * @param {number} [min=0] 最小数
  * @param {number} [max=10] 最大数
  */
@@ -10,7 +19,7 @@ function RandomNum(min = 0, max = 10) {
 }
 
 /**
- * 指定范围N个随机数
+ * N个范围随机数
  * @param {number} [min=0] 最小数
  * @param {number} [max=10] 最大数
  * @param {number} [count=1] 个数
@@ -36,7 +45,7 @@ function RandomNumPlus(min = 0, max = 10, count = 1) {
 }
 
 /**
- * 四百化数值(四舍五入和百分比)
+ * 精确数值(四舍五入和百分比)
  * @param {number} [num=0] 数值
  * @param {number} [decimal=2] 小数个数
  * @param {boolean} [percent=false] 是否百分比
@@ -48,7 +57,7 @@ function RoundNum(num = 0, decimal = 2, percent = false) {
 }
 
 /**
- * 千分化数值
+ * 千分数值
  * @param {number} [num=0] 数值
  */
 function ThousandNum(num = 0) {
@@ -56,8 +65,9 @@ function ThousandNum(num = 0) {
 }
 
 export default {
-	RandomNum, // 指定范围随机数
-	RandomNumPlus, // 指定范围N个随机数
-	RoundNum, // 四百化数值
-	ThousandNum // 千分化数值
+	FillNum,
+	RandomNum,
+	RandomNumPlus,
+	RoundNum,
+	ThousandNum
 };

@@ -1,10 +1,11 @@
+/** 时间工具 **/
 import Day from "dayjs";
 import DayPluginUtc from "dayjs-plugin-utc";
 
 Day.extend(DayPluginUtc, { parseToLocal: true });
 
 /**
- * 格式化时间差
+ * 时间差格式化
  * @param {string} [time=""] 日期
  */
 function FormatDiffTime(time = "") {
