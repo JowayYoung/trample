@@ -42,9 +42,9 @@ function AsyncTo(pfn = null) {
 /**
  * 防抖函数
  * @param {function} [fn=null] 函数
- * @param {number} [delay=0] 时延
+ * @param {number} [delay=500] 时延
  */
-function Debounce(fn = null, delay = 0) {
+function Debounce(fn = null, delay = 500) {
 	let timer = null;
 	return function() {
 		if (timer) clearTimeout(timer);
@@ -55,12 +55,12 @@ function Debounce(fn = null, delay = 0) {
 /**
  * 节流函数
  * @param {function} [fn=null] 函数
- * @param {number} [delay=0] 时延
+ * @param {number} [delay=500] 时延
  */
-function Throttle(fn, delay = 0) {
+function Throttle(fn = null, delay = 500) {
 	let start = Date.now();
-	let now;
-	let timer;
+	let now = null;
+	let timer = null;
 	return function() {
 		now = Date.now();
 		clearTimeout(timer);

@@ -3,7 +3,6 @@
 /**
  * 浏览器类型
  * @param {string} [ua=navigator.userAgent.toLowerCase()] 用户代理
- * @returns
  */
 function BrowserType(ua = navigator.userAgent.toLowerCase()) {
 	// 权重：系统 > 平台 > 内核 > 载体 > 外壳

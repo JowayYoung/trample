@@ -18,15 +18,40 @@ function AutoResponse(width = 750) {
  * @param {element} [elem=document.body] 节点
  */
 function CopyPaste(elem = document.body) {
-	const range = document.createRange();
 	const end = elem.childNodes.length;
+	const range = document.createRange();
+	const selection = getSelection();
 	range.setStart(elem, 0);
 	range.setEnd(elem, end);
-	const selection = getSelection();
 	selection.removeAllRanges();
 	selection.addRange(range);
 	document.execCommand("copy", false, null);
 	selection.removeRange(range);
+}
+
+/**
+ * 下载文件
+ * @param {string} [url=""] 地址
+ * @param {string} [name=""] 文件名
+ */
+function DownloadFile(url = "", name = "") {
+	const target = document.createElement("a");
+	const event = document.createEvent("MouseEvents");
+	target.setAttribute("href", url);
+	target.setAttribute("download", name);
+	event.initEvent("click", true, true);
+	target.dispatchEvent(event);
+}
+
+/**
+ * 过滤XSS
+ * @param {string} [content=""] 内容
+ */
+function FilterXss(content = "") {
+	const elem = document.createElement("div");
+	elem.innerText = content;
+	const result = elem.innerHTML;
+	return result;
 }
 
 /**
@@ -73,11 +98,11 @@ function LoadScript(url = "", pst = "head") {
 /**
  * 提示消息
  * @param {string} [msg="Tips"] 消息
- * @param {number} [delay=2000] 时延
+ * @param {number} [delay=1000] 时延
  * @param {string} [classNames=""] 类名
  * @param {string} [id="toast"] ID
  */
-function ToastMsg({ msg = "Tips", delay = 1000, classNames = "", id = "toast" }) {
+function ToastMsg(msg = "Tips", delay = 1000, classNames = "", id = "toast") {
 	if (document.getElementById(id)) return false;
 	const body = document.getElementsByTagName("body")[0];
 	const toast = document.createElement("div");
@@ -91,6 +116,8 @@ function ToastMsg({ msg = "Tips", delay = 1000, classNames = "", id = "toast" })
 export default {
 	AutoResponse, // 自适应
 	CopyPaste, // 复制粘贴
+	DownloadFile, // 文件名
+	FilterXss, // 过滤XSS
 	Img2base64, // 图像转换base64
 	LoadScript, // 加载脚本
 	ToastMsg // 提示消息

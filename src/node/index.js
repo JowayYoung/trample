@@ -29,8 +29,8 @@ function IsExistPath(path = "", mode = false) {
 function NodeType() {
 	return {
 		mode: "node",
-		node: RunCmd("node -v").replace(/(v|\r\n)/g, ""),
-		npm: RunCmd("npm -v").replace(/\n/g, "")
+		nodeVs: RunCmd("node -v").replace(/(v|\n|\r\n)/g, ""),
+		npmVs: RunCmd("npm -v").replace(/\n/g, "")
 	};
 }
 
@@ -39,7 +39,7 @@ function NodeType() {
  * @param {string} [cmd="node -v"] 命令行
  */
 function RunCmd(cmd = "node -v") {
-	ChildProcess.execSync(cmd, { encoding: "utf8" });
+	return ChildProcess.execSync(cmd, { encoding: "utf8" });
 };
 
 export default {

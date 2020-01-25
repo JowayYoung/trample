@@ -16,32 +16,26 @@
 	"license": "MIT",
 	"main": "src/index.js",
 	"scripts": {
-		"start": "babel-node test/index.js",
 		"kill": "tskill node",
-		"remove": "rimraf package-lock.json && rimraf yarn.lock && rimraf node_modules"
+		"remove": "rimraf package-lock.json yarn.lock node_modules",
+		"start": "nodemon test/index.js -x babel-node"
 	},
 	"dependencies": {
-		"iconv-lite": "0.4.24",
-		"jsonp-fallback": "1.1.2",
-		"md5": "2.2.1"
+		"dayjs": "1.8.19",
+		"dayjs-plugin-utc": "0.1.2"
 	},
 	"devDependencies": {
-		"@babel/core": "7.3.4",
-		"@babel/node": "7.2.2",
-		"@babel/preset-env": "7.3.4",
-		"eslint": "5.15.1",
-		"eslint-config-standard": "12.0.0",
-		"eslint-plugin-import": "2.16.0",
-		"eslint-plugin-node": "8.0.1",
-		"eslint-plugin-promise": "4.0.1",
-		"eslint-plugin-standard": "4.0.0"
+		"@babel/cli": "7.8.3",
+		"@babel/core": "7.8.3",
+		"@babel/node": "7.8.3",
+		"@babel/preset-env": "7.8.3",
+		"nodemon": "2.0.2"
 	},
 	"engines": {
 		"node": ">= 8.0.0",
 		"npm": ">= 5.0.0"
 	},
 	"babel": {
-		"comments": false,
 		"presets": [
 			[
 				"@babel/preset-env",
@@ -53,71 +47,20 @@
 			]
 		]
 	},
-	"eslintConfig": {
+	"nodemonConfig": {
 		"env": {
-			"browser": true,
-			"commonjs": true,
-			"es6": true,
-			"node": true
+			"NODE_ENV": "development"
 		},
-		"extends": "standard",
-		"parserOptions": {
-			"ecmaVersion": 9,
-			"sourceType": "module"
+		"execMap": {
+			"js": "node --harmony"
 		},
-		"root": true,
-		"rules": {
-			"eol-last": [
-				"error",
-				"never"
-			],
-			"handle-callback-err": [
-				"error",
-				"error"
-			],
-			"indent": [
-				"error",
-				"tab"
-			],
-			"no-console": [
-				"off"
-			],
-			"no-new": [
-				"off"
-			],
-			"no-tabs": [
-				"off"
-			],
-			"no-unreachable": [
-				"off"
-			],
-			"object-curly-spacing": [
-				"error",
-				"always"
-			],
-			"operator-linebreak": [
-				"error",
-				"before"
-			],
-			"quotes": [
-				"error",
-				"double"
-			],
-			"semi": [
-				"error",
-				"always"
-			],
-			"sort-keys": [
-				"error",
-				"asc",
-				{
-					"caseSensitive": false
-				}
-			],
-			"space-before-function-paren": [
-				"error",
-				"never"
-			]
-		}
+		"ext": "js json",
+		"ignore": [
+			"dist/"
+		],
+		"watch": [
+			"src/",
+			"test/"
+		]
 	}
 }

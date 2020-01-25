@@ -1,10 +1,9 @@
-import B from "./browser"; // Browser集
-import C from "./check"; // 校验集
-import T from "./tool"; // 工具集
-// import N from "./node"; // Node集
+import Browser from "./browser";
+import Common from "./common";
+import Node from "./node";
 
 export default {
-	...B,
-	...C,
-	...T
+	...Browser,
+	...Common,
+	...Node
 };
