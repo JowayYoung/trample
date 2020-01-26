@@ -25,6 +25,12 @@ function StartScore(rate = 0) {
 	return "★★★★★☆☆☆☆☆".slice(5 - rate, 10 - rate);
 }
 
+export {
+	RandomColor,
+	RandomId,
+	StartScore
+};
+
 export default {
 	RandomColor,
 	RandomId,

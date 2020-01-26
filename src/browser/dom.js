@@ -35,6 +35,7 @@ function CopyPaste(elem = document.body) {
  * @param {string} [name=""] 文件名
  */
 function DownloadFile(url = "", name = "") {
+	if (!url) return;
 	const target = document.createElement("a");
 	const event = document.createEvent("MouseEvents");
 	target.setAttribute("href", url);
@@ -59,7 +60,8 @@ function FilterXss(content = "") {
  * @param {string} [url=""] 地址
  * @param {string} [type="image/png"] 类型
  */
-function Img2base64(url = "", type = "image/png") {
+function Img2Base64(url = "", type = "image/png") {
+	if (!url) return;
 	return new Promise((resolve, reject) => {
 		const img = new Image();
 		img.setAttribute("src", url);
@@ -83,6 +85,7 @@ function Img2base64(url = "", type = "image/png") {
  * @param {string} [pst="head"] 插入位置
  */
 function LoadScript(url = "", pst = "head") {
+	if (!url) return;
 	return new Promise((resolve, reject) => {
 		if ([...document.getElementsByTagName("script")].some(v => v.src === url || v.src.includes(url))) {
 			reject(new Error(`<${pst}>已存在此脚本`));
@@ -113,12 +116,22 @@ function ToastMsg(msg = "Tips", delay = 1000, classNames = "", id = "toast") {
 	setTimeout(() => body.removeChild(toast), delay);
 }
 
+export {
+	AutoResponse,
+	CopyPaste,
+	DownloadFile,
+	FilterXss,
+	Img2Base64,
+	LoadScript,
+	ToastMsg
+};
+
 export default {
 	AutoResponse,
 	CopyPaste,
 	DownloadFile,
 	FilterXss,
-	Img2base64,
+	Img2Base64,
 	LoadScript,
 	ToastMsg
 };

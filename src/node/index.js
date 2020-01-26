@@ -42,6 +42,13 @@ function RunCmd(cmd = "node -v") {
 	return ChildProcess.execSync(cmd, { encoding: "utf8" });
 };
 
+export {
+	AbsPath,
+	IsExistPath,
+	NodeType,
+	RunCmd
+};
+
 export default {
 	AbsPath,
 	IsExistPath,

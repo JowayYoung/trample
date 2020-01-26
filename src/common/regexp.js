@@ -1,3 +1,5 @@
+/** 正则工具 **/
+
 const MATCH = {
 	address: {
 		msg: "地址只能由2到200位中文、英文、数字或空格组成",
@@ -41,9 +43,11 @@ const MATCH = {
 	}
 };
 
+const SIGN = "^$.*+-?=!:|\\/()[]{}".split("");
+
 /**
  * @name 文本校验
- * @param {string} [type=""] 类型：address、count、date、email、image、name、number、password、phone
+ * @param {string} [type=""] 类型：address、count、date、email、idcard、image、name、number、password、phone
  * @param {string} [text=""] 文本
  */
 function CheckText(type = "", text = "") {
@@ -55,7 +59,7 @@ function CheckText(type = "", text = "") {
 
 /**
  * @name 自定义文本校验
- * @param {regexp} [regexp=new RegExp()]
+ * @param {regexp} [regexp=new RegExp()] 正则
  * @param {string} [msg=""] 提示
  * @param {string} [text=""] 文本
  */
@@ -65,7 +69,26 @@ function CheckTextPlus(regexp = new RegExp(), msg = "", text = "") {
 	return { flag, msg: flag ? "" : msg };
 }
 
+/**
+ * @name 括号文本匹配
+ * @param {string} [tgt="(*)"] 括号形式(提取的内容必须使用*代替)
+ * @param {string} [text=""] 文本
+ */
+function MatchBracketText(tgt = "(*)", text = "") {
+	const bracket = tgt.split("*").map(v => SIGN.includes(v) ? "\\" + v : v);
+	const regexp = new RegExp(bracket[0] + "(.+?)" + bracket[1], "g");
+	const match = text.match(regexp);
+	return (match || []).map(v => v.replace(regexp, "$1"));
+}
+
+export {
+	CheckText,
+	CheckTextPlus,
+	MatchBracketText
+};
+
 export default {
 	CheckText,
-	CheckTextPlus
+	CheckTextPlus,
+	MatchBracketText
 };

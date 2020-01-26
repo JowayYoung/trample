@@ -1,4 +1,5 @@
 /** 函数工具 **/
+import { StringifyUrlSearch } from "../browser/url";
 
 /**
  * @name 异步请求
@@ -9,11 +10,12 @@
  * @param {string} [url=""] 地址
  */
 function Ajax({ data = {}, error = null, success = null, type = "get", url = "" }) {
+	if (!url) return;
 	const xhr = new XMLHttpRequest();
 	type = type.toUpperCase();
-	data = Object.entries(data).reduce((t, v) => `${t}${v[0]}=${v[1]}&`, "").replace(/&$/, "");
+	data = StringifyUrlSearch(data);
 	if (type === "GET") {
-		xhr.open("GET", data ? `${url}?${data}` : `${url}?t=${+new Date()}`, true);
+		xhr.open("GET", data ? `${url}${data}` : `${url}?t=${+new Date()}`, true);
 		xhr.send();
 	} else if (type === "POST") {
 		xhr.open("POST", url, true);
@@ -36,41 +38,7 @@ function Ajax({ data = {}, error = null, success = null, type = "get", url = "" 
  * @param {function} [pfn=null] Promise函数
  */
 function AsyncTo(pfn = null) {
-	return pfn.then(data => [null, data]).catch(err => [err]);
-}
-
-/**
- * @name 函数防抖
- * @param {function} [fn=null] 函数
- * @param {number} [delay=500] 时延
- */
-function Debounce(fn = null, delay = 500) {
-	let timer = null;
-	return function() {
-		if (timer) clearTimeout(timer);
-		timer = setTimeout(() => fn.apply(this, arguments), delay);
-	};
-}
-
-/**
- * @name 函数节流
- * @param {function} [fn=null] 函数
- * @param {number} [delay=500] 时延
- */
-function Throttle(fn = null, delay = 500) {
-	let start = Date.now();
-	let now = null;
-	let timer = null;
-	return function() {
-		now = Date.now();
-		clearTimeout(timer);
-		if (now - start >= delay) {
-			fn.apply(this, arguments);
-			start = now;
-		} else {
-			timer = setTimeout(() => fn.apply(this, arguments), delay);
-		}
-	};
+	return pfn ? pfn.then(data => [null, data]).catch(err => [err]) : [null, null];
 }
 
 /**
@@ -81,10 +49,14 @@ async function WaitFor(duration = 1000) {
 	return new Promise(resolve => setTimeout(() => resolve(true), duration));
 }
 
+export {
+	Ajax,
+	AsyncTo,
+	WaitFor
+};
+
 export default {
 	Ajax,
 	AsyncTo,
-	Debounce,
-	Throttle,
 	WaitFor
 };

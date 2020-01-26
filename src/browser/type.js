@@ -119,10 +119,13 @@ function BrowserType(ua = navigator.userAgent.toLowerCase()) {
 function IsElement(data) {
 	return typeof HTMLElement === "object"
 		? data instanceof HTMLElement
-		: data
-			? typeof data === "object" && data.nodeType === 1 && typeof data.nodeName === "string"
-			: false;
+		: data ? typeof data === "object" && data.nodeType === 1 && typeof data.nodeName === "string" : false;
 }
+
+export {
+	BrowserType,
+	IsElement
+};
 
 export default {
 	BrowserType,

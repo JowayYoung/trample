@@ -125,9 +125,7 @@ function IsEmptyObject(data) {
 function EnvType() {
 	return typeof window !== "undefined"
 		? "browser"
-		: typeof global !== "undefined"
-			? "node"
-			: "unknow";
+		: typeof global !== "undefined" ? "node" : "unknow";
 }
 
 /**
@@ -140,6 +138,36 @@ function IsBrowser() {
 function IsNode() {
 	return EnvType() === "node";
 }
+
+export {
+	DataType,
+	EnvType,
+	IsArguments,
+	IsArray,
+	IsAsyncFunction,
+	IsBoolean,
+	IsBrowser,
+	IsClass,
+	IsDate,
+	IsEmpty,
+	IsEmptyArray,
+	IsEmptyObject,
+	IsError,
+	IsFunction,
+	IsMap,
+	IsNode,
+	IsNull,
+	IsNumber,
+	IsObject,
+	IsRegExp,
+	IsSet,
+	IsString,
+	IsSymbol,
+	IsSyncFunction,
+	IsUndefined,
+	IsWeakMap,
+	IsWeakSet
+};
 
 export default {
 	DataType, // 数据类型

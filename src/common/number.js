@@ -64,6 +64,14 @@ function ThousandNum(num = 0) {
 	return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+export {
+	FillNum,
+	RandomNum,
+	RandomNumPlus,
+	RoundNum,
+	ThousandNum
+};
+
 export default {
 	FillNum,
 	RandomNum,
