@@ -10,7 +10,7 @@ const { BuildCb } = require("./tool");
 	const browserEs6Config = WebpackBase("browser", true);
 	const nodeConfig = WebpackBase("node");
 	const nodeEs6Config = WebpackBase("node", true);
-	await rimraf("dist");
+	await rimraf("test/dist");
 	await BuildCb(browserConfig);
 	await BuildCb(browserEs6Config);
 	await BuildCb(nodeConfig);

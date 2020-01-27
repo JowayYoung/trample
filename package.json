@@ -17,7 +17,6 @@
 	"main": "dist/index.js",
 	"scripts": {
 		"build": "node build/index.js",
-		"build:b": "webpack --config webpack.b.config.js",
 		"kill": "tskill node",
 		"remove": "rimraf package-lock.json yarn.lock node_modules",
 		"start": "nodemon test/index.js -x babel-node"

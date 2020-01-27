@@ -1,3 +1,4 @@
-import _ from "../src";
+// import _ from "./browser.min.js";
 
-console.log(_.MatchBracketText());
+console.log(window.trample.default);
+// _.trample.AutoResponse();

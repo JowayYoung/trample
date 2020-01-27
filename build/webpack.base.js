@@ -10,6 +10,7 @@ module.exports = function WebpackBase(type = "browser", isEs6 = false) {
 	};
 	const envOpts = {
 		corejs: 3,
+		modules: false,
 		targets: polyfill[type],
 		useBuiltIns: "usage"
 	};
@@ -28,7 +29,7 @@ module.exports = function WebpackBase(type = "browser", isEs6 = false) {
 			["@babel/preset-env", envOpts] // ES语法编译
 		]
 	};
-	console.log(JSON.stringify(babelOpts, null, 2));
+	// console.log(JSON.stringify(babelOpts, null, 2));
 	return {
 		devtool: false,
 		entry: `./src/${type}.js`,
@@ -46,9 +47,9 @@ module.exports = function WebpackBase(type = "browser", isEs6 = false) {
 		},
 		output: {
 			filename: isEs6 ? `${type}.es6.min.js` : `${type}.min.js`,
-			library: "Trample",
+			library: "trample",
 			libraryTarget: "umd",
-			path: AbsPath("../dist")
+			path: AbsPath("../test/dist")
 		},
 		plugins: [
 			new BarPlugin({ name: "Webpack Build" }),
