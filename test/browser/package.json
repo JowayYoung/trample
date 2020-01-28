@@ -5,7 +5,10 @@
 	"keywords": [],
 	"author": "",
 	"license": "MIT",
-	"dependencies": {},
+	"dependencies": {
+		"dayjs": "1.8.19",
+		"dayjs-plugin-utc": "0.1.2"
+	},
 	"devDependencies": {},
 	"engines": {
 		"node": ">= 10.0.0",

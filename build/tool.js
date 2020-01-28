@@ -1,6 +1,6 @@
-const Path = require("path");
-const Util = require("util");
-const Webpack = require("webpack");
+import Path from "path";
+import Util from "util";
+import Webpack from "webpack";
 
 const ES5_POLYFILL = [
 	"last 20 Chrome versions",
@@ -45,7 +45,7 @@ async function BuildCb(webpackConfig) {
 	return AsyncTo(promise);
 }
 
-module.exports = {
+export {
 	AbsPath,
 	AsyncTo,
 	BuildCb,

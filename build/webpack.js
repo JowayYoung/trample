@@ -1,16 +1,17 @@
-const BarPlugin = require("webpackbar");
-const HardSourcePlugin = require("hard-source-webpack-plugin");
+import BarPlugin from "webpackbar";
+import HardSourcePlugin from "hard-source-webpack-plugin";
 
-const { AbsPath, ES5_POLYFILL, ES6_POLYFILL } = require("./tool");
+import { AbsPath, ES5_POLYFILL, ES6_POLYFILL } from "./tool";
 
-module.exports = function WebpackConfig(type = "browser", isEs6 = false) {
+export default function WebpackConfig(type = "common", isEs6 = false) {
 	const polyfill = {
 		browser: { browsers: isEs6 ? ES6_POLYFILL : ES5_POLYFILL },
+		common: { node: isEs6 ? "10.0.0" : "8.0.0" },
 		node: { node: isEs6 ? "10.0.0" : "8.0.0" }
 	};
 	const envOpts = {
 		corejs: 3,
-		targets: polyfill[type] || polyfill.browser,
+		targets: polyfill[type] || polyfill.common,
 		useBuiltIns: "usage"
 	};
 	const babelOpts = {
@@ -28,10 +29,11 @@ module.exports = function WebpackConfig(type = "browser", isEs6 = false) {
 			["@babel/preset-env", envOpts] // ES语法编译
 		]
 	};
+	const filename = type === "common" ? "index" : type;
 	// console.log(JSON.stringify(babelOpts, null, 2));
 	return {
 		devtool: false,
-		entry: `./src/${type}.js`,
+		entry: `./src/${filename}.js`,
 		mode: "production",
 		module: {
 			rules: [{
@@ -41,14 +43,14 @@ module.exports = function WebpackConfig(type = "browser", isEs6 = false) {
 				use: [{ loader: "babel-loader", options: babelOpts }]
 			}]
 		},
-		// optimization: {
-		// 	concatenateModules: true
-		// },
+		optimization: {
+			concatenateModules: true
+		},
 		output: {
-			filename: `${type}/index.min.js`,
+			filename: `${filename}.js`,
 			library: "trample",
 			libraryTarget: "umd",
-			path: AbsPath("../test/dist")
+			path: AbsPath("../dist")
 		},
 		plugins: [
 			new BarPlugin({ name: "Webpack Build" }),
