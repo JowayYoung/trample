@@ -19,7 +19,9 @@
 		"build": "node build/index.js",
 		"kill": "tskill node",
 		"remove": "rimraf package-lock.json yarn.lock node_modules",
-		"start": "nodemon test/index.js -x babel-node"
+		"start": "nodemon test/index.js -x babel-node",
+		"test:b": "cd test/browser && bruce b",
+		"test:n": "nodemon test/node/index.js -x babel-node"
 	},
 	"dependencies": {
 		"dayjs": "1.8.19",

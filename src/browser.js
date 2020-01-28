@@ -1,5 +1,5 @@
-import Browser from "./browser";
-import Common from "./common";
+import Browser from "./browser/index";
+import Common from "./common/index";
 
 export default {
 	...Browser,

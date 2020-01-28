@@ -3,15 +3,14 @@ const HardSourcePlugin = require("hard-source-webpack-plugin");
 
 const { AbsPath, ES5_POLYFILL, ES6_POLYFILL } = require("./tool");
 
-module.exports = function WebpackBase(type = "browser", isEs6 = false) {
+module.exports = function WebpackConfig(type = "browser", isEs6 = false) {
 	const polyfill = {
 		browser: { browsers: isEs6 ? ES6_POLYFILL : ES5_POLYFILL },
 		node: { node: isEs6 ? "10.0.0" : "8.0.0" }
 	};
 	const envOpts = {
 		corejs: 3,
-		modules: false,
-		targets: polyfill[type],
+		targets: polyfill[type] || polyfill.browser,
 		useBuiltIns: "usage"
 	};
 	const babelOpts = {
@@ -42,11 +41,11 @@ module.exports = function WebpackBase(type = "browser", isEs6 = false) {
 				use: [{ loader: "babel-loader", options: babelOpts }]
 			}]
 		},
-		optimization: {
-			concatenateModules: true
-		},
+		// optimization: {
+		// 	concatenateModules: true
+		// },
 		output: {
-			filename: isEs6 ? `${type}.es6.min.js` : `${type}.min.js`,
+			filename: `${type}/index.min.js`,
 			library: "trample",
 			libraryTarget: "umd",
 			path: AbsPath("../test/dist")
@@ -55,6 +54,10 @@ module.exports = function WebpackBase(type = "browser", isEs6 = false) {
 			new BarPlugin({ name: "Webpack Build" }),
 			new HardSourcePlugin()
 		],
+		resolve: {
+			extensions: [".js", ".json"],
+			mainFields: ["jsnext:main", "main"]
+		},
 		target: type === "node" ? "node" : "web"
 	};
 };

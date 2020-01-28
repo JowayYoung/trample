@@ -1,5 +1,5 @@
-import Common from "./common";
-import Node from "./node";
+import Common from "./common/index";
+import Node from "./node/index";
 
 export default {
 	...Common,

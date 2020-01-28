@@ -1,0 +1,14 @@
+{
+	"name": "browser",
+	"version": "1.0.0",
+	"description": "",
+	"keywords": [],
+	"author": "",
+	"license": "MIT",
+	"dependencies": {},
+	"devDependencies": {},
+	"engines": {
+		"node": ">= 10.0.0",
+		"npm": ">= 5.6.0"
+	}
+}
