@@ -86,7 +86,7 @@ _.FormatDiffTime("2019-03-31");
 
 ### 📋文档
 
-> 公共函数工具库Common
+> Common公共函数工具库
 
 [Date 日期工具](https://github.com/JowayYoung/trample/blob/master/src/common/date.js)
 
@@ -120,7 +120,7 @@ _.FormatDiffTime("2019-03-31");
 	- min：最小数(`0`)
 	- max：最大数(`10`)
 	- count：个数(`1`)
-- [x] **RoundNum()**：数值精确化(四舍五入和百分比)
+- [x] **RoundNum()**：数值精确化(`四舍五入`和`百分比`)
 	- num：数值(`0`)
 	- dec：小数个数(`2`)
 	- per：是否百分比(`false`)
@@ -130,7 +130,7 @@ _.FormatDiffTime("2019-03-31");
 [Regexp 正则工具](https://github.com/JowayYoung/trample/blob/master/src/common/regexp.js)
 
 - **CheckText()**：文本校验
-	- type：类型(`""`，可选`address、count、date、email、idcard、image、name、number、password、phone`)
+	- type：类型(`""`，可选`address地址、count数量、date日期、email邮件、idcard身份证、image图片、name名称、number计数、password密码、phone手机`)
 	- text：文本(`""`)
 - **CheckTextPlus()**：自定义文本校验
 	- regexp：正则(`regexp=new RegExp()`)
@@ -180,3 +180,23 @@ _.FormatDiffTime("2019-03-31");
 - **EnvType()**：环境类型
 	- **IsNode()**：Node判断
 	- **IsWeb()**：Web判断
+
+> Node函数工具库
+
+[Path 路径操作](https://github.com/JowayYoung/trample/blob/master/src/node/path.js)
+
+- **AbsPath()**：绝对路径
+	- path：相对路径(`""`)
+	- mode: 是否运行模式(`false`，可选`true运行终端项目根目录、false项目根目录`)
+- **IsExistPath()**：路径存在判断
+	- path：相对路径(`""`)
+	- mode: 是否运行模式(`false`，可选`true运行终端项目根目录、false项目根目录`)
+
+[Process 进程操作](https://github.com/JowayYoung/trample/blob/master/src/node/process.js)
+
+- **RunCmd()**：命令运行
+	- cmd：命令行(`"node -v"`)
+
+[Type 类型判断](https://github.com/JowayYoung/trample/blob/master/src/node/type.js)
+
+- **NodeType()**：Node类型

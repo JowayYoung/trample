@@ -1,9 +1,9 @@
-/** 类型判断 **/
+/** 进程操作 **/
 import ChildProcess from "child_process";
 
 /**
  * @name 命令运行
- * @param {string} [cmd="node -v"] 命令
+ * @param {string} [cmd="node -v"] 命令行
  */
 function RunCmd(cmd = "node -v") {
 	return ChildProcess.execSync(cmd, { encoding: "utf8" });
