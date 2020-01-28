@@ -101,7 +101,7 @@ _.FormatDiffTime("2019-03-31");
 	- data：参数(`{}`)
 	- error：失败回调函数(`null`)
 	- success：成功回调函数(`null`)
-	- type：类型(`get`，可选`get、post`)
+	- type：类型(`"get"`，可选`get、post`)
 	- url: 地址(`""`)
 - [x] **AsyncTo()**：异步返回值格式化
 	- pfn：Promise函数(`Promise.resolve(true)`)
@@ -129,29 +129,29 @@ _.FormatDiffTime("2019-03-31");
 
 [Regexp 正则工具](https://github.com/JowayYoung/trample/blob/master/src/common/regexp.js)
 
-- **CheckText()**：文本校验
+- [x] **CheckText()**：文本校验
 	- type：类型(`""`，可选`address地址、count数量、date日期、email邮件、idcard身份证、image图片、name名称、number计数、password密码、phone手机`)
 	- text：文本(`""`)
-- **CheckTextPlus()**：自定义文本校验
-	- regexp：正则(`regexp=new RegExp()`)
+- [x] **CheckTextPlus()**：自定义文本校验
+	- regexp：正则(`new RegExp()`)
 	- msg：提示(`""`)
 	- text：文本(`""`)
-- **MatchBracketText()**：括号文本匹配
+- [x] **MatchBracketText()**：括号文本匹配
 	- tgt：括号形式(`"(*)"`，提取的内容必须使用`*`代替)
 	- text：文本(`""`)
 
 [String 字符串工具](https://github.com/JowayYoung/trample/blob/master/src/common/string.js)
 
-- **RandomColor()**：随机HEX色值
-- **RandomId()**：随机长度ID
+- [x] **RandomColor()**：随机HEX色值
+- [x] **RandomId()**：随机长度ID
 	- len：长度(`5`，在`1~10`之间)
-- **StartScore()**：星级评分
+- [x] **StartScore()**：星级评分
 	- rate：星级(`0`，在`0~5`之间)
 	- len：长度(`5`)
 
 [Type 类型判断](https://github.com/JowayYoung/trample/blob/master/src/common/type.js)
 
-- **DataType()**：数据类型
+- [x] **DataType()**：数据类型
 	- data：数据
 	- type：类型
 	- **IsArguments()**：Arguments判断
@@ -177,26 +177,78 @@ _.FormatDiffTime("2019-03-31");
 	- **IsUndefined()**：未定义判断
 	- **IsWeakMap()**：WeakMap判断
 	- **IsWeakSet()**：WeakSet判断
-- **EnvType()**：环境类型
+- [x] **EnvType()**：环境类型
 	- **IsNode()**：Node判断
 	- **IsWeb()**：Web判断
+
+> Web函数工具库
+
+[Cookie Cookie操作](https://github.com/JowayYoung/trample/blob/master/src/web/cookie.js)
+
+- [x] **GetCookie()**：Cookie读取
+- [x] **RemoveCookie()**：Cookie删除
+	- key：键(`""`)
+- [x] **SetCookie()**：Cookie设置
+	- key：键(`""`)
+	- val：值(`""`)
+	- day：过期时间(`1`，日)
+
+[DOM DOM操作](https://github.com/JowayYoung/trample/blob/master/src/web/dom.js)
+
+- [x] **AutoResponse()**：自适应
+	- width：设计图宽度(`750`)
+- [x] **CopyPaste()**：复制粘贴
+	- elem：节点(`document.body`)
+- [x] **DownloadFile()**：文件下载
+	- url：地址(`""`)
+	- name：文件名(`""`)
+- [x] **FilterXss()**：XSS过滤
+	- content：内容(`""`)
+- [x] **Img2Base64()**：图像B64化
+	- url：地址(`""`)
+	- type：类型(`"image/png"`)
+- [x] **LoadScript()**：脚本加载
+	- url：地址(`""`)
+	- pst：插入位置(`"head"`，可选`head、body`)
+- [x] **ToastMsg()**：消息提示
+	- msg：消息(`""`)
+	- delay：时延(`1000`)
+	- classNames：类名(`""`)
+	- id：ID(`"toast"`)
+
+[Type 类型判断](https://github.com/JowayYoung/trample/blob/master/src/web/type.js)
+
+- [x] **BrowserType()**：浏览器类型
+	- ua：用户代理(`navigator.userAgent.toLowerCase()`)
+- [x] **IsElement()**：Element判断
+	- data：数据
+
+[URL URL操作](https://github.com/JowayYoung/trample/blob/master/src/web/url.js)
+
+- [x] **ParseUrlSearch()**：URL参数反序列化
+- [x] **RemoveUrlSearch()**：URL参数删除
+	- search：参数集合(`...[]`，多参数输入)
+- [x] **SetUrlSearch()**：URL参数设置
+	- search：参数集合(`{}`)
+- [x] **StringifyUrlSearch()**：URL参数序列化
+	- search：参数集合(`{}`)
 
 > Node函数工具库
 
 [Path 路径操作](https://github.com/JowayYoung/trample/blob/master/src/node/path.js)
 
-- **AbsPath()**：绝对路径
+- [x] **AbsPath()**：绝对路径
 	- path：相对路径(`""`)
 	- mode: 是否运行模式(`false`，可选`true运行终端项目根目录、false项目根目录`)
-- **IsExistPath()**：路径存在判断
+- [x] **IsExistPath()**：路径存在判断
 	- path：相对路径(`""`)
 	- mode: 是否运行模式(`false`，可选`true运行终端项目根目录、false项目根目录`)
 
 [Process 进程操作](https://github.com/JowayYoung/trample/blob/master/src/node/process.js)
 
-- **RunCmd()**：命令运行
+- [x] **RunCmd()**：命令运行
 	- cmd：命令行(`"node -v"`)
 
 [Type 类型判断](https://github.com/JowayYoung/trample/blob/master/src/node/type.js)
 
-- **NodeType()**：Node类型
+- [x] **NodeType()**：Node类型

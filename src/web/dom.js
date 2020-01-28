@@ -2,7 +2,7 @@
 
 /**
  * @name 自适应
- * @param {number} [width=750] 屏幕宽度
+ * @param {number} [width=750] 设计图宽度
  */
 function AutoResponse(width = 750) {
 	const target = document.documentElement;
