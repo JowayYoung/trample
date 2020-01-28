@@ -7,10 +7,10 @@ import { BuildCb } from "./tool";
 (async() => {
 	const rimraf = Util.promisify(Rimfaf);
 	const commonUmd = WebpackConfig("common");
-	const browserUmd = WebpackConfig("browser");
+	const webUmd = WebpackConfig("web");
 	const nodeUmd = WebpackConfig("node");
 	await rimraf("dist");
 	await BuildCb(commonUmd);
-	await BuildCb(browserUmd);
+	await BuildCb(webUmd);
 	await BuildCb(nodeUmd);
 })();

@@ -1,5 +1,5 @@
 /** 函数工具 **/
-import { StringifyUrlSearch } from "../browser/url";
+import { StringifyUrlSearch } from "../web/url";
 
 /**
  * @name 异步请求

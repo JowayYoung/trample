@@ -124,15 +124,15 @@ function IsEmptyObject(data) {
  */
 function EnvType() {
 	return typeof window !== "undefined"
-		? "browser"
+		? "web"
 		: typeof global !== "undefined" ? "node" : "unknow";
 }
 
 /**
  * @name 环境判断
  */
-function IsBrowser() {
-	return EnvType() === "browser";
+function IsWeb() {
+	return EnvType() === "web";
 }
 
 function IsNode() {
@@ -146,7 +146,6 @@ export {
 	IsArray,
 	IsAsyncFunction,
 	IsBoolean,
-	IsBrowser,
 	IsClass,
 	IsDate,
 	IsEmpty,
@@ -166,7 +165,8 @@ export {
 	IsSyncFunction,
 	IsUndefined,
 	IsWeakMap,
-	IsWeakSet
+	IsWeakSet,
+	IsWeb
 };
 
 export default {
@@ -176,7 +176,6 @@ export default {
 	IsArray, // 数组判断
 	IsAsyncFunction, // 异步函数判断
 	IsBoolean, // 布尔值判断
-	IsBrowser, // Browser判断
 	IsClass, // 类判断
 	IsDate, // 日期判断
 	IsEmpty, // 空判断
@@ -196,5 +195,6 @@ export default {
 	IsSyncFunction, // 同步函数判断
 	IsUndefined, // 未定义判断
 	IsWeakMap, // WeakMap判断
-	IsWeakSet // WeakSet判断
+	IsWeakSet, // WeakSet判断
+	IsWeb // Web判断
 };

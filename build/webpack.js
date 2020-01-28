@@ -5,9 +5,9 @@ import { AbsPath, ES5_POLYFILL, ES6_POLYFILL } from "./tool";
 
 export default function WebpackConfig(type = "common", isEs6 = false) {
 	const polyfill = {
-		browser: { browsers: isEs6 ? ES6_POLYFILL : ES5_POLYFILL },
 		common: { node: isEs6 ? "10.0.0" : "8.0.0" },
-		node: { node: isEs6 ? "10.0.0" : "8.0.0" }
+		node: { node: isEs6 ? "10.0.0" : "8.0.0" },
+		web: { browsers: isEs6 ? ES6_POLYFILL : ES5_POLYFILL }
 	};
 	const envOpts = {
 		corejs: 3,
@@ -60,6 +60,6 @@ export default function WebpackConfig(type = "common", isEs6 = false) {
 			extensions: [".js", ".json"],
 			mainFields: ["jsnext:main", "main"]
 		},
-		target: type === "browser" ? "web" : "node"
+		target: type === "web" ? "web" : "node"
 	};
 };

@@ -1,13 +1,13 @@
 {
 	"name": "trample",
-	"version": "1.0.0",
-	"description": "前端Browser和Node业务代码工具库",
+	"version": "0.0.1",
+	"description": "前端Web和Node业务代码工具库",
 	"keywords": [
 		"js",
 		"javascript",
 		"tool",
 		"common",
-		"browser",
+		"web",
 		"node",
 		"date",
 		"function",
@@ -38,7 +38,7 @@
 		"kill": "tskill node",
 		"remove": "rimraf package-lock.json yarn.lock node_modules",
 		"start": "nodemon src/index.js -x babel-node",
-		"test:b": "cd test/browser && bruce b",
+		"test:b": "cd test/web && bruce b",
 		"test:n": "nodemon test/node/index.js -x babel-node"
 	},
 	"dependencies": {
