@@ -1,6 +1,6 @@
 import "./assets/css/reset.css";
 import "./index.scss";
-import _ from "../../../src";
+import _ from "../../../dist";
 import ImgLogo from "./assets/img/logo.svg";
 import Page from "./templates/page.hbs";
 

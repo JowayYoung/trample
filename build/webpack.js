@@ -60,6 +60,6 @@ export default function WebpackConfig(type = "common", isEs6 = false) {
 			extensions: [".js", ".json"],
 			mainFields: ["jsnext:main", "main"]
 		},
-		target: type === "node" ? "node" : "web"
+		target: type === "browser" ? "web" : "node"
 	};
 };

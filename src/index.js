@@ -1,3 +1,5 @@
-import Common from "./common";
+import Common from "./common/index";
 
-export default Common;
+export default {
+	...Common
+};

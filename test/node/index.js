@@ -1,8 +1,14 @@
-// import _ from "../dist/node/index.min";
-// console.log(_.RunCmd("npm -v"));
+// import Common from "../../dist";
+// import Node from "../../dist/node";
+// console.log(Common);
+// console.log(Node);
 
-// const _ = require("../dist/node/index.min").default;
-// console.log(_.RunCmd());
+// const Common = require("../../dist").default;
+// const Node = require("../../dist/node").default;
+// console.log(Common);
+// console.log(Node);
 
-import _ from "../../src";
-console.log(_);
+import Common from "../../src";
+import Node from "../../src/node";
+console.log(Common);
+console.log(Node);
