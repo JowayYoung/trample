@@ -5,19 +5,11 @@ import { IsEmptyArray, IsEmptyObject } from "../common/type";
  * @name URL参数反序列化
  */
 function ParseUrlSearch() {
-	let match;
-	const params = {};
-	const reg = /([^&=]+)=?([^&]*)/g;
-	const search = location.search.substr(1);
-	const decode = str => decodeURIComponent(str.replace(/\+/g, " "));
-	while ((match = reg.exec(search))) {
-		params[decode(match[1])] = decode(match[2]);
-	}
-	return params;
-	// 单个参数
-	// const reg = new RegExp(`(^|&)${key}=([^&]*)(&|$)`);
-	// const result = location.search.substr(1).match(reg);
-	// return result ? decodeURIComponent(result[2]) : null;
+	return location.search.replace(/(^\?)|(&$)/g, "").split("&").reduce((t, v) => {
+		const [key, val] = v.split("=");
+		t[key] = decodeURIComponent(val);
+		return t;
+	}, {});
 }
 
 /**
