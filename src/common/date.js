@@ -1,15 +1,12 @@
 /** 日期工具 **/
 import Day from "dayjs";
-import DayPluginUtc from "dayjs-plugin-utc";
-
-Day.extend(DayPluginUtc, { parseToLocal: true });
 
 /**
  *
  * @name 倒计时格式化
- * @param {string} [time="3000-01-01 00:00:00"] 日期
+ * @param {string} [time=""] 日期 YYYY-MM-DD HH:mm:ss
  */
-function FormatCountdown(time = "3000-01-01 00:00:00") {
+function FormatCountdown(time = "") {
 	const nowTime = +new Date();
 	const nextTime = +new Date(time);
 	const diff = nextTime - nowTime; // 时间差
@@ -26,12 +23,12 @@ function FormatCountdown(time = "3000-01-01 00:00:00") {
 
 /**
  * @name 时间差格式化
- * @param {string} [time="2000-01-01 00:00:00"] 日期
+ * @param {string} [time=""] 日期 YYYY-MM-DD HH:mm:ss
  */
-function FormatDiffTime(time = "2000-01-01 00:00:00") {
-	const nowTime = Day().utc();
-	const pastTime = Day(time).utc();
-	const diff = nowTime.diff(pastTime);
+function FormatDiffTime(time = "") {
+	const nowTime = Day();
+	const tgtTime = Day(time);
+	const diff = nowTime.diff(tgtTime);
 	const absDiff = Math.abs(diff);
 	const slot = diff >= 0 ? "前" : "后";
 	const monNum = 1461 / 48;
@@ -47,7 +44,7 @@ function FormatDiffTime(time = "2000-01-01 00:00:00") {
 	const monDiff = absDiff / mon;
 	const yearDiff = absDiff / year;
 	if (yearDiff >= 1 || monDiff >= 12) {
-		return pastTime.format("YYYY-MM-DD");
+		return tgtTime.format("YYYY-MM-DD HH:mm:ss");
 	} else if (monDiff >= 1 && monDiff < 12) {
 		return `${parseInt(monDiff)}个月${slot}`;
 	} else if (dayDiff >= 1 && dayDiff < monNum) {

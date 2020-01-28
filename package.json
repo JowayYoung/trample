@@ -42,8 +42,7 @@
 		"test:n": "nodemon test/node/index.js -x babel-node"
 	},
 	"dependencies": {
-		"dayjs": "1.8.19",
-		"dayjs-plugin-utc": "0.1.2"
+		"dayjs": "1.8.19"
 	},
 	"devDependencies": {
 		"@babel/cli": "7.8.3",

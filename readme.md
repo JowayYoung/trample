@@ -1,4 +1,4 @@
-# Bruce Cli <img src="https://img.shields.io/badge/trample-Web/Node通用工具库-f66.svg">
+# Trample <img src="https://img.shields.io/badge/trample-Web/Node通用工具库-f66.svg">
 
 <img src="https://img.shields.io/badge/author-Joway%20Young-f66.svg">
 <img src="https://img.shields.io/badge/version-0.0.1-f66.svg">
@@ -27,8 +27,156 @@
 
 ### 💻使用
 
-本项目根据**Web**和**Node**两种JS运行环境进行代码划分，生成三个`bundle`文件。每个文件在不同的JS运行环境下才能运行，必须根据JS运行环境引入文件，否则会报错。
+`trample.js`根据**Web**和**Node**两种JS运行环境进行代码划分，生成三个`bundle`文件。每个文件在不同的JS运行环境下才能运行，必须根据JS运行环境引用文件，否则会报错。
 
-- **Common**：公共函数工具库，`Web`和`Node`运行环境下都能使用，对应文件是`dist/index.js` (浏览器和服务器)
-- **Web**：Web函数工具库，只能在`Web`运行环境下使用，对应文件是`dist/web.js` (浏览器)
-- **Node**：Node函数工具库，只能在`Node`运行环境下使用，对应文件是`dist/node.js` (服务器)
+> 区别
+
+模块|工具库|运行环境|对应文件|描述
+:-:|:-:|:-:|-|-
+**Common**|公共函数工具库|浏览器和服务器|`dist/index.js`
+**Web**|Web函数工具库|浏览器|`dist/web.js`|包含`公共函数工具库`
+**Node**|Node函数工具库|服务器|`dist/node.js`|包含`公共函数工具库`
+
+> 引用
+
+`trample.js`使用`UMD`通用模块规范进行打包，因此可使用`HTML`、`AMD`、`CJS`和`ESM`四种方式引用。但是推荐使用`HTML`、`CJS`、`ESM`三中引用方式。
+
+工具库的代码使用`ESM`的形式进行开发，导出时使用了`export default {}`的形式。所以使用`HTML引用方式`时必须使用`trample.default.xxx()`的形式，使用`CJS引用方式`时必须使用`require("trample").default`的形式。
+
+##### HTML引用方式
+
+最简单最方便的引用方式没有之一。把`node_modules/trample/dist/web.js`复制出来，放到新建的`js/trample`文件夹下，通过HTML的`<script>`直接引用，只适用于`Web`。
+
+```html
+<body>
+    <script src="js/trample/web.js"></script>
+    <script>
+        trample.default.FormatDiffTime("2019-03-31");
+    </script>
+</body>
+```
+
+##### CJS引用方式
+
+适用于`Web`和`Node`
+
+```js
+// Web
+const _ = require("trample/web").default;
+_.FormatDiffTime("2019-03-31");
+
+// Node
+const _ = require("trample/node").default;
+_.FormatDiffTime("2019-03-31");
+```
+
+##### ESM引用方式
+
+适用于`Web`和`Node`
+
+```js
+// Web
+import _ from "trample/web";
+_.FormatDiffTime("2019-03-31");
+
+// Node
+import _ from "trample/node";
+_.FormatDiffTime("2019-03-31");
+```
+
+### 📋文档
+
+> 公共函数工具库Common
+
+[Date 日期工具](https://github.com/JowayYoung/trample/blob/master/src/common/date.js)
+
+- [x] **FormatCountdown()**：倒计时格式化
+	- time：时间(`""`，形式为`YYYY-MM-DD HH:mm:ss`)
+- [x] **FormatDiffTime()**：时间差格式化
+	- time：时间(`""`，形式为`YYYY-MM-DD HH:mm:ss`)
+
+[Function 函数工具](https://github.com/JowayYoung/trample/blob/master/src/common/function.js)
+
+- [x] **Ajax({ ... })**：异步请求
+	- data：参数(`{}`)
+	- error：失败回调函数(`null`)
+	- success：成功回调函数(`null`)
+	- type：类型(`get`，可选`get、post`)
+	- url: 地址(`""`)
+- [x] **AsyncTo()**：异步返回值格式化
+	- pfn：Promise函数(`Promise.resolve(true)`)
+- [x] **WaitFor()**：等待
+	- dura：时延(`1000`)
+
+[Number 数值工具](https://github.com/JowayYoung/trample/blob/master/src/common/number.js)
+
+- [x] **FillNum()**：数值补零化
+	- num：数值(`0`)
+	- len：补位(`0`)
+- [x] **RandomNum()**：范围随机数
+	- min：最小数(`0`)
+	- max：最大数(`10`)
+- [x] **RandomNumPlus()**：N个范围随机数
+	- min：最小数(`0`)
+	- max：最大数(`10`)
+	- count：个数(`1`)
+- [x] **RoundNum()**：数值精确化(四舍五入和百分比)
+	- num：数值(`0`)
+	- dec：小数个数(`2`)
+	- per：是否百分比(`false`)
+- [x] **ThousandNum()**：数值千分化
+	- num：数值(`0`)
+
+[Regexp 正则工具](https://github.com/JowayYoung/trample/blob/master/src/common/regexp.js)
+
+- **CheckText()**：文本校验
+	- type：类型(`""`，可选`address、count、date、email、idcard、image、name、number、password、phone`)
+	- text：文本(`""`)
+- **CheckTextPlus()**：自定义文本校验
+	- regexp：正则(`regexp=new RegExp()`)
+	- msg：提示(`""`)
+	- text：文本(`""`)
+- **MatchBracketText()**：括号文本匹配
+	- tgt：括号形式(`"(*)"`，提取的内容必须使用`*`代替)
+	- text：文本(`""`)
+
+[String 字符串工具](https://github.com/JowayYoung/trample/blob/master/src/common/string.js)
+
+- **RandomColor()**：随机HEX色值
+- **RandomId()**：随机长度ID
+	- len：长度(`5`，在`1~10`之间)
+- **StartScore()**：星级评分
+	- rate：星级(`0`，在`0~5`之间)
+	- len：长度(`5`)
+
+[Type 类型判断](https://github.com/JowayYoung/trample/blob/master/src/common/type.js)
+
+- **DataType()**：数据类型
+	- data：数据
+	- type：类型
+	- **IsArguments()**：Arguments判断
+	- **IsArray()**：数组判断
+	- **IsAsyncFunction()**：异步函数判断
+	- **IsBoolean()**：布尔值判断
+	- **IsClass()**：类判断
+	- **IsDate()**：日期判断
+	- **IsEmpty()**：空判断
+	- **IsEmptyArray()**：空数组判断
+	- **IsEmptyObject()**：空对象判断
+	- **IsError()**：错误判断
+	- **IsFunction()**：函数判断
+	- **IsMap()**：Map判断
+	- **IsNull()**：空值判断
+	- **IsNumber()**：数值判断
+	- **IsObject()**：对象判断
+	- **IsRegExp()**：正则判断
+	- **IsSet()**：Set判断
+	- **IsString()**：字符串判断
+	- **IsSymbol()**：Symbol判断
+	- **IsSyncFunction()**：同步函数判断
+	- **IsUndefined()**：未定义判断
+	- **IsWeakMap()**：WeakMap判断
+	- **IsWeakSet()**：WeakSet判断
+- **EnvType()**：环境类型
+	- **IsNode()**：Node判断
+	- **IsWeb()**：Web判断

@@ -9,7 +9,7 @@ function RandomColor() {
 
 /**
  * @name 随机长度ID
- * @param {number} [len=3] 长度
+ * @param {number} [len=3] 长度 在1~10之间
  */
 function RandomId(len = 5) {
 	(len < 1 || len > 10) && (len = 5);
@@ -18,11 +18,16 @@ function RandomId(len = 5) {
 
 /**
  * @name 星级评分
- * @param {number} [rate=0] 星级
+ * @param {number} [rate=0] 星级 在0~5之间
+ * @param {number} [len=5] 长度
  */
-function StartScore(rate = 0) {
-	(rate < 0 || rate > 5) && (rate = 0);
-	return "★★★★★☆☆☆☆☆".slice(5 - rate, 10 - rate);
+function StartScore(rate = 0, len = 5) {
+	(rate < 0) && (rate = 0);
+	(rate > len) && (rate = len);
+	return [
+		...Array.from(new Array(len).keys()).fill("★"),
+		...Array.from(new Array(len).keys()).fill("☆")
+	].join("").slice(len - rate, len * 2 - rate);
 }
 
 export {

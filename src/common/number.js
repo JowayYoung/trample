@@ -1,7 +1,7 @@
 /** 数值工具 **/
 
 /**
- * @name 补零数值
+ * @name 数值补零化
  * @param {number} [num=0] 数值
  * @param {number} [len=0] 补位
  */
@@ -45,19 +45,19 @@ function RandomNumPlus(min = 0, max = 10, count = 1) {
 }
 
 /**
- * @name 精确数值(四舍五入和百分比)
+ * @name 数值精确化(四舍五入和百分比)
  * @param {number} [num=0] 数值
- * @param {number} [decimal=2] 小数个数
- * @param {boolean} [percent=false] 是否百分比
+ * @param {number} [dec=2] 小数个数
+ * @param {boolean} [per=false] 是否百分比
  */
-function RoundNum(num = 0, decimal = 2, percent = false) {
-	return percent
-		? Math.round(num * 10 ** decimal * 100) / 10 ** decimal + "%"
-		: Math.round(num * 10 ** decimal) / 10 ** decimal;
+function RoundNum(num = 0, dec = 2, per = false) {
+	return per
+		? Math.round(num * 10 ** dec * 100) / 10 ** dec + "%"
+		: Math.round(num * 10 ** dec) / 10 ** dec;
 }
 
 /**
- * @name 千分数值
+ * @name 数值千分化
  * @param {number} [num=0] 数值
  */
 function ThousandNum(num = 0) {
