@@ -6,7 +6,7 @@
 	"author": "",
 	"license": "MIT",
 	"dependencies": {
-		"trample": "0.0.1"
+		"trample": "0.0.2"
 	},
 	"devDependencies": {},
 	"engines": {
