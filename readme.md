@@ -1,4 +1,4 @@
-# Trample <img src="https://img.shields.io/badge/trample-Web/Node通用工具库-66f.svg">
+# Trample <img src="https://img.shields.io/badge/trample-Web/Node通用函数工具库-66f.svg">
 
 <img src="https://img.shields.io/badge/author-JowayYoung-f66.svg">
 <img src="https://img.shields.io/badge/version-0.0.1-f66.svg">
@@ -9,11 +9,17 @@
 <img src="https://img.shields.io/badge/coverage-100%25-09f.svg">
 <img src="https://img.shields.io/badge/license-MIT-09f.svg">
 
-### 🎥背景
+### 前言
 
-项目开发过程中时常会重复使用一些工具函数，例如`浏览器类型`、`时间差格式化`、`URL参数反序列化`、`XSS过滤`等，为了避免开发项目时重复复制粘贴所带来的的麻烦，我将平时常用的一些工具函数按功能分类和统一封装，并发布到`npm`上。每次开发项目时直接安装，提高开发效率，将时间用在正确的位置上。
+**工欲善其事，必先利其器**。应用在项目开发上就是：`做好一个项目，前期的工作准备非常重要`。项目开发的前期准备无非都是`合理规划项目结构`、`按需编写构建代码`、`批量创建入口文件`、`复制粘贴工具函数`等。
 
-### 📦安装
+在这里先推荐笔者写的一个**React/Vue应用自动化构建脚手架**[bruce-cli](https://github.com/JowayYoung/bruce-cli)，其零配置开箱即用的优点非常适合入门级、初中级、快速开发项目的前端同学使用，还可通过创建`brucerc.js`文件来覆盖其默认配置，只需专注业务代码的编写无需关注构建代码的编写，让项目结构更简洁。
+
+通过`bruce-cli`能把常规的前期准备都解决了，但是我们经常会复制粘贴一些之前项目常用的工具函数过来新项目上，新开项目时又会重新执行这些操作。
+
+项目开发过程中时常会重复使用一些工具函数，例如`浏览器类型`、`时间差格式化`、`URL参数反序列化`、`XSS过滤`等，为了避免项目开发时重复的复制粘贴操作所带来不必要的麻烦，笔者将平时常用的一些工具函数按功能分类和统一封装，并发布到`npm`上。每次项目开发时直接安装，提高开发效率，将时间用在正确的位置上。
+
+### 安装
 
 - `npm i trample`
 - `yarn add trample`
@@ -23,7 +29,7 @@
 - 将npm源镜像设置为淘宝镜像：`npm config set registry https://registry.npm.taobao.org`
 - 重新执行命令安装：`npm i trample` 或 `yarn add trample`
 
-### 💻使用
+### 使用
 
 `trample.js`根据**Web**和**Node**两种JS运行环境进行代码划分，生成三个`bundle`文件。每个文件在不同的JS运行环境下才能运行，必须根据JS运行环境引用文件，否则会报错。
 
@@ -80,7 +86,7 @@ import _ from "trample/node";
 _.FormatDiffTime("2019-03-31");
 ```
 
-### 📋文档
+### 文档
 
 > 公共函数工具库
 
@@ -292,7 +298,7 @@ DownloadFile("https://xxx.yyy/pig.jpg", "pig.jpg");
 
 FilterXss("<script>alert(123)</script>"); // "&lt;script&gt;alert(123)&lt;/script&gt;"
 
-Img2Base64("https://xxx.yyy/pig.jpg", "image/jpg"); // "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQAB..."
+Img2Base64("https://xxx.yyy/pig.jpg", "image/jpeg"); // "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQAB..."
 
 LoadScript("https://xxx.yyy/trample.js", "body");
 
@@ -403,3 +409,25 @@ trample
 ├─ readme.md
 └─ yarn.lock
 ```
+
+### 构建编译
+
+后续补发，构建编译过程正在完善当中......
+
+### 测试用例
+
+后续补发，测试用例流程正在书写当中......
+
+### 待做
+
+- [ ] 补全测试用例
+- [ ] 完善Node函数工具库
+- [ ] 增加按需加载的导入方式
+
+### 后记
+
+`trample.js`是笔者为了节省项目开发过程中常用工具函数复制粘贴的时间，而封装的一个**Web**和**Node**通用函数工具库。设计目的是为了`减少无谓的复制粘贴动作`和`统一管理项目开发中常用的工具函数`。
+
+由于笔者是针对个人需求而定制的工具库，所以应用范围可能没有包含上你常用的工具函数，可在[Issue](https://github.com/JowayYoung/trample/issues)上`提出你的宝贵建议`或`贴上你需要增加的工具函数`。笔者会认真阅读你的宝贵建议和整合各位同学贡献的工具函数。如果觉得`trample.js`不错，欢迎[Start](https://github.com/JowayYoung/trample)一个。
+
+如果觉得`trample.js`对大家有用，建议[Fork](https://github.com/JowayYoung/trample)本项目到自己的	`Github`上，在原有的基础上增加自己`常用`、`易忘`和`代码量多`的工具函数，同时也可扩展原有的功能和构建方式，封装成自己熟悉的工具库，提升自己的开发能力，间接`减少晚上加班时间`和`增加上班摸鱼时间`。

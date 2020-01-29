@@ -1,7 +1,7 @@
 {
 	"name": "trample",
 	"version": "0.0.1",
-	"description": "前端Web和Node业务代码工具库",
+	"description": "前端Web/Node通用函数工具库",
 	"keywords": [
 		"js",
 		"javascript",
