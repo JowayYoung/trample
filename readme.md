@@ -49,11 +49,11 @@
 
 ##### HTML引用方式
 
-最简单最方便的引用方式没有之一。把`node_modules/trample/dist/web.js`复制出来，放到新建的`js/trample`文件夹下，通过HTML的`<script>`直接引用，只适用于`Web`。
+最简单最方便的引用方式没有之一。把`node_modules/trample/dist/web.es5.js`复制出来，放到新建的`js/trample`文件夹下，通过HTML的`<script>`直接引用，只适用于`Web`。
 
 ```html
 <body>
-    <script src="js/trample/web.js"></script>
+    <script src="js/trample/web.es5.js"></script>
     <script>trample.default.FormatDiffTime("2019-03-31")</script>
 </body>
 ```
