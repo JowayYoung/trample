@@ -1,6 +1,6 @@
 {
 	"name": "trample",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "A front-end Web/Node general utils library",
 	"keywords": [
 		"trample",
@@ -40,7 +40,7 @@
 	"scripts": {
 		"build": "babel-node build/index.js",
 		"kill": "tskill node",
-		"remove": "rimraf package-lock.json yarn.lock dist node_modules",
+		"remove": "rimraf package-lock.json yarn.lock dist common web node node_modules",
 		"start": "nodemon src/index.js -x babel-node",
 		"test:b": "cd test/web && bruce b",
 		"test:n": "nodemon test/node/index.js -x babel-node"

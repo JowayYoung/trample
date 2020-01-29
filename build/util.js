@@ -64,7 +64,7 @@ function WebpackConfig(type = "common", isEs5 = false) {
 	};
 	const filename = type === "common" ? "index" : type;
 	const suffix = isEs5 ? ".es5" : "";
-	console.log(JSON.stringify(babelOpts.presets[0], null, 2));
+	// console.log(JSON.stringify(babelOpts.presets[0], null, 2));
 	return {
 		devtool: false,
 		entry: `./src/${filename}.js`,

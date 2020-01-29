@@ -1,7 +1,7 @@
 # Trample <img src="https://img.shields.io/badge/trample-Web/Node通用函数工具库-66f.svg">
 
 <img src="https://img.shields.io/badge/author-JowayYoung-f66.svg">
-<img src="https://img.shields.io/badge/version-0.0.1-f66.svg">
+<img src="https://img.shields.io/badge/version-0.0.2-f66.svg">
 <img src="https://img.shields.io/badge/web-%3E%3D%2095%25-3c9.svg">
 <img src="https://img.shields.io/badge/node-%3E%3D%208.0.0-3c9.svg">
 <img src="https://img.shields.io/badge/test-passing-f90.svg">
@@ -63,13 +63,21 @@
 适用于`Web`和`Node`
 
 ```js
-// Web
-const _ = require("trample/web").default;
+// Web：全部导入
+const _ = require("trample/dist/web").default;
 _.FormatDiffTime("2019-03-31");
 
-// Node
-const _ = require("trample/node").default;
+// Web：按需导入
+const { FormatDiffTime } = require("trample/web");
+FormatDiffTime("2019-03-31");
+
+// Node：全部导入
+const _ = require("trample/dist/node").default;
 _.FormatDiffTime("2019-03-31");
+
+// Node：按需导入
+const { FormatDiffTime } = require("trample/node");
+FormatDiffTime("2019-03-31");
 ```
 
 ##### ESM引用方式
@@ -77,13 +85,21 @@ _.FormatDiffTime("2019-03-31");
 适用于`Web`和`Node`
 
 ```js
-// Web
-import _ from "trample/web";
+// Web：全部导入
+import _ from "trample/dist/web";
 _.FormatDiffTime("2019-03-31");
 
-// Node
-import _ from "trample/node";
+// Web：按需导入
+import { FormatDiffTime } from "trample/web";
+FormatDiffTime("2019-03-31");
+
+// Node：全部导入
+import _ from "trample/dist/node";
 _.FormatDiffTime("2019-03-31");
+
+// Web：按需导入
+import { FormatDiffTime } from "trample/node";
+FormatDiffTime("2019-03-31");
 ```
 
 ### 文档
@@ -422,7 +438,6 @@ trample
 
 - [ ] 补全测试用例
 - [ ] 完善Node函数工具库
-- [ ] 增加按需加载的导入方式
 
 ### 后记
 
