@@ -6,7 +6,7 @@ import { StringifyUrlSearch } from "../web/url";
  * @param {object} [data={}] 参数
  * @param {function} [error=null] 失败回调函数
  * @param {function} [success=null] 成功回调函数
- * @param {string} [type="get"] 类型
+ * @param {string} [type="get"] 类型：get、post
  * @param {string} [url=""] 地址
  */
 function Ajax({ data = {}, error = null, success = null, type = "get", url = "" }) {

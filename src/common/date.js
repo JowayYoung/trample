@@ -4,7 +4,7 @@ import Day from "dayjs";
 /**
  *
  * @name 倒计时格式化
- * @param {string} [time=""] 日期 YYYY-MM-DD HH:mm:ss
+ * @param {string} [time=""] 日期：YYYY-MM-DD HH:mm:ss
  */
 function FormatCountdown(time = "") {
 	const nowTime = +new Date();
@@ -23,7 +23,7 @@ function FormatCountdown(time = "") {
 
 /**
  * @name 时间差格式化
- * @param {string} [time=""] 日期 YYYY-MM-DD HH:mm:ss
+ * @param {string} [time=""] 日期：YYYY-MM-DD HH:mm:ss
  */
 function FormatDiffTime(time = "") {
 	const nowTime = Day();

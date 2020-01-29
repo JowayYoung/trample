@@ -1,4 +1,4 @@
-/** URL操作 **/
+/** URL工具 **/
 import { IsEmptyArray, IsEmptyObject } from "../common/type";
 
 /**

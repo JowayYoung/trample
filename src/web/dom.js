@@ -1,4 +1,4 @@
-/** DOM操作 **/
+/** DOM工具 **/
 
 /**
  * @name 自适应
@@ -46,11 +46,11 @@ function DownloadFile(url = "", name = "") {
 
 /**
  * @name XSS过滤
- * @param {string} [content=""] 内容
+ * @param {string} [html=""] HTML内容
  */
-function FilterXss(content = "") {
+function FilterXss(html = "") {
 	const elem = document.createElement("div");
-	elem.innerText = content;
+	elem.innerText = html;
 	const result = elem.innerHTML;
 	return result;
 }
@@ -58,7 +58,7 @@ function FilterXss(content = "") {
 /**
  * @name 图像B64化
  * @param {string} [url=""] 地址
- * @param {string} [type="image/png"] 类型
+ * @param {string} [type="image/png"] 类型：image/jpeg、image/png
  */
 function Img2Base64(url = "", type = "image/png") {
 	if (!url) return;

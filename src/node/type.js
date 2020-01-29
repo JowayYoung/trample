@@ -1,4 +1,4 @@
-/** 类型判断 **/
+/** 类型工具 **/
 import { RunCmd } from "./process";
 
 /**
@@ -6,7 +6,6 @@ import { RunCmd } from "./process";
  */
 function NodeType() {
 	return {
-		mode: "node",
 		nodeVs: RunCmd("node -v").replace(/(v|\n|\r\n)/g, ""),
 		npmVs: RunCmd("npm -v").replace(/\n/g, "")
 	};

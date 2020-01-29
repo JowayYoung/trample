@@ -1,4 +1,4 @@
-/** 进程操作 **/
+/** 进程工具 **/
 import ChildProcess from "child_process";
 
 /**

@@ -1,4 +1,4 @@
-/** 路径操作 **/
+/** 路径工具 **/
 import Fs from "fs";
 import Path from "path";
 

@@ -1,9 +1,53 @@
+import Path from "path";
+import Util from "util";
+import Webpack from "webpack";
 import BarPlugin from "webpackbar";
 import HardSourcePlugin from "hard-source-webpack-plugin";
 
-import { AbsPath, ES5_POLYFILL, ES6_POLYFILL } from "./tool";
+const ES5_POLYFILL = [
+	"last 20 Chrome versions",
+	"last 20 Firefox versions",
+	"last 20 Opera versions",
+	"Explorer >= 10",
+	"Safari >= 8",
+	"Android >= 5",
+	"iOS >= 8"
+];
 
-export default function WebpackConfig(type = "common", isEs6 = false) {
+const ES6_POLYFILL = [
+	"Chrome >= 60",
+	"Firefox >= 54",
+	"Opera >= 50",
+	"Safari >= 10.1",
+	"Edge >= 15",
+	"iOS >= 10.3"
+];
+
+function AbsPath(path = "") {
+	return Path.join(__dirname, path);
+}
+
+function AsyncTo(pfn = null) {
+	return pfn ? pfn.then(data => [null, data]).catch(err => [err]) : [null, null];
+}
+
+async function BuildCb(webpackConfig) {
+	const webpack = Util.promisify(Webpack);
+	const stats = await webpack(webpackConfig);
+	const promise = new Promise((resolve, reject) => {
+		process.stdout.write(stats.toString({
+			children: false,
+			chunkModules: false,
+			chunks: false,
+			colors: true,
+			modules: false
+		}) + "\n\n");
+		stats.hasErrors() ? reject(false) : resolve(true); // eslint-disable-line
+	});
+	return AsyncTo(promise);
+}
+
+function WebpackConfig(type = "common", isEs6 = false) {
 	const polyfill = {
 		common: { node: isEs6 ? "10.0.0" : "8.0.0" },
 		node: { node: isEs6 ? "10.0.0" : "8.0.0" },
@@ -30,6 +74,7 @@ export default function WebpackConfig(type = "common", isEs6 = false) {
 		]
 	};
 	const filename = type === "common" ? "index" : type;
+	const suffix = isEs6 ? ".es6" : "";
 	// console.log(JSON.stringify(babelOpts, null, 2));
 	return {
 		devtool: false,
@@ -47,7 +92,7 @@ export default function WebpackConfig(type = "common", isEs6 = false) {
 			concatenateModules: true
 		},
 		output: {
-			filename: `${filename}.js`,
+			filename: `${filename}${suffix}.js`,
 			library: "trample",
 			libraryTarget: "umd",
 			path: AbsPath("../dist")
@@ -62,4 +107,13 @@ export default function WebpackConfig(type = "common", isEs6 = false) {
 		},
 		target: type === "web" ? "web" : "node"
 	};
+}
+
+export {
+	ES5_POLYFILL,
+	ES6_POLYFILL,
+	AbsPath,
+	AsyncTo,
+	BuildCb,
+	WebpackConfig
 };

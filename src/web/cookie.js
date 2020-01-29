@@ -1,4 +1,4 @@
-/** Cookie操作 **/
+/** Cookie工具 **/
 
 /**
  * @name Cookie读取
