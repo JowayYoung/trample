@@ -4,7 +4,7 @@ import Webpack from "webpack";
 import BarPlugin from "webpackbar";
 import HardSourcePlugin from "hard-source-webpack-plugin";
 
-const ES5_POLYFILL = [
+const BROWSER_ES5 = [
 	"last 20 Chrome versions",
 	"last 20 Firefox versions",
 	"last 20 Opera versions",
@@ -14,14 +14,11 @@ const ES5_POLYFILL = [
 	"iOS >= 8"
 ];
 
-const ES6_POLYFILL = [
-	"Chrome >= 60",
-	"Firefox >= 54",
-	"Opera >= 50",
-	"Safari >= 10.1",
-	"Edge >= 15",
-	"iOS >= 10.3"
-];
+const POLYFILL = {
+	common: { node: "8.0.0" },
+	node: { node: "8.0.0" },
+	web: { browsers: BROWSER_ES5 }
+};
 
 function AbsPath(path = "") {
 	return Path.join(__dirname, path);
@@ -47,17 +44,7 @@ async function BuildCb(webpackConfig) {
 	return AsyncTo(promise);
 }
 
-function WebpackConfig(type = "common", isEs6 = false) {
-	const polyfill = {
-		common: { node: isEs6 ? "10.0.0" : "8.0.0" },
-		node: { node: isEs6 ? "10.0.0" : "8.0.0" },
-		web: { browsers: isEs6 ? ES6_POLYFILL : ES5_POLYFILL }
-	};
-	const envOpts = {
-		corejs: 3,
-		targets: polyfill[type] || polyfill.common,
-		useBuiltIns: "usage"
-	};
+function WebpackConfig(type = "common", isEs5 = false) {
 	const babelOpts = {
 		babelrc: false,
 		cacheDirectory: true,
@@ -70,12 +57,14 @@ function WebpackConfig(type = "common", isEs6 = false) {
 			"@babel/plugin-syntax-dynamic-import" // 动态导入
 		],
 		presets: [
-			["@babel/preset-env", envOpts] // ES语法编译
+			isEs5
+				? ["@babel/preset-env", { corejs: 3, targets: POLYFILL[type] || POLYFILL.common, useBuiltIns: "usage" }]
+				: "@babel/preset-env"
 		]
 	};
 	const filename = type === "common" ? "index" : type;
-	const suffix = isEs6 ? ".es6" : "";
-	// console.log(JSON.stringify(babelOpts, null, 2));
+	const suffix = isEs5 ? ".es5" : "";
+	console.log(JSON.stringify(babelOpts.presets[0], null, 2));
 	return {
 		devtool: false,
 		entry: `./src/${filename}.js`,
@@ -110,8 +99,6 @@ function WebpackConfig(type = "common", isEs6 = false) {
 }
 
 export {
-	ES5_POLYFILL,
-	ES6_POLYFILL,
 	AbsPath,
 	AsyncTo,
 	BuildCb,

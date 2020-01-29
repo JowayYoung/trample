@@ -1,21 +1,28 @@
 import Util from "util";
 import Rimfaf from "rimraf";
+import RecursiveCopy from "recursive-copy";
 
-import { BuildCb, WebpackConfig } from "./util";
+import { AbsPath, BuildCb, WebpackConfig } from "./util";
 
 (async() => {
 	const rimraf = Util.promisify(Rimfaf);
 	const commonUmd = WebpackConfig("common");
-	const commonUmdEs6 = WebpackConfig("common", true);
+	const commonUmdEs5 = WebpackConfig("common", true);
 	const webUmd = WebpackConfig("web");
-	const webUmdEs6 = WebpackConfig("web", true);
+	const webUmdEs5 = WebpackConfig("web", true);
 	const nodeUmd = WebpackConfig("node");
-	const nodeUmdEs6 = WebpackConfig("node", true);
+	const nodeUmdEs5 = WebpackConfig("node", true);
+	const rootDir = AbsPath("..");
+	const srcDir = AbsPath("../src");
 	await rimraf("dist");
+	await rimraf("common");
+	await rimraf("web");
+	await rimraf("node");
 	await BuildCb(commonUmd);
-	await BuildCb(commonUmdEs6);
+	await BuildCb(commonUmdEs5);
 	await BuildCb(webUmd);
-	await BuildCb(webUmdEs6);
+	await BuildCb(webUmdEs5);
 	await BuildCb(nodeUmd);
-	await BuildCb(nodeUmdEs6);
+	await BuildCb(nodeUmdEs5);
+	await RecursiveCopy(srcDir, rootDir, { filter: ["**/*", "!index.js", "!node.js", "!web.js"] });
 })();
