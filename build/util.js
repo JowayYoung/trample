@@ -77,9 +77,6 @@ function WebpackConfig(type = "common", isEs5 = false) {
 				use: [{ loader: "babel-loader", options: babelOpts }]
 			}]
 		},
-		optimization: {
-			concatenateModules: true
-		},
 		output: {
 			filename: `${filename}${suffix}.js`,
 			library: "trample",
