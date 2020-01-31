@@ -24,5 +24,5 @@ import { AbsPath, BuildCb, WebpackConfig } from "./util";
 	await BuildCb(webUmdEs5);
 	await BuildCb(nodeUmd);
 	await BuildCb(nodeUmdEs5);
-	await RecursiveCopy(srcDir, rootDir, { filter: ["**/*", "common.js", "node.js", "web.js"] });
+	await RecursiveCopy(srcDir, rootDir, { filter: ["**/*", "!common.js", "!node.js", "!web.js"] });
 })();

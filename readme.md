@@ -35,11 +35,11 @@
 
 > 区别
 
-模块|工具库|运行环境|对应文件|描述
+模块|工具库|运行环境|对应文件|兼容ES5的对应文件
 :-:|:-:|:-:|-|-
-**Common**|公共函数工具库|浏览器和服务器|`dist/index.js`
-**Web**|Web函数工具库|浏览器|`dist/web.js`|包含`公共函数工具库`
-**Node**|Node函数工具库|服务器|`dist/node.js`|包含`公共函数工具库`
+**Common**|公共函数工具库|浏览器和服务器|`dist/index.js`|`dist/index.es5.js`
+**Web**|Web函数工具库|浏览器|`dist/web.js`|`dist/web.es5.js`
+**Node**|Node函数工具库|服务器|`dist/node.js`|`dist/node.es5.js`
 
 > 引用
 
@@ -63,21 +63,17 @@
 适用于`Web`和`Node`
 
 ```js
-// Web：全部导入
-const _ = require("trample/dist/web").default;
-_.FormatDiffTime("2019-03-31");
+// Common
+const T = require("trample").default;
+T.DataType("trample", "string");
 
-// Web：按需导入
-const { FormatDiffTime } = require("trample/web");
-FormatDiffTime("2019-03-31");
+// Web
+const TW = require("trample/dist/web").default;
+TW.BrowserType();
 
-// Node：全部导入
-const _ = require("trample/dist/node").default;
-_.FormatDiffTime("2019-03-31");
-
-// Node：按需导入
-const { FormatDiffTime } = require("trample/node");
-FormatDiffTime("2019-03-31");
+// Node
+const TN = require("trample/dist/node").default;
+TN.NodeType();
 ```
 
 ##### ESM引用方式
@@ -85,21 +81,29 @@ FormatDiffTime("2019-03-31");
 适用于`Web`和`Node`
 
 ```js
+// Common：全部导入
+import T from "trample";
+T.DataType("trample", "string");
+
+// Common：按需导入
+import { DataType } from "trample/common/index.js";
+DataType("trample", "string");
+
 // Web：全部导入
-import _ from "trample/dist/web";
-_.FormatDiffTime("2019-03-31");
+import TW from "trample/dist/web";
+TW.BrowserType();
 
 // Web：按需导入
-import { FormatDiffTime } from "trample/web";
-FormatDiffTime("2019-03-31");
+import { BrowserType } from "trample/web/index.js";
+BrowserType();
 
 // Node：全部导入
-import _ from "trample/dist/node";
-_.FormatDiffTime("2019-03-31");
+import TN from "trample/dist/node";
+TN.NodeType();
 
-// Web：按需导入
-import { FormatDiffTime } from "trample/node";
-FormatDiffTime("2019-03-31");
+// Node：按需导入
+import { NodeType } from "trample/node/index.js";
+NodeType();
 ```
 
 ### 文档
@@ -415,7 +419,7 @@ trample
 │  │  ├─ index.js
 │  │  ├─ type.js
 │  │  └─ url.js
-│  ├─ index.js
+│  ├─ common.js
 │  ├─ node.js
 │  └─ web.js
 ├─ .gitignore
