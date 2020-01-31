@@ -36,7 +36,7 @@
 		"url": "https://github.com/JowayYoung/trample.git"
 	},
 	"license": "MIT",
-	"main": "dist/index.js",
+	"main": "dist/web.js",
 	"scripts": {
 		"build": "babel-node build/index.js",
 		"kill": "tskill node",

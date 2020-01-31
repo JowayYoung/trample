@@ -37,7 +37,7 @@
 
 模块|工具库|运行环境|对应文件|兼容ES5的对应文件
 :-:|:-:|:-:|-|-
-**Common**|公共函数工具库|浏览器和服务器|`dist/index.js`|`dist/index.es5.js`
+**Common**|公共函数工具库|浏览器和服务器|被下面文件包含|被下面文件包含
 **Web**|Web函数工具库|浏览器|`dist/web.js`|`dist/web.es5.js`
 **Node**|Node函数工具库|服务器|`dist/node.js`|`dist/node.es5.js`
 
