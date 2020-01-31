@@ -67,7 +67,7 @@ function WebpackConfig(type = "common", isEs5 = false) {
 	// console.log(JSON.stringify(babelOpts.presets[0], null, 2));
 	return {
 		devtool: false,
-		entry: `./src/${filename}.js`,
+		entry: AbsPath(`../src/${type}.js`),
 		mode: "production",
 		module: {
 			rules: [{

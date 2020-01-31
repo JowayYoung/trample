@@ -1,5 +1,6 @@
 .DS_Store
 .gitattributes
 node_modules
+test/web/dist
 package-lock.json
 yarn.lock

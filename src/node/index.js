@@ -1,11 +1,11 @@
-import Paths, {
+import {
 	AbsPath,
 	IsExistPath
 } from "./path";
-import Processes, {
+import {
 	RunCmd
 } from "./process";
-import Types, {
+import {
 	NodeType
 } from "./type";
 
@@ -14,10 +14,4 @@ export {
 	IsExistPath,
 	NodeType,
 	RunCmd
-};
-
-export default {
-	...Paths,
-	...Processes,
-	...Types
 };

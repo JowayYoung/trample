@@ -1,9 +1,9 @@
-import Cookies, {
+import {
 	GetCookie,
 	RemoveCookie,
 	SetCookie
 } from "./cookie";
-import Doms, {
+import {
 	AutoResponse,
 	CopyPaste,
 	DownloadFile,
@@ -12,11 +12,11 @@ import Doms, {
 	LoadScript,
 	ToastMsg
 } from "./dom";
-import Types, {
+import {
 	BrowserType,
 	IsElement
 } from "./type";
-import Urls, {
+import {
 	ParseUrlSearch,
 	RemoveUrlSearch,
 	SetUrlSearch,
@@ -40,11 +40,4 @@ export {
 	SetUrlSearch,
 	StringifyUrlSearch,
 	ToastMsg
-};
-
-export default {
-	...Cookies,
-	...Doms,
-	...Types,
-	...Urls
 };

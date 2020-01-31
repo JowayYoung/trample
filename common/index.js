@@ -1,30 +1,30 @@
-import Dates, {
+import {
 	FormatCountdown,
 	FormatDiffTime
 } from "./date";
-import Functions, {
+import {
 	Ajax,
 	AsyncTo,
 	WaitFor
 } from "./function";
-import Numbers, {
+import {
 	FillNum,
 	RandomNum,
 	RandomNumPlus,
 	RoundNum,
 	ThousandNum
 } from "./number";
-import Regexps, {
+import {
 	CheckText,
 	CheckTextPlus,
 	MatchBracketText
 } from "./regexp";
-import Strings, {
+import {
 	RandomColor,
 	RandomId,
 	StartScore
 } from "./string";
-import Types, {
+import {
 	DataType,
 	EnvType,
 	IsArguments,
@@ -98,13 +98,4 @@ export {
 	StartScore,
 	ThousandNum,
 	WaitFor
-};
-
-export default {
-	...Dates,
-	...Functions,
-	...Numbers,
-	...Regexps,
-	...Strings,
-	...Types
 };
