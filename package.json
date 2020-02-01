@@ -36,11 +36,11 @@
 		"url": "https://github.com/JowayYoung/trample.git"
 	},
 	"license": "MIT",
-	"main": "dist/web.js",
+	"main": "web.js",
 	"scripts": {
 		"build": "babel-node build/index.js",
 		"kill": "tskill node",
-		"remove": "rimraf package-lock.json yarn.lock dist common web node node_modules",
+		"remove": "rimraf package-lock.json yarn.lock node_modules common node web node.js node.es5.js web.js web.es5.js",
 		"start": "nodemon src/index.js -x babel-node",
 		"test:b": "cd test/web && bruce b",
 		"test:n": "nodemon test/node/index.js -x babel-node"

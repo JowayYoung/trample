@@ -81,7 +81,7 @@ function WebpackConfig(type = "common", isEs5 = false) {
 			filename: `${filename}${suffix}.js`,
 			library: "trample",
 			libraryTarget: "umd",
-			path: AbsPath("../dist")
+			path: AbsPath("..")
 		},
 		plugins: [
 			new BarPlugin({ name: "Webpack Build" }),
