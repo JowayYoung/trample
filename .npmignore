@@ -2,12 +2,5 @@
 .gitattributes
 node_modules
 test
-common
-node
-web
 package-lock.json
 yarn.lock
-node.js
-node.es5.js
-web.js
-web.es5.js

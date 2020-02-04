@@ -1,7 +1,7 @@
 # Trample <img src="https://img.shields.io/badge/trample-Web/Node通用函数工具库-66f.svg">
 
 <img src="https://img.shields.io/badge/author-JowayYoung-f66.svg">
-<img src="https://img.shields.io/badge/version-0.0.5-f66.svg">
+<img src="https://img.shields.io/badge/version-0.0.6-f66.svg">
 <img src="https://img.shields.io/badge/web-%3E%3D%2095%25-3c9.svg">
 <img src="https://img.shields.io/badge/node-%3E%3D%208.0.0-3c9.svg">
 <img src="https://img.shields.io/badge/test-passing-f90.svg">
@@ -538,11 +538,12 @@ trample
 ├─ .npmignore
 ├─ license
 ├─ package.json
-├─ readme.md
-└─ yarn.lock
+└─ readme.md
 ```
 
 > 编译目录(`不包含以上的目录，可认为是编译后增加的目录`)
+
+执行`npm run build`后会增加以下文件
 
 ```txt
 trample
