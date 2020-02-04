@@ -1,7 +1,7 @@
 # Trample <img src="https://img.shields.io/badge/trample-Web/Node通用函数工具库-66f.svg">
 
 <img src="https://img.shields.io/badge/author-JowayYoung-f66.svg">
-<img src="https://img.shields.io/badge/version-0.0.4-f66.svg">
+<img src="https://img.shields.io/badge/version-0.0.5-f66.svg">
 <img src="https://img.shields.io/badge/web-%3E%3D%2095%25-3c9.svg">
 <img src="https://img.shields.io/badge/node-%3E%3D%208.0.0-3c9.svg">
 <img src="https://img.shields.io/badge/test-passing-f90.svg">
@@ -557,4 +557,8 @@ trample
 
 由于笔者是针对个人需求而定制的工具库，所以应用范围可能没有包含上你常用的工具函数，可在[Issue](https://github.com/JowayYoung/trample/issues)上`提出你的宝贵建议`或`贴上你需要增加的工具函数`。笔者会认真阅读你的宝贵建议和整合各位同学贡献的工具函数。如果觉得`trample.js`不错，欢迎[Start](https://github.com/JowayYoung/trample)一个。
 
-如果觉得`trample.js`对大家有用，建议[Fork](https://github.com/JowayYoung/trample)本项目到自己的	`Github`上，在原有的基础上增加自己`常用`、`易忘`和`代码量多`的工具函数，同时也可扩展原有的功能和构建方式，封装成自己熟悉的工具库，提升自己的开发能力，间接`减少晚上加班时间`和`增加上班摸鱼时间`。
+如果觉得`trample.js`对大家有用，建议[Fork](https://github.com/JowayYoung/trample)本项目到自己的`Github`上，在原有的基础上增加自己`常用`、`易忘`和`代码量多`的工具函数，同时也可扩展原有的功能和构建方式，封装成自己熟悉的工具库，提升自己的开发能力，间接`减少晚上加班时间`和`增加上班摸鱼时间`。
+
+**关注公众号`IQ前端`，更多前端小干货等着你喔！我是`JowayYoung`，喜欢分享前端技术和生活纪事，学习与生活不落下，每天进步一点点，与大家相伴成长**
+
+![](https://yangzw.vip/static/frontend/account/IQ前端公众号.jpg)

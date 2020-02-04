@@ -4,7 +4,7 @@ import _Numbers from "./common/number";
 import _Regexps from "./common/regexp";
 import _Strings from "./common/string";
 import _Types from "./common/type";
-import Paths from "./node/path";
+import Fses from "./node/fs";
 import Processes from "./node/process";
 import Types from "./node/type";
 
@@ -15,7 +15,7 @@ export default {
 	..._Regexps,
 	..._Strings,
 	..._Types,
-	...Paths,
+	...Fses,
 	...Processes,
 	...Types
 };

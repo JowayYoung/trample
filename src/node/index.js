@@ -1,7 +1,8 @@
 import {
-	AbsPath,
-	IsExistPath
-} from "./path";
+	CopyDir,
+	CreateDir,
+	RemoveDir
+} from "./fs";
 import {
 	RunCmd
 } from "./process";
@@ -10,8 +11,9 @@ import {
 } from "./type";
 
 export {
-	AbsPath,
-	IsExistPath,
+	CopyDir,
+	CreateDir,
 	NodeType,
+	RemoveDir,
 	RunCmd
 };
