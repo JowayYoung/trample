@@ -41,6 +41,20 @@
 **Web**|Web函数工具库|浏览器|`web.js`|`web.es5.js`
 **Node**|Node函数工具库|服务器|`node.js`|`node.es5.js`
 
+##### 兼容
+
+- `web.js`兼容状态：**ES6**
+- `web.es5.js`兼容状态：**ES5**
+	- Chrome：`last 20 versions`
+	- Safari：`>= 8`
+	- Firefox：`last 20 versions`
+	- Opera：`last 20 versions`
+	- Explorer：`>= 10`
+	- Android：`>= 5`
+	- iOS：`>= 8`
+- `node.js`兼容状态：`node >= 10.0.0`
+- `node.es5.js`兼容状态：`node >= 8.0.0`
+
 ##### 引用
 
 `trample.js`使用`UMD`通用模块规范进行打包，因此可使用`HTML`、`AMD`、`CJS`和`ESM`四种方式引用。但是推荐使用`HTML`、`CJS`、`ESM`三种引用方式。
@@ -49,11 +63,11 @@
 
 > HTML引用方式
 
-最简单最方便的引用方式没有之一。把`node_modules/trample/web.es5.js`复制出来，放到新建的`js/trample`文件夹下，通过HTML的`<script>`直接引用，只适用于`Web`。
+最简单最方便的引用方式没有之一。把`node_modules/trample/web.js`复制出来，放到新建的`js/trample`文件夹下，通过HTML的`<script>`直接引用，只适用于`Web`。
 
 ```html
 <body>
-    <script src="js/trample/web.es5.js"></script>
+    <script src="js/trample/web.js"></script>
     <script>trample.default.DataType("trample")</script>
 </body>
 ```
@@ -115,7 +129,7 @@ NodeType();
 
 ##### 再次提醒
 
-在Web环境下，请使用以下导入方式⏬。`"trample"`默认引用`node_modules/trample/web.js`这个文件。
+在Web环境下，请使用以下导入方式⏬。`trample`默认引用`node_modules/trample/web.js`这个文件。
 
 ```js
 const TW = require("trample/web").default;
@@ -147,6 +161,11 @@ import { BrowserType } from "trample/common/index";
 // Node函数工具库
 import { NodeType } from "trample/common/index";
 ```
+
+另外，以上示例都是基于JS最终运行环境是`ES6`或后续使用`webpack+babel`将代码打包成`ES5`这两种情况才生效。如果JS最终运行环境是`ES5`或不使用`webpack+babel`将代码打包成`ES5`，则需要对导入路径进行如下修改，才能使用编译好的ES5文件。
+
+- `trample`或`trample/web`：修改成`trample/web.es5`
+- `trample/node`：修改成`trample/node.es5`
 
 ##### 结合Babel编译
 
@@ -437,19 +456,33 @@ StringifyUrlSearch({ name: "young", sex: "male" }); // "?name=young&sex=male"
 
 > Node函数工具库
 
-[Path 路径工具](https://github.com/JowayYoung/trample/blob/master/src/node/path.js)
+[Fs 文件工具](https://github.com/JowayYoung/trample/blob/master/src/node/fs.js)
 
-- [x] **AbsPath()**：绝对路径
-	- path：相对路径(`""`)
-	- mode: 是否运行模式(`false`，可选`true运行终端项目根目录、false项目根目录`)
-- [x] **IsExistPath()**：路径存在判断
-	- path：相对路径(`""`)
-	- mode: 是否运行模式(`false`，可选`true运行终端项目根目录、false项目根目录`)
+- [x] **CopyDir()**：复制文件路径
+	- src：输入路径(`""`)
+	- dist: 输出路径(`""`)
+	- filter：过滤函数(`false`，返回`true`表示复制，返回`false`表示不复制)，函数入参为`stat`和`path`
+- [x] **CreateDir()**：创建文件路径
+	- dir：路径(`""`)
+- [x] **RemoveDir()**：删除文件路径
+	- dir：路径(`""`)
 
 ```js
-AbsPath("../.."); // "/Users/young/Documents/trample/"
+import Path from "path";
 
-IsExistPath("../../build/utils.js"); // false
+function AbsPath(dir) {
+    return Path.join(__dirname, dir);
+}
+
+CopyDir(
+    AbsPath("./src"),
+    AbsPath("./trample"),
+    (stat, path) => !(stat === "file" && path.includes(".DS_Store"))
+);
+
+CreateDir(AbsPath("./assets/lib/trample"));
+
+RemoveDir(AbsPath("./assets/lib/trample"));
 ```
 
 [Process 进程工具](https://github.com/JowayYoung/trample/blob/master/src/node/process.js)
@@ -489,8 +522,8 @@ trample
 │  │  ├─ string.js
 │  │  └─ type.js
 │  ├─ node
+│  │  ├─ fs.js
 │  │  ├─ index.js
-│  │  ├─ path.js
 │  │  ├─ process.js
 │  │  └─ type.js
 │  ├─ web
@@ -522,8 +555,8 @@ trample
 │  ├─ string.js
 │  └─ type.js
 ├─ node
+│  ├─ fs.js
 │  ├─ index.js
-│  ├─ path.js
 │  ├─ process.js
 │  └─ type.js
 ├─ web

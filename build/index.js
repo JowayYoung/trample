@@ -21,7 +21,7 @@ import { AbsPath, BuildCb, WebpackConfig } from "./util";
 	}
 	CopyDir.sync(AbsPath("../src"), AbsPath(".."), {
 		cover: true,
-		filter: (stat, filepath) => !(stat === "file" && filterList.some(v => filepath.includes(v))),
+		filter: (stat, path) => !(stat === "file" && filterList.some(v => path.includes(v))),
 		mode: true,
 		utimes: true
 	});
