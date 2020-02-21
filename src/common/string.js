@@ -1,4 +1,26 @@
 /** 字符工具 **/
+import { MATCH } from "./regexp";
+
+/**
+ * @name 手机脱敏化
+ * @param {string} [phone=""] 手机
+ */
+function DesePhone(phone = "") {
+	return MATCH.phone.regexp.test(phone)
+		? phone.toString().replace(/(\d{3})\d*(\d{4})/g, "$1****$2")
+		: phone;
+}
+
+/**
+ * @name 手机格式化
+ * @param {string} [phone=""] 手机
+ * @param {string} [sign="-"] 标记：-、\s
+ */
+function FormatPhone(phone = "", sign = "-") {
+	return MATCH.phone.regexp.test(phone) && ["-", " "].includes(sign)
+		? phone.toString().replace(/(\d{3})(\d{4})(\d{4})/g, `$1${sign}$2${sign}$3`)
+		: phone;
+}
 
 /**
  * @name 随机HEX色值
@@ -31,12 +53,16 @@ function StartScore(rate = 0, len = 5) {
 }
 
 export {
+	DesePhone,
+	FormatPhone,
 	RandomColor,
 	RandomId,
 	StartScore
 };
 
 export default {
+	DesePhone,
+	FormatPhone,
 	RandomColor,
 	RandomId,
 	StartScore

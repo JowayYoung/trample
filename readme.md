@@ -1,7 +1,7 @@
 # Trample <img src="https://img.shields.io/badge/trample-Web/Node通用函数工具库-66f.svg">
 
 <img src="https://img.shields.io/badge/author-JowayYoung-f66.svg">
-<img src="https://img.shields.io/badge/version-0.0.6-f66.svg">
+<img src="https://img.shields.io/badge/version-0.0.7-f66.svg">
 <img src="https://img.shields.io/badge/web-%3E%3D%2095%25-3c9.svg">
 <img src="https://img.shields.io/badge/node-%3E%3D%208.0.0-3c9.svg">
 <img src="https://img.shields.io/badge/test-passing-f90.svg">
@@ -226,6 +226,12 @@ FormatDiffTime("2019-03-31"); // "10个月前"
 - [x] **AsyncTo()**：异步返回值格式化
 	- pfn：Promise函数(`Promise.resolve(true)`)
 	- 备注：必须在`async函数`或`自执行async函数`下使用
+- [x] **Debounce()**：防抖
+	- fn：函数(`v => v`)
+	- dura：时延(`50`)
+- [x] **Throttle()**：节流
+	- fn：函数(`v => v`)
+	- dura：时延(`50`)
 - [x] **WaitFor()**：等待
 	- dura：时延(`1000`)
 	- 备注：必须在`async函数`或`自执行async函数`下使用
@@ -238,6 +244,10 @@ Ajax({
     type: "post",
     url: "https://xxx.yyy"
 });
+
+document.body.addEventListener("click", () => Debounce(() => console.log("Click"), 2000));
+
+document.body.addEventListener("scroll", () => Throttle(() => console.log("Scroll"), 2000));
 
 (async() => {
     const [err, res] = await AsyncTo(GetData());
@@ -304,6 +314,11 @@ MatchBracketText(
 
 [String 字符工具](https://github.com/JowayYoung/trample/blob/master/src/common/string.js)
 
+- [x] **DesePhone()**：手机脱敏化
+	- phone：手机(`""`)
+- [x] **FormatPhone()**：手机格式化
+	- phone：手机(`""`)
+	- sign：标记(`"-"`，可选`-、\s`)
 - [x] **RandomColor()**：随机HEX色值
 - [x] **RandomId()**：随机长度ID
 	- len：长度(`5`，在`1~10`之间)
@@ -312,6 +327,10 @@ MatchBracketText(
 	- len：长度(`5`)
 
 ```js
+DesePhone("18866669999"); // "188****9999"
+
+FormatPhone("18866669999", " "); // "188 6666 9999"
+
 RandomColor(); // "#26f455"
 
 RandomId(8); // "6ohsln3s"
@@ -396,6 +415,10 @@ SetCookie("user_id", "123abc", 7);
 - [x] **Img2Base64()**：图像B64化
 	- url：地址(`""`)
 	- type：类型(`"image/png"`，可选`image/jpeg、image/png`)
+- [x] **Jsonp()**：JSONP
+	- url：地址(`""`)
+	- name：全局变量(`"jsonp"`)
+	- cb：回调函数(`null`)
 - [x] **LoadScript()**：脚本加载
 	- url：地址(`""`)
 	- pst：插入位置(`"head"`，可选`head、body`)
@@ -408,13 +431,15 @@ SetCookie("user_id", "123abc", 7);
 ```js
 AutoResponse(640);
 
-CopyPaste(document.getElementById("btn")); // "复制粘贴"
+CopyPaste(document.getElementById("btn"));
 
 DownloadFile("https://xxx.yyy/pig.jpg", "pig.jpg");
 
 FilterXss("<script>alert(123)</script>"); // "&lt;script&gt;alert(123)&lt;/script&gt;"
 
 Img2Base64("https://xxx.yyy/pig.jpg", "image/jpeg"); // "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQAB..."
+
+Jsonp("https://xxx.yyy/trample.js", "trample", () => console.log(window.trample));
 
 LoadScript("https://xxx.yyy/trample.js", "body");
 

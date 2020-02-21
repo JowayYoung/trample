@@ -82,6 +82,7 @@ function MatchBracketText(tgt = "(*)", text = "") {
 }
 
 export {
+	MATCH,
 	CheckText,
 	CheckTextPlus,
 	MatchBracketText

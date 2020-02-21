@@ -80,6 +80,20 @@ function Img2Base64(url = "", type = "image/png") {
 }
 
 /**
+ * @name JSONP
+ * @param {string} [url=""] 地址
+ * @param {string} [name="jsonp"] 全局变量
+ * @param {function} [cb=null] 回调函数
+ */
+function Jsonp(url = "", name = "jsonp", cb = null) {
+	const script = document.createElement("script");
+	script.src = url;
+	script.async = true;
+	window[name] = data => cb && cb(data);
+	document.body.appendChild(script);
+}
+
+/**
  * @name 脚本加载
  * @param {string} [url=""] 地址
  * @param {string} [pst="head"] 插入位置
@@ -122,6 +136,7 @@ export {
 	DownloadFile,
 	FilterXss,
 	Img2Base64,
+	Jsonp,
 	LoadScript,
 	ToastMsg
 };
@@ -132,6 +147,7 @@ export default {
 	DownloadFile,
 	FilterXss,
 	Img2Base64,
+	Jsonp,
 	LoadScript,
 	ToastMsg
 };

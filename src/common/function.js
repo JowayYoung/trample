@@ -42,6 +42,35 @@ function AsyncTo(pfn = Promise.resolve(true)) {
 }
 
 /**
+ * @name 防抖
+ * @param {function} [fn=v=>v] 函数
+ * @param {number} [dura=50] 时延
+ */
+function Debounce(fn = v => v, dura = 50) {
+	let timer = null;
+	return function(...args) {
+		timer && clearTimeout(timer);
+		timer = setTimeout(() => fn.apply(this, args), dura);
+	};
+}
+
+/**
+ * @name 节流
+ * @param {function} [fn=v=>v] 函数
+ * @param {number} [dura=50] 时延
+ */
+function Throttle(fn = v => v, dura = 50) {
+	let pass = 0;
+	return function(...args) {
+		const now = +new Date();
+		if (now - pass > dura) {
+			pass = now;
+			fn.apply(this, args);
+		}
+	};
+}
+
+/**
  * @name 等待
  * @param {number} [dura=1000] 时延
  */
@@ -52,11 +81,15 @@ async function WaitFor(dura = 1000) {
 export {
 	Ajax,
 	AsyncTo,
+	Debounce,
+	Throttle,
 	WaitFor
 };
 
 export default {
 	Ajax,
 	AsyncTo,
+	Debounce,
+	Throttle,
 	WaitFor
 };
