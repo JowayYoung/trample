@@ -239,7 +239,7 @@ const arr = [
     { area: "GZ", name: "TYJ", age: 25 },
     { area: "GZ", name: "LJY", age: 26 },
     { area: "FS", name: "LXY", age: 24 },
-    { area: "JM", name: "YYM", age: 24 }
+    { area: "", name: "YYM", age: 24 }
 ];
 MemberGroup(arr, "area"); // { GZ: Array(2), SZ: Array(2), FS: Array(1) }
 
