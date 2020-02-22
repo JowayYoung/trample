@@ -39,6 +39,22 @@ function RandomId(len = 5) {
 }
 
 /**
+ * @name 移除标签
+ * @param {string} [text=""] 文本
+ */
+function RemoveTag(text = "") {
+	return text.replace(/<[^>]*>/g, "");
+}
+
+/**
+ * @name 翻转文本
+ * @param {string} [text=""] 文本
+ */
+function ReverseText(text = "") {
+	return text.split("").reduceRight((t, v) => t + v);
+}
+
+/**
  * @name 星级评分
  * @param {number} [rate=0] 星级 在0~5之间
  * @param {number} [len=5] 长度
@@ -57,6 +73,8 @@ export {
 	FormatPhone,
 	RandomColor,
 	RandomId,
+	RemoveTag,
+	ReverseText,
 	StartScore
 };
 
@@ -65,5 +83,7 @@ export default {
 	FormatPhone,
 	RandomColor,
 	RandomId,
+	RemoveTag,
+	ReverseText,
 	StartScore
 };

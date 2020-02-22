@@ -312,7 +312,7 @@ CheckTextPlus(/^(fe)?male$/g, "性别输入错误", "male"); // { flag: true, ms
 
 MatchBracketText(
     "<img src=\"*\">",
-    "<img src=\"pig.jpg\"><p>Trample</p><img src=\"dada.png\">"
+    "<img src=\"pig.jpg\"><p>trample</p><img src=\"dada.png\">"
 ); // ["pig.jpg", "dada.png"]
 ```
 
@@ -326,6 +326,10 @@ MatchBracketText(
 - [x] **RandomColor()**：随机HEX色值
 - [x] **RandomId()**：随机长度ID
 	- len：长度(`5`，在`1~10`之间)
+- [x] **RemoveTag()**：移除标签
+	- text：文本(`""`)
+- [x] **ReverseText()**：翻转文本
+	- text：文本(`""`)
 - [x] **StartScore()**：星级评分
 	- rate：星级(`0`，在`0~len`之间)
 	- len：长度(`5`)
@@ -338,6 +342,10 @@ FormatPhone("18866669999", " "); // "188 6666 9999"
 RandomColor(); // "#26f455"
 
 RandomId(8); // "6ohsln3s"
+
+RemoveTag("<script>alert(\"hello world\")</script>"); // "alert("hello world")"
+
+ReverseText("trample"); // "elpmart"
 
 StartScore(8, 10); // "★★★★★★★★☆☆"
 ```
@@ -447,7 +455,7 @@ Jsonp("https://xxx.yyy/trample.js", "trample", () => console.log(window.trample)
 
 LoadScript("https://xxx.yyy/trample.js", "body");
 
-ToastMsg("Hello World", 2000, "ellipsis");
+ToastMsg("hello world", 2000, "ellipsis");
 ```
 
 [Type 类型工具](https://github.com/JowayYoung/trample/blob/master/src/web/type.js)

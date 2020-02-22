@@ -26,6 +26,8 @@ import {
 	FormatPhone,
 	RandomColor,
 	RandomId,
+	RemoveTag,
+	ReverseText,
 	StartScore
 } from "./string";
 import {
@@ -101,6 +103,8 @@ export {
 	RandomId,
 	RandomNum,
 	RandomNumPlus,
+	RemoveTag,
+	ReverseText,
 	RoundNum,
 	StartScore,
 	ThousandNum,
