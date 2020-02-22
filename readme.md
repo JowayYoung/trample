@@ -529,7 +529,7 @@ RunCmd("npm -v"); // "6.11.3"
 - [x] **NodeType()**：Node类型
 
 ```js
-NodeType(); // { nodeVs: "12.12.0", npmVs: "6.11.3" }
+NodeType(); // { nodeVs: "12.12.0", npmVs: "6.11.3", system: "macos", systemVs: "18.7.0" }
 ```
 
 ### 目录结构
