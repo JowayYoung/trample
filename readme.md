@@ -57,37 +57,49 @@
 
 ##### 引用
 
-`trample.js`使用`UMD`通用模块规范进行打包，因此可使用`HTML`、`AMD`、`CJS`和`ESM`四种方式引用。但是推荐使用`HTML`、`CJS`、`ESM`三种引用方式。
+`trample.js`使用`UMD`通用模块规范进行打包，因此可使用`IIFE`、`AMD`、`CJS`和`ESM`四种方式引用。但是推荐使用`IIFE`、`CJS`、`ESM`三种引用方式。工具库的代码使用`ESM`的形式进行开发，使用`export default {}`进行导出。
 
-工具库的代码使用`ESM`的形式进行开发，使用`export default {}`进行导出。所以使用`HTML引用方式`时必须使用`trample.default.xxx()`的形式，使用`CJS引用方式`时必须使用`require("trample").default.xxx()`的形式。
+> IIFE引用方式
 
-> HTML引用方式
-
-最简单最方便的引用方式没有之一。把`node_modules/trample/web.js`复制出来，放到新建的`js/trample`文件夹下，通过HTML的`<script>`直接引用，只适用于`Web`。
+适用于`Web`，最简单最方便的引用方式没有之一。把`node_modules/trample/web.js`复制出来，放到新建的`js/trample`文件夹下，通过HTML的`<script>`直接引用。
 
 ```html
 <body>
     <script src="js/trample/web.js"></script>
-    <script>trample.default.DataType("trample")</script>
+    <script>
+        trample.DataType("trample");
+        trample.BrowserType();
+    </script>
 </body>
+```
+
+> AMD引用方式
+
+适用于`Web`。把`node_modules/trample/web.js`复制出来，放到新建的`js/trample`文件夹下，需建立在`require.js`下使用。
+
+```js
+require.config({
+    paths: {
+        trample: "js/trample/web.js"
+    }
+});
+require(["trample"], function(trample) {
+    trample.BrowserType();
+});
 ```
 
 > CJS引用方式
 
 适用于`Web`和`Node`。
 
-- 全部导入
-	- [x] Web
-	- [x] Node
-
 ```js
-// Web：全部导入
-const TW = require("trample/web").default;
+// Web
+const TW = require("trample/web");
 TW.DataType("trample");
 TW.BrowserType();
 
-// Node：全部导入
-const TN = require("trample/node").default;
+// Node
+const TN = require("trample/node");
 TN.DataType("trample");
 TN.NodeType();
 ```
@@ -132,13 +144,13 @@ NodeType();
 在Web环境下，请使用以下导入方式⏬。`trample`默认引用`node_modules/trample/web.js`这个文件。
 
 ```js
-const TW = require("trample/web").default;
+const TW = require("trample/web");
 // 或
 import TW from "trample/web";
 
 // 『上面两段代码』 等价 『下面两段代码』(推荐)
 
-const TW = require("trample").default;
+const TW = require("trample");
 // 或
 import TW from "trample";
 ```
@@ -146,7 +158,7 @@ import TW from "trample";
 在Node环境下，请使用以下导入方式⏬。
 
 ```js
-const TN = require("trample/node").default;
+const TN = require("trample/node");
 // 或
 import TN from "trample/node";
 ```
@@ -162,14 +174,14 @@ import { BrowserType } from "trample/common/index";
 import { NodeType } from "trample/common/index";
 ```
 
-另外，以上示例都是基于JS最终运行环境是`ES6`或后续使用`webpack+babel`将代码打包成`ES5`这两种情况才生效。如果JS最终运行环境是`ES5`或不使用`webpack+babel`将代码打包成`ES5`，则需要对导入路径进行如下修改，才能使用编译好的ES5文件。
+另外，以上示例都是基于JS最终运行环境是`ES6`或后续使用`webpack+babel`将代码打包成`ES5`这两种情况才生效。如果JS最终运行环境是`ES5`或不使用`webpack+babel`将代码打包成`ES5`，则需对导入路径进行如下修改，才能使用编译好的ES5文件。
 
 - `trample`或`trample/web`：修改成`trample/web.es5`
 - `trample/node`：修改成`trample/node.es5`
 
 ##### 结合Babel编译
 
-以上的`trample/web`和`trample/node`都是引用编译好的ES6文件，项目如需编译成ES5，需要配置`webpack -> resolve -> alias`，直接引用编译好的ES5文件`web.es5.js`或`node.es5.js`。
+以上的`trample/web`和`trample/node`都是引用编译好的ES6文件，项目如需编译成ES5，需配置`webpack -> resolve -> alias`，直接引用编译好的ES5文件`web.es5.js`或`node.es5.js`。
 
 ```js
 {
@@ -182,7 +194,7 @@ import { NodeType } from "trample/common/index";
 }
 ```
 
-如需使用ESM模块的按需导入，需要配置`webpack -> module -> rules -> babel-loader`的`include`，将`trample`列入编译白名单，否则源码的ES6语法不被编译。
+如需使用ESM模块的按需导入，需配置`webpack -> module -> rules -> babel-loader`的`include`，将`trample`列入编译白名单，否则源码的ES6语法不被编译。
 
 ```js
 {
@@ -337,14 +349,14 @@ ThousandNum(12345.6789); // "12,345.6,789"
 
 [Object 对象工具](https://github.com/JowayYoung/trample/blob/master/src/common/object.js)
 
-- [x] **GetKey()**：读取属性
+- [x] **GetKeys()**：读取属性
 	- obj：对象(`{}`)
 	- keys：属性集合(`[]`)
 
 ```js
 const obj = { a: 1, b: 2, c: 3, d: 4 };
 const keys = ["a", "d"];
-GetKey(obj, keys); // { a: 1, d: 4 }
+GetKeys(obj, keys); // { a: 1, d: 4 }
 ```
 
 [Regexp 正则工具](https://github.com/JowayYoung/trample/blob/master/src/common/regexp.js)
@@ -686,7 +698,7 @@ trample
 
 `trample.js`是笔者为了节省项目开发过程中常用工具函数复制粘贴的时间，而封装的一个**Web/Node通用函数工具库**。设计目的是为了`减少无谓的复制粘贴动作`和`统一管理项目开发中常用的工具函数`。
 
-由于笔者是针对个人需求而定制的工具库，所以应用范围可能没有包含上你常用的工具函数，可在[Issue](https://github.com/JowayYoung/trample/issues)上`提出你的宝贵建议`或`贴上你需要增加的工具函数`。笔者会认真阅读你的宝贵建议和整合各位同学贡献的工具函数。如果觉得`trample.js`不错，欢迎[Start](https://github.com/JowayYoung/trample)一个。
+由于笔者是针对个人需求而定制的工具库，所以应用范围可能没有包含上你常用的工具函数，可在[Issue](https://github.com/JowayYoung/trample/issues)上`提出你的宝贵建议`或`贴上你想增加的工具函数`。笔者会认真阅读你的宝贵建议和整合各位同学贡献的工具函数。如果觉得`trample.js`不错，欢迎[Start](https://github.com/JowayYoung/trample)一个。
 
 如果觉得`trample.js`对大家有用，建议[Fork](https://github.com/JowayYoung/trample)本项目到自己的`Github`上，在原有的基础上增加自己`常用`、`易忘`和`代码量多`的工具函数，同时也可扩展原有的功能和构建方式，封装成自己熟悉的工具库，提升自己的开发能力，间接`减少晚上加班时间`和`增加上班摸鱼时间`。
 

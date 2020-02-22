@@ -5,14 +5,14 @@
  * @param {*} [obj={}] 对象
  * @param {*} [keys=[]] 属性集合
  */
-function GetKey(obj = {}, keys = []) {
+function GetKeys(obj = {}, keys = []) {
 	return Object.keys(obj).reduce((t, v) => (keys.includes(v) && (t[v] = obj[v]), t), {});
 }
 
 export {
-	GetKey
+	GetKeys
 };
 
 export default {
-	GetKey
+	GetKeys
 };

@@ -24,7 +24,7 @@ import {
 	ThousandNum
 } from "./number";
 import {
-	GetKey
+	GetKeys
 } from "./object";
 import {
 	CheckText,
@@ -84,7 +84,7 @@ export {
 	FormatCountdown,
 	FormatDiffTime,
 	FormatPhone,
-	GetKey,
+	GetKeys,
 	IsArguments,
 	IsArray,
 	IsAsyncFunction,

@@ -64,7 +64,6 @@ function WebpackConfig(type = "common", isEs5 = false) {
 	};
 	const filename = type === "common" ? "index" : type;
 	const suffix = isEs5 ? ".es5" : "";
-	// console.log(JSON.stringify(babelOpts.presets[0], null, 2));
 	return {
 		devtool: false,
 		entry: AbsPath(`../src/${type}.js`),
@@ -80,6 +79,7 @@ function WebpackConfig(type = "common", isEs5 = false) {
 		output: {
 			filename: `${filename}${suffix}.js`,
 			library: "trample",
+			libraryExport: "default",
 			libraryTarget: "umd",
 			path: AbsPath("..")
 		},

@@ -39,7 +39,8 @@
 	"scripts": {
 		"build": "babel-node build/index.js",
 		"kill": "tskill node",
-		"remove": "rimraf package-lock.json yarn.lock node_modules common node web node.js node.es5.js web.js web.es5.js",
+		"remove": "rimraf package-lock.json yarn.lock node_modules",
+		"remove:b": "rimraf common node web node.js node.es5.js web.js web.es5.js",
 		"start": "nodemon src/index.js -x babel-node",
 		"test:b": "cd test/web && bruce b",
 		"test:n": "nodemon test/node/index.js -x babel-node"
@@ -63,7 +64,7 @@
 		"@babel/preset-env": "7.8.4",
 		"@babel/runtime": "7.8.4",
 		"babel-loader": "8.0.6",
-		"corejs": "1.0.0",
+		"core-js": "3.6.4",
 		"hard-source-webpack-plugin": "0.13.1",
 		"nodemon": "2.0.2",
 		"regenerator-runtime": "0.13.3",
