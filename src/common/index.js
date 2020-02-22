@@ -5,6 +5,8 @@ import {
 import {
 	Ajax,
 	AsyncTo,
+	Debounce,
+	Throttle,
 	WaitFor
 } from "./function";
 import {
@@ -20,6 +22,8 @@ import {
 	MatchBracketText
 } from "./regexp";
 import {
+	DesePhone,
+	FormatPhone,
 	RandomColor,
 	RandomId,
 	StartScore
@@ -60,10 +64,13 @@ export {
 	CheckText,
 	CheckTextPlus,
 	DataType,
+	Debounce,
+	DesePhone,
 	EnvType,
 	FillNum,
 	FormatCountdown,
 	FormatDiffTime,
+	FormatPhone,
 	IsArguments,
 	IsArray,
 	IsAsyncFunction,
@@ -97,5 +104,6 @@ export {
 	RoundNum,
 	StartScore,
 	ThousandNum,
+	Throttle,
 	WaitFor
 };

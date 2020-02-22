@@ -9,6 +9,7 @@ import {
 	DownloadFile,
 	FilterXss,
 	Img2Base64,
+	Jsonp,
 	LoadScript,
 	ToastMsg
 } from "./dom";
@@ -32,6 +33,7 @@ export {
 	GetCookie,
 	Img2Base64,
 	IsElement,
+	Jsonp,
 	LoadScript,
 	ParseUrlSearch,
 	RemoveCookie,

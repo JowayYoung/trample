@@ -1,3 +1,4 @@
+/** 文件工具 **/
 import CopyPasteDir from "copy-dir";
 import MakeDir from "make-dir";
 import Rimfaf from "rimraf";
