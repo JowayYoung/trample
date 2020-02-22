@@ -1,7 +1,7 @@
 /** Cookie工具 **/
 
 /**
- * @name Cookie读取
+ * @name 读取Cookie
  */
 function GetCookie() {
 	const cookies = document.cookie;
@@ -13,21 +13,20 @@ function GetCookie() {
 }
 
 /**
- * @name Cookie删除
+ * @name 删除Cookie
  * @param {string} [key=""] 键
  */
 function RemoveCookie(key = "") {
-	key && SetCookie(key, "", -1);
+	SetCookie(key, "", -1);
 }
 
 /**
- * @name Cookie设置
+ * @name 设置Cookie
  * @param {string} [key=""] 键
  * @param {string} [val=""] 值
  * @param {number} [day=1] 过期时间(日)
  */
 function SetCookie(key = "", val = "", day = 1) {
-	if (!key) return;
 	const date = new Date();
 	date.setDate(date.getDate() + day);
 	document.cookie = `${key}=${val};expires=${date}`;

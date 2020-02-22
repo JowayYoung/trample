@@ -17,7 +17,7 @@
 
 通过`bruce-cli`能把常规的前期准备都解决了，但是我们经常会复制粘贴一些之前项目常用的工具函数过来新项目上，新开其他项目时又会重新执行这些操作。
 
-项目开发过程中时常会重复使用一些工具函数，例如`浏览器类型`、`时间差格式化`、`URL参数反序列化`、`XSS过滤`等，为了避免项目开发时重复的复制粘贴操作所带来不必要的麻烦，笔者将平时常用的一些工具函数按功能分类和统一封装，并发布到`npm`上。每次项目开发时直接安装，提高开发效率，将时间用在正确的位置上。
+项目开发过程中时常会重复使用一些工具函数，例如`浏览器类型`、`格式时间差`、`URL参数反序列化`、`过滤XSS`等，为了避免项目开发时重复的复制粘贴操作所带来不必要的麻烦，笔者将平时常用的一些工具函数按功能分类和统一封装，并发布到`npm`上。每次项目开发时直接安装，提高开发效率，将时间用在正确的位置上。
 
 ### 安装
 
@@ -198,15 +198,19 @@ import { NodeType } from "trample/common/index";
 
 ### 文档
 
+```!
+暂时没有接入TypeScript进行函数入参校验，请遵循文档指定的入参类型传参
+```
+
 > 公共函数工具库：`trample/common/index`
 
 [Date 日期工具](https://github.com/JowayYoung/trample/blob/master/src/common/date.js)
 
-- [x] **FormatCountdown()**：倒计时格式化
-	- time：时间(`""`，形式为`YYYY-MM-DD HH:mm:ss`)
+- [x] **FormatCountdown()**：格式倒计时
+	- time：时间(`null`，格式为`YYYY-MM-DD HH:mm:ss`，Safari格式为`YYYY/MM/DD HH:mm:ss`)
 	- 备注：用于`未来时间`
-- [x] **FormatDiffTime()**：时间差格式化
-	- time：时间(`""`，形式为`YYYY-MM-DD HH:mm:ss`)
+- [x] **FormatDiffTime()**：格式时间差
+	- time：时间(`null`，格式为`YYYY-MM-DD HH:mm:ss`，Safari格式为`YYYY/MM/DD HH:mm:ss`)
 	- 备注：可用于`未来时间`或`过去时间`
 
 ```js
@@ -218,12 +222,12 @@ FormatDiffTime("2019-03-31"); // "10个月前"
 [Function 函数工具](https://github.com/JowayYoung/trample/blob/master/src/common/function.js)
 
 - [x] **Ajax({ ... })**：异步请求
-	- data：参数(`{}`)
+	- data：参数集合(`{}`)
 	- error：失败回调函数(`null`)
 	- success：成功回调函数(`null`)
 	- type：类型(`"get"`，可选`get、post`)
 	- url: 地址(`""`)
-- [x] **AsyncTo()**：异步返回值格式化
+- [x] **AsyncTo()**：格式异步返回值
 	- pfn：Promise函数(`Promise.resolve(true)`)
 	- 备注：必须在`async函数`或`自执行async函数`下使用
 - [x] **Debounce()**：防抖
@@ -258,7 +262,7 @@ document.body.addEventListener("scroll", () => Throttle(() => console.log("Scrol
 
 [Number 数值工具](https://github.com/JowayYoung/trample/blob/master/src/common/number.js)
 
-- [x] **FillNum()**：数值补零化
+- [x] **FillNum()**：补零数值
 	- num：数值(`0`)
 	- len：补位(`0`)
 - [x] **RandomNum()**：范围随机数
@@ -268,11 +272,11 @@ document.body.addEventListener("scroll", () => Throttle(() => console.log("Scrol
 	- min：最小数(`0`)
 	- max：最大数(`10`)
 	- count：个数(`1`)
-- [x] **RoundNum()**：数值精确化(`四舍五入`和`百分比`)
+- [x] **RoundNum()**：精确数值(`四舍五入`和`百分比`)
 	- num：数值(`0`)
 	- dec：小数个数(`2`)
 	- per：是否百分比(`false`)
-- [x] **ThousandNum()**：数值千分化
+- [x] **ThousandNum()**：千分数值
 	- num：数值(`0`)
 
 ```js
@@ -289,15 +293,15 @@ ThousandNum(12345.6789); // "12,345.6,789"
 
 [Regexp 正则工具](https://github.com/JowayYoung/trample/blob/master/src/common/regexp.js)
 
-- [x] **CheckText()**：文本校验
+- [x] **CheckText()**：校验文本
 	- type：类型(`""`，可选`address地址、count数量、date日期、email邮件、idcard身份证、image图片、name名称、number计数、password密码、phone手机`)
 	- text：文本(`""`)
-	- 备注：内置以上几种常用文本校验，如不符合需求请使用以下的`CheckTextPlus()`
-- [x] **CheckTextPlus()**：自定义文本校验
+	- 备注：内置以上几种常用校验文本，如不符合需求请使用以下的`CheckTextPlus()`
+- [x] **CheckTextPlus()**：自定义校验文本
 	- regexp：正则(`new RegExp()`)
 	- msg：提示(`""`)
 	- text：文本(`""`)
-- [x] **MatchBracketText()**：括号文本匹配
+- [x] **MatchBracketText()**：匹配括号文本
 	- tgt：括号形式(`"(*)"`，提取的内容必须使用`*`代替)
 	- text：文本(`""`)
 
@@ -314,9 +318,9 @@ MatchBracketText(
 
 [String 字符工具](https://github.com/JowayYoung/trample/blob/master/src/common/string.js)
 
-- [x] **DesePhone()**：手机脱敏化
+- [x] **DesePhone()**：脱敏手机
 	- phone：手机(`""`)
-- [x] **FormatPhone()**：手机格式化
+- [x] **FormatPhone()**：格式手机
 	- phone：手机(`""`)
 	- sign：标记(`"-"`，可选`-、\s`)
 - [x] **RandomColor()**：随机HEX色值
@@ -343,32 +347,32 @@ StartScore(8, 10); // "★★★★★★★★☆☆"
 - [x] **DataType()**：数据类型
 	- data：数据
 	- type：类型
-	- **IsArguments()**：Arguments判断
-	- **IsArray()**：数组判断
-	- **IsAsyncFunction()**：异步函数判断
-	- **IsBoolean()**：布尔值判断
-	- **IsClass()**：类判断
-	- **IsDate()**：日期判断
-	- **IsEmpty()**：空判断
-	- **IsEmptyArray()**：空数组判断
-	- **IsEmptyObject()**：空对象判断
-	- **IsError()**：错误判断
-	- **IsFunction()**：函数判断
-	- **IsMap()**：Map判断
-	- **IsNull()**：空值判断
-	- **IsNumber()**：数值判断
-	- **IsObject()**：对象判断
-	- **IsRegExp()**：正则判断
-	- **IsSet()**：Set判断
-	- **IsString()**：字符串判断
-	- **IsSymbol()**：Symbol判断
-	- **IsSyncFunction()**：同步函数判断
-	- **IsUndefined()**：未定义判断
-	- **IsWeakMap()**：WeakMap判断
-	- **IsWeakSet()**：WeakSet判断
+	- **IsArguments()**：判断Arguments
+	- **IsArray()**：判断数组
+	- **IsAsyncFunction()**：判断异步函数
+	- **IsBoolean()**：判断布尔值
+	- **IsClass()**：判断类
+	- **IsDate()**：判断日期
+	- **IsEmpty()**：判断空
+	- **IsEmptyArray()**：判断空数组
+	- **IsEmptyObject()**：判断空对象
+	- **IsError()**：判断错误
+	- **IsFunction()**：判断函数
+	- **IsMap()**：判断Map
+	- **IsNull()**：判断空值
+	- **IsNumber()**：判断数值
+	- **IsObject()**：判断对象
+	- **IsRegExp()**：判断正则
+	- **IsSet()**：判断Set
+	- **IsString()**：判断字符串
+	- **IsSymbol()**：判断Symbol
+	- **IsSyncFunction()**：判断同步函数
+	- **IsUndefined()**：判断未定义
+	- **IsWeakMap()**：判断WeakMap
+	- **IsWeakSet()**：判断WeakSet
 - [x] **EnvType()**：环境类型
-	- **IsNode()**：Node判断
-	- **IsWeb()**：Web判断
+	- **IsNode()**：判断Node
+	- **IsWeb()**：判断Web
 
 ```js
 DataType(168); // "number"
@@ -384,10 +388,10 @@ IsWeb(); // false
 
 [Cookie Cookie工具](https://github.com/JowayYoung/trample/blob/master/src/web/cookie.js)
 
-- [x] **GetCookie()**：Cookie读取
-- [x] **RemoveCookie()**：Cookie删除
+- [x] **GetCookie()**：读取Cookie
+- [x] **RemoveCookie()**：删除Cookie
 	- key：键(`""`)
-- [x] **SetCookie()**：Cookie设置
+- [x] **SetCookie()**：设置Cookie
 	- key：键(`""`)
 	- val：值(`""`)
 	- day：过期时间(`1`，日)
@@ -407,22 +411,22 @@ SetCookie("user_id", "123abc", 7);
 	- 备注：在DOM加载前使用，使DOM的尺寸自适应且使用`rem`定义(`1rem=100px`)，例如设计图里的按钮长宽是`100px * 40px`，则在CSS上书写`.btn{width:1rem;height:.4rem;}`
 - [x] **CopyPaste()**：复制粘贴
 	- elem：节点(`document.body`)
-- [x] **DownloadFile()**：文件下载
+- [x] **DownloadFile()**：下载文件
 	- url：地址(`""`)
 	- name：文件名(`""`)
-- [x] **FilterXss()**：XSS过滤
+- [x] **FilterXss()**：过滤XSS
 	- html：HTML内容(`""`)
-- [x] **Img2Base64()**：图像B64化
+- [x] **Img2Base64()**：图像转B64
 	- url：地址(`""`)
 	- type：类型(`"image/png"`，可选`image/jpeg、image/png`)
 - [x] **Jsonp()**：JSONP
 	- url：地址(`""`)
 	- name：全局变量(`"jsonp"`)
 	- cb：回调函数(`null`)
-- [x] **LoadScript()**：脚本加载
+- [x] **LoadScript()**：加载脚本
 	- url：地址(`""`)
 	- pst：插入位置(`"head"`，可选`head、body`)
-- [x] **ToastMsg()**：消息提示
+- [x] **ToastMsg()**：提示消息
 	- msg：消息(`""`)
 	- delay：时延(`1000`)
 	- classNames：类名(`""`)
@@ -450,7 +454,7 @@ ToastMsg("Hello World", 2000, "ellipsis");
 
 - [x] **BrowserType()**：浏览器类型(史上最全的浏览器类型判断，详情请戳[《详细判断浏览器运行环境》](https://juejin.im/post/5d0220a8f265da1bcc193c6c))
 	- ua：用户代理(`navigator.userAgent.toLowerCase()`)
-- [x] **IsElement()**：Element判断
+- [x] **IsElement()**：判断Element
 	- data：数据
 
 ```js
@@ -462,9 +466,9 @@ IsElement(document.body); // true
 [URL URL工具](https://github.com/JowayYoung/trample/blob/master/src/web/url.js)
 
 - [x] **ParseUrlSearch()**：URL参数反序列化
-- [x] **RemoveUrlSearch()**：URL参数删除
+- [x] **RemoveUrlSearch()**：删除URL参数
 	- search：参数集合(`...[]`，多参数输入)
-- [x] **SetUrlSearch()**：URL参数设置
+- [x] **SetUrlSearch()**：设置URL参数
 	- search：参数集合(`{}`)
 - [x] **StringifyUrlSearch()**：URL参数序列化
 	- search：参数集合(`{}`)
@@ -486,7 +490,7 @@ StringifyUrlSearch({ name: "young", sex: "male" }); // "?name=young&sex=male"
 - [x] **CopyDir()**：复制文件路径
 	- src：输入路径(`""`)
 	- dist: 输出路径(`""`)
-	- filter：过滤函数(`false`，返回`true`表示复制，返回`false`表示不复制)，函数入参为`stat`和`path`
+	- filter：过滤函数(`false`，返回`函数`表示过滤规则，返回`false`表示不复制)，函数入参为`stat`和`path`
 - [x] **CreateDir()**：创建文件路径
 	- dir：路径(`""`)
 - [x] **RemoveDir()**：删除文件路径
@@ -512,7 +516,7 @@ RemoveDir(AbsPath("./assets/lib/trample"));
 
 [Process 进程工具](https://github.com/JowayYoung/trample/blob/master/src/node/process.js)
 
-- [x] **RunCmd()**：命令运行
+- [x] **RunCmd()**：运行命令
 	- cmd：命令行(`"node -v"`)
 	- 备注：只支持单行命令，多个命令同时执行可书写成`cmd1 && cmd2`
 

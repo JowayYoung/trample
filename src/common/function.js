@@ -3,21 +3,20 @@ import { StringifyUrlSearch } from "../web/url";
 
 /**
  * @name 异步请求
- * @param {object} [data={}] 参数
+ * @param {object} [data={}] 参数集合
  * @param {function} [error=null] 失败回调函数
  * @param {function} [success=null] 成功回调函数
  * @param {string} [type="get"] 类型：get、post
  * @param {string} [url=""] 地址
  */
 function Ajax({ data = {}, error = null, success = null, type = "get", url = "" }) {
-	if (!url) return;
 	const xhr = new XMLHttpRequest();
-	type = type.toUpperCase();
+	const method = type.toUpperCase();
 	data = StringifyUrlSearch(data);
-	if (type === "GET") {
+	if (method === "GET") {
 		xhr.open("GET", data ? `${url}${data}` : `${url}?t=${+new Date()}`, true);
 		xhr.send();
-	} else if (type === "POST") {
+	} else if (method === "POST") {
 		xhr.open("POST", url, true);
 		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xhr.send(data);
@@ -34,11 +33,11 @@ function Ajax({ data = {}, error = null, success = null, type = "get", url = "" 
 }
 
 /**
- * @name 异步返回值格式化
+ * @name 格式异步返回值
  * @param {function} [pfn=Promise.resolve(true)] Promise函数
  */
 function AsyncTo(pfn = Promise.resolve(true)) {
-	return pfn ? pfn.then(data => [null, data]).catch(err => [err]) : [null, null];
+	return pfn && pfn instanceof Promise ? pfn.then(data => [null, data]).catch(err => [err]) : [null, null];
 }
 
 /**

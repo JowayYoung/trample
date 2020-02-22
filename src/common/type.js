@@ -11,7 +11,7 @@ function DataType(data, type) {
 }
 
 /**
- * @name 基础数据类型判断：undefined、null、string、number、boolean、array、object、symbol、date、regexp、function、class
+ * @name 判断基础数据类型：undefined、null、string、number、boolean、array、object、symbol、date、regexp、function、class
  * @param {*} data 数据
  */
 function IsUndefined(data) {
@@ -64,7 +64,7 @@ function IsClass(data) {
 }
 
 /**
- * @name 复合数据类型判断：set、map、weakset、weakmap
+ * @name 判断复合数据类型：set、map、weakset、weakmap
  * @param {*} data 数据
  */
 function IsSet(data) {
@@ -84,7 +84,7 @@ function IsWeakMap(data) {
 }
 
 /**
- * @name 函数类型判断：asyncfunction、function、arguments
+ * @name 判断函数类型：asyncfunction、function、arguments
  * @param {*} data 数据
  */
 function IsAsyncFunction(data) {
@@ -100,7 +100,7 @@ function IsArguments(data) {
 }
 
 /**
- * @name 空类型判断：error、empty、emptyarray、emptyobject
+ * @name 判断空类型：error、empty、emptyarray、emptyobject
  * @param {*} data 数据
  */
 function IsError(data) {
@@ -129,7 +129,7 @@ function EnvType() {
 }
 
 /**
- * @name 环境判断
+ * @name 判断环境
  */
 function IsWeb() {
 	return EnvType() === "web";
@@ -172,29 +172,29 @@ export {
 export default {
 	DataType, // 数据类型
 	EnvType, // 环境类型
-	IsArguments, // Arguments判断
-	IsArray, // 数组判断
-	IsAsyncFunction, // 异步函数判断
-	IsBoolean, // 布尔值判断
-	IsClass, // 类判断
-	IsDate, // 日期判断
-	IsEmpty, // 空判断
-	IsEmptyArray, // 空数组判断
-	IsEmptyObject, // 空对象判断
-	IsError, // 错误判断
-	IsFunction, // 函数判断
-	IsMap, // Map判断
-	IsNode, // Node判断
-	IsNull, // 空值判断
-	IsNumber, // 数值判断
-	IsObject, // 对象判断
-	IsRegExp, // 正则判断
-	IsSet, // Set判断
-	IsString, // 字符串判断
-	IsSymbol, // Symbol判断
-	IsSyncFunction, // 同步函数判断
-	IsUndefined, // 未定义判断
-	IsWeakMap, // WeakMap判断
-	IsWeakSet, // WeakSet判断
-	IsWeb // Web判断
+	IsArguments, // 判断Arguments
+	IsArray, // 判断数组
+	IsAsyncFunction, // 判断异步函数
+	IsBoolean, // 判断布尔值
+	IsClass, // 判断类
+	IsDate, // 判断日期
+	IsEmpty, // 判断空
+	IsEmptyArray, // 判断空数组
+	IsEmptyObject, // 判断空对象
+	IsError, // 判断错误
+	IsFunction, // 判断函数
+	IsMap, // 判断Map
+	IsNode, // 判断Node
+	IsNull, // 判断空值
+	IsNumber, // 判断数值
+	IsObject, // 判断对象
+	IsRegExp, // 判断正则
+	IsSet, // 判断Set
+	IsString, // 判断字符串
+	IsSymbol, // 判断Symbol
+	IsSyncFunction, // 判断同步函数
+	IsUndefined, // 判断未定义
+	IsWeakMap, // 判断WeakMap
+	IsWeakSet, // 判断WeakSet
+	IsWeb // 判断Web
 };

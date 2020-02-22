@@ -13,7 +13,7 @@ function ParseUrlSearch() {
 }
 
 /**
- * @name URL参数删除
+ * @name 删除URL参数
  * @param {array} search 参数集合
  */
 function RemoveUrlSearch(...search) {
@@ -27,7 +27,7 @@ function RemoveUrlSearch(...search) {
 }
 
 /**
- * @name URL参数设置
+ * @name 设置URL参数
  * @param {object} [search={}] 参数集合
  */
 function SetUrlSearch(search = {}) {

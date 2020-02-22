@@ -46,31 +46,29 @@ const MATCH = {
 const SIGN = "^$.*+-?=!:|\\/()[]{}".split("");
 
 /**
- * @name 文本校验
+ * @name 校验文本
  * @param {string} [type=""] 类型：address、count、date、email、idcard、image、name、number、password、phone
  * @param {string} [text=""] 文本
  */
 function CheckText(type = "", text = "") {
-	if (!type || !text) return { flag: false, msg: "校验信息不能为空" };
 	const { regexp, msg } = MATCH[type];
 	const flag = regexp.test(text);
 	return { flag, msg: flag ? "" : msg };
 }
 
 /**
- * @name 自定义文本校验
+ * @name 自定义校验文本
  * @param {regexp} [regexp=new RegExp()] 正则
  * @param {string} [msg=""] 提示
  * @param {string} [text=""] 文本
  */
 function CheckTextPlus(regexp = new RegExp(), msg = "", text = "") {
-	if (!regexp || !msg || !text) return { flag: false, msg: "校验信息不能为空" };
 	const flag = regexp.test(text);
 	return { flag, msg: flag ? "" : msg };
 }
 
 /**
- * @name 括号文本匹配
+ * @name 匹配括号文本
  * @param {string} [tgt="(*)"] 括号形式(提取的内容必须使用*代替)
  * @param {string} [text=""] 文本
  */

@@ -6,10 +6,10 @@ import Rimfaf from "rimraf";
  * @name 复制文件路径
  * @param {string} [src=""] 输入路径
  * @param {string} [dist=""] 输出路径
- * @param {function} [filter=false] 过滤函数(返回true表示复制，返回false表示不复制)
+ * @param {function} [filter=false] 过滤函数(返回函数表示过滤规则，返回false表示不复制)
  */
 function CopyDir(src = "", dist = "", filter = false) {
-	src && dist && CopyPasteDir.sync(src, dist, {
+	CopyPasteDir.sync(src, dist, {
 		cover: true,
 		filter,
 		mode: true,
@@ -22,7 +22,7 @@ function CopyDir(src = "", dist = "", filter = false) {
  * @param {string} [dir=""] 路径
  */
 function CreateDir(dir = "") {
-	dir && MakeDir.sync(dir);
+	MakeDir.sync(dir);
 }
 
 /**
@@ -30,7 +30,7 @@ function CreateDir(dir = "") {
  * @param {string} [dir=""] 路径
  */
 function RemoveDir(dir = "") {
-	dir && Rimfaf.sync(dir);
+	Rimfaf.sync(dir);
 }
 
 export {

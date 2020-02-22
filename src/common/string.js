@@ -2,7 +2,7 @@
 import { MATCH } from "./regexp";
 
 /**
- * @name 手机脱敏化
+ * @name 脱敏手机
  * @param {string} [phone=""] 手机
  */
 function DesePhone(phone = "") {
@@ -12,7 +12,7 @@ function DesePhone(phone = "") {
 }
 
 /**
- * @name 手机格式化
+ * @name 格式手机
  * @param {string} [phone=""] 手机
  * @param {string} [sign="-"] 标记：-、\s
  */

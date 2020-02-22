@@ -3,13 +3,13 @@ import Day from "dayjs";
 
 /**
  *
- * @name 倒计时格式化
- * @param {string} [time=""] 日期：YYYY-MM-DD HH:mm:ss
+ * @name 格式倒计时
+ * @param {string} [time=null] 日期：YYYY-MM-DD HH:mm:ss
  */
-function FormatCountdown(time = "") {
+function FormatCountdown(time = null) {
 	const nowTime = +new Date();
 	const nextTime = +new Date(time);
-	const diff = nextTime - nowTime; // 时间差
+	const diff = nextTime - nowTime;
 	if (diff >= 0) {
 		const day = Math.floor(diff / 1000 / 3600 / 24);
 		const hour = Math.floor(diff / 1000 / 60 / 60 % 24);
@@ -22,10 +22,10 @@ function FormatCountdown(time = "") {
 }
 
 /**
- * @name 时间差格式化
- * @param {string} [time=""] 日期：YYYY-MM-DD HH:mm:ss
+ * @name 格式时间差
+ * @param {string} [time=null] 日期：YYYY-MM-DD HH:mm:ss
  */
-function FormatDiffTime(time = "") {
+function FormatDiffTime(time = null) {
 	const nowTime = Day();
 	const tgtTime = Day(time);
 	const diff = nowTime.diff(tgtTime);

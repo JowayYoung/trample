@@ -113,7 +113,7 @@ function BrowserType(ua = navigator.userAgent.toLowerCase()) {
 }
 
 /**
- * @name Element判断
+ * @name 判断Element
  * @param {*} data 数据
  */
 function IsElement(data) {

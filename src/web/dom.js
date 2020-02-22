@@ -30,12 +30,11 @@ function CopyPaste(elem = document.body) {
 }
 
 /**
- * @name 文件下载
+ * @name 下载文件
  * @param {string} [url=""] 地址
  * @param {string} [name=""] 文件名
  */
 function DownloadFile(url = "", name = "") {
-	if (!url) return;
 	const target = document.createElement("a");
 	const event = document.createEvent("MouseEvents");
 	target.setAttribute("href", url);
@@ -45,7 +44,7 @@ function DownloadFile(url = "", name = "") {
 }
 
 /**
- * @name XSS过滤
+ * @name 过滤XSS
  * @param {string} [html=""] HTML内容
  */
 function FilterXss(html = "") {
@@ -56,12 +55,11 @@ function FilterXss(html = "") {
 }
 
 /**
- * @name 图像B64化
+ * @name 图像转B64
  * @param {string} [url=""] 地址
  * @param {string} [type="image/png"] 类型：image/jpeg、image/png
  */
 function Img2Base64(url = "", type = "image/png") {
-	if (!url) return;
 	return new Promise((resolve, reject) => {
 		const img = new Image();
 		img.setAttribute("src", url);
@@ -94,12 +92,11 @@ function Jsonp(url = "", name = "jsonp", cb = null) {
 }
 
 /**
- * @name 脚本加载
+ * @name 加载脚本
  * @param {string} [url=""] 地址
  * @param {string} [pst="head"] 插入位置
  */
 function LoadScript(url = "", pst = "head") {
-	if (!url) return;
 	return new Promise((resolve, reject) => {
 		if ([...document.getElementsByTagName("script")].some(v => v.src === url || v.src.includes(url))) {
 			reject(new Error(`<${pst}>已存在此脚本`));
@@ -113,7 +110,7 @@ function LoadScript(url = "", pst = "head") {
 }
 
 /**
- * @name 消息提示
+ * @name 提示消息
  * @param {string} [msg="Tips"] 消息
  * @param {number} [delay=1000] 时延
  * @param {string} [classNames=""] 类名
