@@ -1,6 +1,18 @@
 /** 数值工具 **/
 
 /**
+ * @name 字节大小
+ * @param {number} [byte=0] 字节
+ */
+function ByteSize(byte = 0) {
+	if (byte === 0) return "0 B";
+	const unit = 1024;
+	const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+	const i = Math.floor(Math.log(byte) / Math.log(unit));
+	return (byte / Math.pow(unit, i)).toPrecision(3) + " " + sizes[i];
+}
+
+/**
  * @name 补零数值
  * @param {number} [num=0] 数值
  * @param {number} [len=0] 补位
@@ -65,6 +77,7 @@ function ThousandNum(num = 0) {
 }
 
 export {
+	ByteSize,
 	FillNum,
 	RandomNum,
 	RandomNumPlus,
@@ -73,6 +86,7 @@ export {
 };
 
 export default {
+	ByteSize,
 	FillNum,
 	RandomNum,
 	RandomNumPlus,

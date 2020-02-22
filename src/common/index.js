@@ -16,6 +16,7 @@ import {
 	WaitFor
 } from "./function";
 import {
+	ByteSize,
 	FillNum,
 	RandomNum,
 	RandomNumPlus,
@@ -72,6 +73,7 @@ import {
 export {
 	Ajax,
 	AsyncTo,
+	ByteSize,
 	CheckText,
 	CheckTextPlus,
 	DataType,

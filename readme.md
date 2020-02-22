@@ -228,7 +228,7 @@ const arr = [
     { area: "GZ", name: "LJY", age: 26 },
     { area: "FS", name: "LXY", age: 24 },
     { area: "JM", name: "YYM", age: 24 }
-]; // 以地区area作为分组依据
+];
 MemberGroup(arr, "area"); // { GZ: Array(2), SZ: Array(2), FS: Array(1) }
 
 const text = [
@@ -302,6 +302,8 @@ document.body.addEventListener("scroll", () => Throttle(() => console.log("Scrol
 
 [Number 数值工具](https://github.com/JowayYoung/trample/blob/master/src/common/number.js)
 
+- [x] **ByteSize()**：字节大小
+	- byte：字节(`0`)
 - [x] **FillNum()**：补零数值
 	- num：数值(`0`)
 	- len：补位(`0`)
@@ -320,6 +322,8 @@ document.body.addEventListener("scroll", () => Throttle(() => console.log("Scrol
 	- num：数值(`0`)
 
 ```js
+ByteSize(683468); // "667 KB"
+
 FillNum(999, 4); // "0999"
 
 RandomNum(0, 100); // 88
@@ -457,7 +461,7 @@ IsWeb(); // false
 	- day：过期时间(`1`，日)
 
 ```js
-GetCookie(); // { user_id: "abc123", user_token: "aaasss" }
+GetCookie(); // { user_id: "12345", user_token: "abcde" }
 
 RemoveCookie("user_id");
 
@@ -676,7 +680,7 @@ trample
 ### 待做
 
 - [ ] 补全测试用例
-- [ ] 完善Node函数工具库
+- [ ] 接入TypeScript
 
 ### 后记
 
