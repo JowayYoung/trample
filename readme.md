@@ -331,6 +331,18 @@ RoundNum(0.331234, 2, true); // "33.12%"
 ThousandNum(12345.6789); // "12,345.6,789"
 ```
 
+[Object 对象工具](https://github.com/JowayYoung/trample/blob/master/src/common/object.js)
+
+- [x] **GetKey()**：读取属性
+	- obj：对象(`{}`)
+	- keys：属性集合(`[]`)
+
+```js
+const obj = { a: 1, b: 2, c: 3, d: 4 };
+const keys = ["a", "d"];
+GetKey(obj, keys); // { a: 1, d: 4 }
+```
+
 [Regexp 正则工具](https://github.com/JowayYoung/trample/blob/master/src/common/regexp.js)
 
 - [x] **CheckText()**：校验文本
@@ -596,6 +608,7 @@ trample
 │  │  ├─ function.js
 │  │  ├─ index.js
 │  │  ├─ number.js
+│  │  ├─ object.js
 │  │  ├─ regexp.js
 │  │  ├─ string.js
 │  │  └─ type.js
@@ -631,6 +644,7 @@ trample
 │  ├─ function.js
 │  ├─ index.js
 │  ├─ number.js
+│  ├─ object.js
 │  ├─ regexp.js
 │  ├─ string.js
 │  └─ type.js

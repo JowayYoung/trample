@@ -2,6 +2,7 @@ import _Array from "./common/array";
 import _Dates from "./common/date";
 import _Functions from "./common/function";
 import _Numbers from "./common/number";
+import _Object from "./common/object";
 import _Regexps from "./common/regexp";
 import _Strings from "./common/string";
 import _Types from "./common/type";
@@ -14,6 +15,7 @@ export default {
 	..._Dates,
 	..._Functions,
 	..._Numbers,
+	..._Object,
 	..._Regexps,
 	..._Strings,
 	..._Types,

@@ -23,6 +23,9 @@ import {
 	ThousandNum
 } from "./number";
 import {
+	GetKey
+} from "./object";
+import {
 	CheckText,
 	CheckTextPlus,
 	MatchBracketText
@@ -79,6 +82,7 @@ export {
 	FormatCountdown,
 	FormatDiffTime,
 	FormatPhone,
+	GetKey,
 	IsArguments,
 	IsArray,
 	IsAsyncFunction,
