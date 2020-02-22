@@ -2,9 +2,9 @@
 .gitattributes
 node_modules
 test
-common
-node
-web
+common/**
+node/**
+web/**
 package-lock.json
 yarn.lock
 node.js

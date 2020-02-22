@@ -1,3 +1,4 @@
+import _Array from "./common/array";
 import _Dates from "./common/date";
 import _Functions from "./common/function";
 import _Numbers from "./common/number";
@@ -10,6 +11,7 @@ import Types from "./web/type";
 import Urls from "./web/url";
 
 export default {
+	..._Array,
 	..._Dates,
 	..._Functions,
 	..._Numbers,

@@ -204,6 +204,46 @@ import { NodeType } from "trample/common/index";
 
 > 公共函数工具库：`trample/common/index`
 
+[Array 数组工具](https://github.com/JowayYoung/trample/blob/master/src/common/array.js)
+
+- [x] **MemberCount()**：统计成员个数
+	- arr：数组(`[]`)
+- [x] **MemberGroup()**：分组成员特性
+	- arr：数组(`[]`)
+	- key：属性(`""`)
+- [x] **MemberKeyword()**：统计成员所含关键字
+	- arr：数组(`[]`)
+	- keys：关键字集合(`[]`)
+- [x] **MemberPosition()**：记录成员位置
+	- arr：数组(`[]`)
+	- val：值(`""`)
+
+```js
+const arr = [0, 1, 1, 2, 2, 2];
+MemberCount(arr); // { 0: 1, 1: 2, 2: 3 }
+
+const arr = [
+    { area: "GZ", name: "YZW", age: 27 },
+    { area: "GZ", name: "TYJ", age: 25 },
+    { area: "GZ", name: "LJY", age: 26 },
+    { area: "FS", name: "LXY", age: 24 },
+    { area: "JM", name: "YYM", age: 24 }
+]; // 以地区area作为分组依据
+MemberGroup(arr, "area"); // { GZ: Array(2), SZ: Array(2), FS: Array(1) }
+
+const text = [
+    "今天天气真好，我想出去钓鱼",
+    "我一边看电视，一边写作业",
+    "小明喜欢同桌的小红，又喜欢后桌的小君，真TM花心",
+    "最近上班喜欢摸鱼的人实在太多了，代码不好好写，在想入非非"
+];
+const keyword = ["偷懒", "喜欢", "睡觉", "摸鱼", "真好", "一边", "明天"];
+MemberKeyword(text, keyword); // ["喜欢", "摸鱼", "真好", "一边"]
+
+const arr = [2, 1, 5, 4, 2, 1, 6, 6, 7];
+MemberPosition(arr, 2); // [0, 4]
+```
+
 [Date 日期工具](https://github.com/JowayYoung/trample/blob/master/src/common/date.js)
 
 - [x] **FormatCountdown()**：格式倒计时
@@ -551,6 +591,7 @@ trample
 │  └─ util.js
 ├─ src
 │  ├─ common
+│  │  ├─ array.js
 │  │  ├─ date.js
 │  │  ├─ function.js
 │  │  ├─ index.js
@@ -585,6 +626,7 @@ trample
 ```txt
 trample
 ├─ common
+│  ├─ array.js
 │  ├─ date.js
 │  ├─ function.js
 │  ├─ index.js

@@ -1,4 +1,10 @@
 import {
+	MemberCount,
+	MemberGroup,
+	MemberKeyword,
+	MemberPosition
+} from "./array";
+import {
 	FormatCountdown,
 	FormatDiffTime
 } from "./date";
@@ -99,6 +105,10 @@ export {
 	IsWeakSet,
 	IsWeb,
 	MatchBracketText,
+	MemberCount,
+	MemberGroup,
+	MemberKeyword,
+	MemberPosition,
 	RandomColor,
 	RandomId,
 	RandomNum,
