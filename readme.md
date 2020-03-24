@@ -1,7 +1,7 @@
 # Trample <img src="https://img.shields.io/badge/trample-Web/Node通用函数工具库-66f.svg">
 
 <img src="https://img.shields.io/badge/author-JowayYoung-f66.svg">
-<img src="https://img.shields.io/badge/version-0.0.7-f66.svg">
+<img src="https://img.shields.io/badge/version-0.0.8-f66.svg">
 <img src="https://img.shields.io/badge/web-%3E%3D%2095%25-3c9.svg">
 <img src="https://img.shields.io/badge/node-%3E%3D%208.0.0-3c9.svg">
 <img src="https://img.shields.io/badge/test-passing-f90.svg">
@@ -44,12 +44,18 @@
 ##### 兼容
 
 - `web.js`兼容状态：**ES6**
+	- Chrome：`>= 60`
+	- Firefox：`>= 54`
+	- Opera：`>= 50`
+	- Safari：`>= 10.1`
+	- Edge：`>= 15`
+	- iOS：`>= 10.3`
 - `web.es5.js`兼容状态：**ES5**
 	- Chrome：`last 20 versions`
-	- Safari：`>= 8`
 	- Firefox：`last 20 versions`
 	- Opera：`last 20 versions`
 	- Explorer：`>= 10`
+	- Safari：`>= 8`
 	- Android：`>= 5`
 	- iOS：`>= 8`
 - `node.js`兼容状态：`node >= 10.0.0`
@@ -113,7 +119,7 @@ TN.NodeType();
 	- [x] Node
 - 按需导入
 	- [x] Web
-	- [ ] Node (报错`SyntaxError: Cannot use import statement outside a module`，待解决)
+	- [x] Node
 
 ```js
 // Web：全部导入
@@ -525,6 +531,39 @@ LoadScript("https://xxx.yyy/trample.js", "body");
 ToastMsg("hello world", 2000, "ellipsis");
 ```
 
+[Storage Storage工具](https://github.com/JowayYoung/trample/blob/master/src/web/storage.js)
+
+- [x] **ClearLStorage**：清空LocalStorage
+- [x] **ClearSStorage**：清空SessionStorage
+- [x] **GetLStorage**：读取LocalStorage
+	- key：键(`""`)
+- [x] **GetSStorage**：读取SessionStorage
+	- key：键(`""`)
+- [x] **RemoveLStorage**：移除LocalStorage
+	- key：键(`""`)
+- [x] **RemoveSStorage**：移除SessionStorage
+	- key：键(`""`)
+- [x] **SetLStorage**：设置LocalStorage
+	- key：键(`""`)
+	- val：值(`""`)
+- [x] **SetSStorage**：设置SessionStorage
+	- key：键(`""`)
+	- val：值(`""`)
+
+```js
+ClearLStorage();
+ClearSStorage();
+
+GetLStorage("love"); // "Love"
+GetSStorage("love"); // "Love"
+
+RemoveSStorage("love");
+RemoveSStorage("love");
+
+SetLStorage("love", "我爱你");
+SetSStorage("love", "我爱你");
+```
+
 [Type 类型工具](https://github.com/JowayYoung/trample/blob/master/src/web/type.js)
 
 - [x] **BrowserType()**：浏览器类型(史上最全的浏览器类型判断，详情请戳[《详细判断浏览器运行环境》](https://juejin.im/post/5d0220a8f265da1bcc193c6c))
@@ -547,6 +586,7 @@ IsElement(document.body); // true
 	- search：参数集合(`{}`)
 - [x] **StringifyUrlSearch()**：URL参数序列化
 	- search：参数集合(`{}`)
+	- clear：是否清除假值(`false`，假值包含`undefined、null、""、NaN`)
 
 ```js
 ParseUrlSearch(); // { name: "young", sex: "male" }
@@ -555,7 +595,7 @@ RemoveUrlSearch("name", "sex");
 
 SetUrlSearch({ name: "tong", sex: "female" });
 
-StringifyUrlSearch({ name: "young", sex: "male" }); // "?name=young&sex=male"
+StringifyUrlSearch({ address: "", name: "young", sex: "male" }, true); // "?name=young&sex=male"
 ```
 
 > Node函数工具库
@@ -636,6 +676,7 @@ trample
 │  │  ├─ cookie.js
 │  │  ├─ dom.js
 │  │  ├─ index.js
+│  │  ├─ storage.js
 │  │  ├─ type.js
 │  │  └─ url.js
 │  ├─ node.js
@@ -672,6 +713,7 @@ trample
 │  ├─ cookie.js
 │  ├─ dom.js
 │  ├─ index.js
+│  ├─ storage.js
 │  ├─ type.js
 │  └─ url.js
 ├─ node.js

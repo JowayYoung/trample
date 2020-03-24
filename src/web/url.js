@@ -43,12 +43,16 @@ function SetUrlSearch(search = {}) {
 /**
  * @name URL参数序列化
  * @param {object} [search={}] 参数集合
+ * @param {boolean} [clear=false] 是否清除假值(undefined、null、""、NaN)
  */
-function StringifyUrlSearch(search = {}) {
-	return Object.entries(search).reduce(
-		(t, v) => `${t}${v[0]}=${encodeURIComponent(v[1])}&`,
-		IsEmptyObject(search) ? "" : "?"
-	).replace(/&$/, "");
+function StringifyUrlSearch(search = {}, clear = false) {
+	return Object.entries(search).reduce((t, v) => {
+		if (clear) {
+			return [undefined, null, "", NaN].includes(v[1]) ? t : `${t}${v[0]}=${encodeURIComponent(v[1])}&`;
+		} else {
+			return `${t}${v[0]}=${encodeURIComponent(v[1])}&`;
+		}
+	}, IsEmptyObject(search) ? "" : "?").replace(/&$/, "");
 }
 
 export {
