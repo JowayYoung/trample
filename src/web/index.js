@@ -14,6 +14,16 @@ import {
 	ToastMsg
 } from "./dom";
 import {
+	ClearLStorage,
+	ClearSStorage,
+	GetLStorage,
+	GetSStorage,
+	RemoveLStorage,
+	RemoveSStorage,
+	SetLStorage,
+	SetSStorage
+} from "./storage";
+import {
 	BrowserType,
 	IsElement
 } from "./type";
@@ -27,18 +37,26 @@ import {
 export {
 	AutoResponse,
 	BrowserType,
+	ClearLStorage,
+	ClearSStorage,
 	CopyPaste,
 	DownloadFile,
 	FilterXss,
 	GetCookie,
+	GetLStorage,
+	GetSStorage,
 	Img2Base64,
 	IsElement,
 	Jsonp,
 	LoadScript,
 	ParseUrlSearch,
 	RemoveCookie,
+	RemoveLStorage,
+	RemoveSStorage,
 	RemoveUrlSearch,
 	SetCookie,
+	SetLStorage,
+	SetSStorage,
 	SetUrlSearch,
 	StringifyUrlSearch,
 	ToastMsg
