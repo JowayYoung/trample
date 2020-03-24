@@ -71,7 +71,7 @@
 		"hard-source-webpack-plugin": "0.13.1",
 		"nodemon": "2.0.2",
 		"regenerator-runtime": "0.13.5",
-		"webpack": "4.42.0",
+		"webpack": "4.42.1",
 		"webpack-cli": "3.3.11",
 		"webpack-merge": "4.2.2",
 		"webpackbar": "4.0.0"
