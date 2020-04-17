@@ -139,7 +139,53 @@ function IsNode() {
 	return EnvType() === "node";
 }
 
+/**
+ * @name 判断相等
+ * @param {*} data1 数据1
+ * @param {*} data2 数据2
+ */
+function IsEqual(data1, data2) {
+	if (data1 === data2) {
+		return true;
+	}
+	if (IsArray(data1) && IsArray(data2)) {
+		if (data1.length !== data2.length) {
+			return false;
+		}
+		return data1.map((v, i) => {
+			for (let j = 0; j < data2.length; j++) {
+				if (IsEqual(data1[i], data2[j])) {
+					data2.splice(j, 1);
+					return true;
+				}
+			}
+			return false;
+		}).every(v => v);
+	} else if (data1 && data2 && IsObject(data1) && IsObject(data2)) {
+		const keys1 = Object.keys(data1);
+		const keys2 = Object.keys(data2);
+		if (keys1.length !== keys2.length) {
+			return false;
+		}
+		return keys1.map(key => IsEqual(data1[key], data2[key])).every(v => v);
+	}
+	return false;
+}
+
+/**
+ * @name 比较对象
+ * @param {object} obj1 对象1
+ * @param {object} obj2 对象
+ */
+function CompareObj(obj1, obj2) {
+	const result = {};
+	const keys = Object.keys(obj1);
+	keys.forEach(k => (result[k] = IsEqual(obj1[k], obj2[k])));
+	return result;
+}
+
 export {
+	CompareObj,
 	DataType,
 	EnvType,
 	IsArguments,
@@ -151,6 +197,7 @@ export {
 	IsEmpty,
 	IsEmptyArray,
 	IsEmptyObject,
+	IsEqual,
 	IsError,
 	IsFunction,
 	IsMap,

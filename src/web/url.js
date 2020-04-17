@@ -5,11 +5,12 @@ import { IsEmptyArray, IsEmptyObject } from "../common/type";
  * @name URL参数反序列化
  */
 function ParseUrlSearch() {
-	return location.search.replace(/(^\?)|(&$)/g, "").split("&").reduce((t, v) => {
+	const { search } = location;
+	return search ? search.replace(/(^\?)|(&$)/g, "").split("&").reduce((t, v) => {
 		const [key, val] = v.split("=");
 		t[key] = decodeURIComponent(val);
 		return t;
-	}, {});
+	}, {}) : {};
 }
 
 /**

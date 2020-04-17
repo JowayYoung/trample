@@ -1,13 +1,13 @@
 # Trample <img src="https://img.shields.io/badge/trample-Web/Node通用函数工具库-66f.svg">
 
-<img src="https://img.shields.io/badge/author-JowayYoung-f66.svg">
-<img src="https://img.shields.io/badge/version-0.0.9-f66.svg">
-<img src="https://img.shields.io/badge/web-%3E%3D%2095%25-3c9.svg">
-<img src="https://img.shields.io/badge/node-%3E%3D%208.0.0-3c9.svg">
-<img src="https://img.shields.io/badge/test-passing-f90.svg">
-<img src="https://img.shields.io/badge/build-passing-f90.svg">
-<img src="https://img.shields.io/badge/coverage-100%25-09f.svg">
-<img src="https://img.shields.io/badge/license-MIT-09f.svg">
+[![author](https://img.shields.io/badge/author-JowayYoung-f66.svg)](https://github.com/JowayYoung/trample)
+[![version](https://img.shields.io/badge/version-0.1.0-f66.svg)](https://github.com/JowayYoung/trample)
+[![web](https://img.shields.io/badge/web-%3E%3D%2095%25-3c9.svg)](https://github.com/JowayYoung/trample)
+[![node](https://img.shields.io/badge/node-%3E%3D%208.0.0-3c9.svg)](https://github.com/JowayYoung/trample)
+[![test](https://img.shields.io/badge/test-passing-f90.svg)](https://github.com/JowayYoung/trample)
+[![build](https://img.shields.io/badge/build-passing-f90.svg)](https://github.com/JowayYoung/trample)
+[![coverage](https://img.shields.io/badge/coverage-90%25-09f.svg)](https://github.com/JowayYoung/trample)
+[![license](https://img.shields.io/badge/license-MIT-09f.svg)](https://github.com/JowayYoung/trample)
 
 ### 前言
 
@@ -454,6 +454,12 @@ StartScore(8, 10); // "★★★★★★★★☆☆"
 - [x] **EnvType()**：环境类型
 	- **IsNode()**：判断Node
 	- **IsWeb()**：判断Web
+- [x] **IsEqual()**：判断相等
+	- data1：数据1
+	- data2：数据2
+- [x] **CompareObj()**：比较对象(`包含数组`)
+	- obj1：对象1
+	- obj2：对象2
 
 ```js
 DataType(168); // "number"
@@ -463,6 +469,10 @@ IsString(168); // false
 EnvType(); // "node"
 IsNode(); // true
 IsWeb(); // false
+
+IsEqual({ a: 1, b: 2 }, { b: 2, a: 1 }); // true
+
+CompareObj({ a: 1, b: 2 }, { b: 3, a: 1 }); // { a: true, b: false }
 ```
 
 > Web函数工具库：`trample/web/index`

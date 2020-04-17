@@ -1,6 +1,6 @@
 {
 	"name": "trample",
-	"version": "0.0.9",
+	"version": "0.1.0",
 	"description": "A front-end Web/Node general utils library",
 	"keywords": [
 		"trample",
@@ -50,7 +50,7 @@
 	},
 	"dependencies": {
 		"copy-dir": "1.2.0",
-		"dayjs": "1.8.23",
+		"dayjs": "1.8.24",
 		"make-dir": "3.0.2",
 		"rimraf": "3.0.2"
 	},
@@ -64,12 +64,12 @@
 		"@babel/plugin-proposal-optional-chaining": "7.9.0",
 		"@babel/plugin-syntax-dynamic-import": "7.8.3",
 		"@babel/plugin-transform-runtime": "7.9.0",
-		"@babel/preset-env": "7.9.0",
+		"@babel/preset-env": "7.9.5",
 		"@babel/runtime": "7.9.2",
 		"babel-loader": "8.1.0",
-		"core-js": "3.6.4",
+		"core-js": "3.6.5",
 		"hard-source-webpack-plugin": "0.13.1",
-		"nodemon": "2.0.2",
+		"nodemon": "2.0.3",
 		"regenerator-runtime": "0.13.5",
 		"webpack": "4.42.1",
 		"webpack-cli": "3.3.11",

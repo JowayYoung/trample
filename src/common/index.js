@@ -41,6 +41,7 @@ import {
 	StartScore
 } from "./string";
 import {
+	CompareObj,
 	DataType,
 	EnvType,
 	IsArguments,
@@ -52,6 +53,7 @@ import {
 	IsEmpty,
 	IsEmptyArray,
 	IsEmptyObject,
+	IsEqual,
 	IsError,
 	IsFunction,
 	IsMap,
@@ -76,6 +78,7 @@ export {
 	ByteSize,
 	CheckText,
 	CheckTextPlus,
+	CompareObj,
 	DataType,
 	Debounce,
 	DesePhone,
@@ -94,6 +97,7 @@ export {
 	IsEmpty,
 	IsEmptyArray,
 	IsEmptyObject,
+	IsEqual,
 	IsError,
 	IsFunction,
 	IsMap,
