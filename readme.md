@@ -1,7 +1,7 @@
 # Trample <img src="https://img.shields.io/badge/trample-Web/Node通用函数工具库-66f.svg">
 
 [![author](https://img.shields.io/badge/author-JowayYoung-f66.svg)](https://github.com/JowayYoung/trample)
-[![version](https://img.shields.io/badge/version-0.1.0-f66.svg)](https://github.com/JowayYoung/trample)
+[![version](https://img.shields.io/badge/version-0.1.1-f66.svg)](https://github.com/JowayYoung/trample)
 [![web](https://img.shields.io/badge/web-%3E%3D%2095%25-3c9.svg)](https://github.com/JowayYoung/trample)
 [![node](https://img.shields.io/badge/node-%3E%3D%208.0.0-3c9.svg)](https://github.com/JowayYoung/trample)
 [![test](https://img.shields.io/badge/test-passing-f90.svg)](https://github.com/JowayYoung/trample)
@@ -749,10 +749,12 @@ trample
 
 `trample.js`是笔者为了节省项目开发过程中常用工具函数复制粘贴的时间，而封装的一个**Web/Node通用函数工具库**。设计目的是为了`减少无谓的复制粘贴动作`和`统一管理项目开发中常用的工具函数`。
 
-由于笔者是针对个人需求而定制的工具库，所以应用范围可能没有包含上你常用的工具函数，可在[Issue](https://github.com/JowayYoung/trample/issues)上`提出你的宝贵建议`或`贴上你想增加的工具函数`。笔者会认真阅读你的宝贵建议和整合各位同学贡献的工具函数。如果觉得`trample.js`不错，欢迎[Start](https://github.com/JowayYoung/trample)一个。
+由于笔者是针对个人需求而定制的工具库，所以应用范围可能没有包含上你常用的工具函数，可在[Issue](https://github.com/JowayYoung/trample/issues)上`提出你的宝贵建议`或`贴上你想增加的工具函数`。笔者会认真阅读你的宝贵建议和整合各位同学贡献的工具函数。
 
-如果觉得`trample.js`对大家有用，建议[Fork](https://github.com/JowayYoung/trample)本项目到自己的`Github`上，在原有的基础上增加自己`常用`、`易忘`和`代码量多`的工具函数，同时也可扩展原有的功能和构建方式，封装成自己熟悉的工具库，提升自己的开发能力，间接`减少晚上加班时间`和`增加上班摸鱼时间`。
+也可[Fork](https://github.com/JowayYoung/trample)本项目到自己的`Github`上，在原有的基础上增加自己`常用`、`易忘`和`代码量多`的工具函数，同时也可扩展原有的功能和构建方式，封装成自己熟悉的工具库，提升自己的开发能力，间接`减少晚上加班时间`和`增加上班摸鱼时间`。
 
-**关注公众号`IQ前端`，更多前端小干货等着你喔！我是`JowayYoung`，喜欢分享前端技术和生活纪事，学习与生活不落下，每天进步一点点，与大家相伴成长**
+若觉得`trample`对你有帮助，可在[Issue](https://github.com/JowayYoung/trample/issues)上`提出你的宝贵建议`，笔者会认真阅读并整合你的建议。喜欢`trample`的请给一个[Star](https://github.com/JowayYoung/trample)，或[Fork](https://github.com/JowayYoung/trample)本项目到自己的`Github`上，根据自身需求定制功能。
 
-![](https://yangzw.vip/static/frontend/account/IQ前端公众号.jpg)
+**关注公众号`IQ前端`，一个专注于CSS/JS开发技巧的前端公众号，更多前端小干货等着你喔**
+
+![](https://static.yangzw.vip/frontend/account/IQ前端公众号.jpg)
