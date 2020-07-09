@@ -25,14 +25,14 @@ function BrowserType(ua = navigator.userAgent.toLowerCase()) {
 				.toString()
 				.replace(/windows( nt)? /g, "");
 			const map = {
-				2000: /5\.0|2000/g,
-				xp: /5\.1|xp/g,
-				2003: /5\.2|2003/g,
-				vista: /6\.0|vista/g,
-				7: /6\.1|7/g,
-				8: /6\.2|8/g,
-				8.1: /6\.3|8\.1/g,
-				10: /10\.0|10/g
+				2000: /^(5\.0|2000)/g,
+				xp: /^(5\.1|xp)/g,
+				2003: /^(5\.2|2003)/g,
+				vista: /^(6\.0|vista)/g,
+				7: /^(6\.1|7)/g,
+				8: /^(6\.2|8)/g,
+				8.1: /^(6\.3|8\.1)/g,
+				10: /^(10\.0|10)/g
 			};
 			return Object.keys(map).find(v => map[v].test(ver)) || "unknow";
 		},

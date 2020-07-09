@@ -1,4 +1,5 @@
 /** 文件工具 **/
+import Fs from "fs";
 import CopyPasteDir from "copy-dir";
 import MakeDir from "make-dir";
 import Rimfaf from "rimraf";
@@ -23,7 +24,7 @@ function CopyDir(src = "", dist = "", filter = false) {
  * @param {string} [dir=""] 路径
  */
 function CreateDir(dir = "") {
-	MakeDir.sync(dir);
+	!Fs.existsSync(dir) && MakeDir.sync(dir);
 }
 
 /**

@@ -2,7 +2,6 @@
 import Day from "dayjs";
 
 /**
- *
  * @name 格式倒计时
  * @param {string} [time=null] 日期：YYYY-MM-DD HH:mm:ss
  */

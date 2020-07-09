@@ -1,7 +1,7 @@
 # Trample <img src="https://img.shields.io/badge/trample-Web/Node通用函数工具库-66f.svg">
 
 [![author](https://img.shields.io/badge/author-JowayYoung-f66.svg)](https://github.com/JowayYoung/trample)
-[![version](https://img.shields.io/badge/version-0.1.1-f66.svg)](https://github.com/JowayYoung/trample)
+[![version](https://img.shields.io/badge/version-0.2.0-f66.svg)](https://github.com/JowayYoung/trample)
 [![web](https://img.shields.io/badge/web-%3E%3D%2095%25-3c9.svg)](https://github.com/JowayYoung/trample)
 [![node](https://img.shields.io/badge/node-%3E%3D%208.0.0-3c9.svg)](https://github.com/JowayYoung/trample)
 [![test](https://img.shields.io/badge/test-passing-f90.svg)](https://github.com/JowayYoung/trample)
@@ -22,16 +22,15 @@
 ### 安装
 
 - `npm i trample`
-- `yarn add trample`
 
 > 安装失败
 
-- 将npm源镜像设置为淘宝镜像：`npm config set registry https://registry.npm.taobao.org`
-- 重新执行命令安装：`npm i trample` 或 `yarn add trample`
+- 切换**NPM镜像**为淘宝镜像：`npm config set registry https://registry.npm.taobao.org/`
+- 重新执行安装命令：`npm i trample`
 
 ### 使用
 
-`trample.js`根据**Web**和**Node**两种JS运行环境进行代码划分，生成两个`bundle`文件。每个文件在不同的JS运行环境下运行，必须根据JS运行环境引用文件，否则会报错。
+`trample`根据**Web**和**Node**两种JS运行环境进行代码划分，生成两个`bundle`文件。每个文件在不同的JS运行环境下运行，必须根据JS运行环境引用文件，否则会报错。
 
 ##### 区别
 
@@ -63,7 +62,7 @@
 
 ##### 引用
 
-`trample.js`使用`UMD`通用模块规范进行打包，因此可使用`IIFE`、`AMD`、`CJS`和`ESM`四种方式引用。但是推荐使用`IIFE`、`CJS`、`ESM`三种引用方式。工具库的代码使用`ESM`的形式进行开发，使用`export default {}`进行导出。
+`trample`使用`UMD`通用模块规范进行打包，因此可使用`IIFE`、`AMD`、`CJS`和`ESM`四种方式引用。但是推荐使用`IIFE`、`CJS`、`ESM`三种引用方式。工具库的代码使用`ESM`的形式进行开发，使用`export default {}`进行导出。
 
 > IIFE引用方式
 
@@ -224,29 +223,32 @@ import { NodeType } from "trample/common/index";
 
 [Array 数组工具](https://github.com/JowayYoung/trample/blob/master/src/common/array.js)
 
-- [x] **MemberCount()**：统计成员个数
-	- arr：数组(`[]`)
-- [x] **MemberGroup()**：分组成员特性
+- [x] **GroupMemKey()**：分组成员特性
 	- arr：数组(`[]`)
 	- key：属性(`""`)
-- [x] **MemberKeyword()**：统计成员所含关键字
-	- arr：数组(`[]`)
-	- keys：关键字集合(`[]`)
-- [x] **MemberPosition()**：记录成员位置
+- [x] **RecordMemPosition()**：记录成员位置
 	- arr：数组(`[]`)
 	- val：值(`""`)
+- [x] **StatMemCount()**：统计成员个数
+	- arr：数组(`[]`)
+- [x] **StatMemKeyword()**：统计成员所含关键字
+	- arr：数组(`[]`)
+	- keys：关键字集合(`[]`)
 
 ```js
-const arr = [0, 1, 1, 2, 2, 2];
-MemberCount(arr); // { 0: 1, 1: 2, 2: 3 }
-
 const arr = [
     { area: "GZ", name: "YZW", age: 27 },
     { area: "GZ", name: "TYJ", age: 25 },
     { area: "GZ", name: "LJY", age: 26 },
     { area: "FS", name: "LXY", age: 24 }
 ];
-MemberGroup(arr, "area"); // { GZ: Array(3), FS: Array(1) }
+GroupMemKey(arr, "area"); // { GZ: Array(3), FS: Array(1) }
+
+const arr = [2, 1, 5, 4, 2, 1, 6, 6, 7];
+RecordMemPosition(arr, 2); // [0, 4]
+
+const arr = [0, 1, 1, 2, 2, 2];
+StatMemCount(arr); // { 0: 1, 1: 2, 2: 3 }
 
 const text = [
     "今天天气真好，我想出去钓鱼",
@@ -255,10 +257,7 @@ const text = [
     "最近上班喜欢摸鱼的人实在太多了，代码不好好写，在想入非非"
 ];
 const keyword = ["偷懒", "喜欢", "睡觉", "摸鱼", "真好", "一边", "明天"];
-MemberKeyword(text, keyword); // ["喜欢", "摸鱼", "真好", "一边"]
-
-const arr = [2, 1, 5, 4, 2, 1, 6, 6, 7];
-MemberPosition(arr, 2); // [0, 4]
+StatMemKeyword(text, keyword); // ["喜欢", "摸鱼", "真好", "一边"]
 ```
 
 [Date 日期工具](https://github.com/JowayYoung/trample/blob/master/src/common/date.js)
@@ -747,7 +746,7 @@ trample
 
 ### 后记
 
-`trample.js`是笔者为了节省项目开发过程中常用工具函数复制粘贴的时间，而封装的一个**Web/Node通用函数工具库**。设计目的是为了`减少无谓的复制粘贴动作`和`统一管理项目开发中常用的工具函数`。
+`trample`是笔者为了节省项目开发过程中常用工具函数复制粘贴的时间，而封装的一个**Web/Node通用函数工具库**。设计目的是为了`减少无谓的复制粘贴动作`和`统一管理项目开发中常用的工具函数`。
 
 由于笔者是针对个人需求而定制的工具库，所以应用范围可能没有包含上你常用的工具函数，可在[Issue](https://github.com/JowayYoung/trample/issues)上`提出你的宝贵建议`或`贴上你想增加的工具函数`。笔者会认真阅读你的宝贵建议和整合各位同学贡献的工具函数。
 

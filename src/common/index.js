@@ -1,8 +1,8 @@
 import {
-	MemberCount,
-	MemberGroup,
-	MemberKeyword,
-	MemberPosition
+	GroupMemKey,
+	RecordMemPosition,
+	StatMemCount,
+	StatMemKeyword
 } from "./array";
 import {
 	FormatCountdown,
@@ -88,6 +88,7 @@ export {
 	FormatDiffTime,
 	FormatPhone,
 	GetKeys,
+	GroupMemKey,
 	IsArguments,
 	IsArray,
 	IsAsyncFunction,
@@ -115,18 +116,17 @@ export {
 	IsWeakSet,
 	IsWeb,
 	MatchBracketText,
-	MemberCount,
-	MemberGroup,
-	MemberKeyword,
-	MemberPosition,
 	RandomColor,
 	RandomId,
 	RandomNum,
 	RandomNumPlus,
+	RecordMemPosition,
 	RemoveTag,
 	ReverseText,
 	RoundNum,
 	StartScore,
+	StatMemCount,
+	StatMemKeyword,
 	ThousandNum,
 	Throttle,
 	WaitFor
