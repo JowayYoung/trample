@@ -44,8 +44,8 @@
 		"kill": "tskill node",
 		"remove": "rimraf package-lock.json yarn.lock node_modules",
 		"remove:b": "rimraf common node web node.js node.es5.js web.js web.es5.js",
-		"test:b": "cd test/web && bruce b",
-		"test:n": "nodemon test/node/index.js -x babel-node"
+		"test:n": "nodemon test/node/index.js -x babel-node",
+		"test:w": "cd test/web && bruce b"
 	},
 	"dependencies": {
 		"copy-dir": "1.3.0",
