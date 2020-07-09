@@ -1,6 +1,8 @@
 import {
 	CopyDir,
 	CreateDir,
+	ReadFileForBFS,
+	ReadFileForDFS,
 	RemoveDir
 } from "./fs";
 import {
@@ -14,6 +16,8 @@ export {
 	CopyDir,
 	CreateDir,
 	NodeType,
+	ReadFileForBFS,
+	ReadFileForDFS,
 	RemoveDir,
 	RunCmd
 };

@@ -8,7 +8,7 @@ import _Strings from "./common/string";
 import _Types from "./common/type";
 import Cookies from "./web/cookie";
 import Doms from "./web/dom";
-import Storage from "./web/storage";
+import Storages from "./web/storage";
 import Types from "./web/type";
 import Urls from "./web/url";
 
@@ -23,7 +23,7 @@ export default {
 	..._Types,
 	...Cookies,
 	...Doms,
-	...Storage,
+	...Storages,
 	...Types,
 	...Urls
 };

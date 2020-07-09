@@ -617,6 +617,12 @@ StringifyUrlSearch({ address: "", name: "young", sex: "male" }, true); // "?name
 	- filter：过滤函数(`false`，返回`函数`表示过滤规则，返回`false`表示不复制)，函数入参为`stat`和`path`
 - [x] **CreateDir()**：创建文件路径
 	- dir：路径(`""`)
+- [x] **ReadFileForBFS**：BFS读取文件(`广度优先遍历`)
+	- dir：路径(`process.cwd()`)
+	- igonre：忽略文件正则(`/(node_modules|\.git|\.DS_Store)$/`)
+- [x] **ReadFileForDFS**：DFS读取文件(`深度优先遍历`)
+	- dir：路径(`process.cwd()`)
+	- igonre：忽略文件正则(`/(node_modules|\.git|\.DS_Store)$/`)
 - [x] **RemoveDir()**：删除文件路径
 	- dir：路径(`""`)
 
@@ -634,6 +640,10 @@ CopyDir(
 );
 
 CreateDir(AbsPath("./assets/lib/trample"));
+
+ReadFileForBFS(); // ["node.js", "web.js"]
+
+ReadFileForDFS(); // ["node.js", "web.js"]
 
 RemoveDir(AbsPath("./assets/lib/trample"));
 ```

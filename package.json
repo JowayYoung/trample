@@ -10,22 +10,22 @@
 		"tool",
 		"util",
 		"common",
-		"web",
 		"node",
+		"web",
 		"array",
+		"cookie",
 		"date",
+		"dom",
+		"fs",
 		"function",
 		"number",
 		"object",
+		"process",
 		"regexp",
+		"storage",
 		"string",
 		"type",
-		"cookie",
-		"dom",
-		"storage",
-		"url",
-		"fs",
-		"process"
+		"url"
 	],
 	"author": {
 		"name": "Joway Young",
@@ -44,7 +44,6 @@
 		"kill": "tskill node",
 		"remove": "rimraf package-lock.json yarn.lock node_modules",
 		"remove:b": "rimraf common node web node.js node.es5.js web.js web.es5.js",
-		"start": "nodemon src/index.js -x babel-node",
 		"test:b": "cd test/web && bruce b",
 		"test:n": "nodemon test/node/index.js -x babel-node"
 	},
@@ -77,8 +76,8 @@
 		"webpackbar": "4.0.0"
 	},
 	"engines": {
-		"node": ">= 8.0.0",
-		"npm": ">= 5.0.0"
+		"node": ">= 10.0.0",
+		"npm": ">= 5.6.0"
 	},
 	"babel": {
 		"presets": [
@@ -96,7 +95,7 @@
 	},
 	"nodemonConfig": {
 		"env": {
-			"NODE_ENV": "development"
+			"NODE_ENV": "dev"
 		},
 		"execMap": {
 			"js": "node --harmony"
