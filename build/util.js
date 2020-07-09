@@ -24,8 +24,8 @@ function AbsPath(path = "") {
 	return Path.join(__dirname, path);
 }
 
-function AsyncTo(pfn = null) {
-	return pfn ? pfn.then(data => [null, data]).catch(err => [err]) : [null, null];
+function AsyncTo(pfn = Promise.resolve(true)) {
+	return pfn && pfn instanceof Promise ? pfn.then(data => [null, data]).catch(err => [err]) : [null, null];
 }
 
 async function BuildCb(webpackConfig) {
