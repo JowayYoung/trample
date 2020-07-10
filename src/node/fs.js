@@ -43,8 +43,8 @@ function ReadFileForBFS(path = process.cwd(), igonre = /(node_modules|\.git|\.DS
 		if (!igonre.test(topPath)) {
 			if (stat.isDirectory()) {
 				Fs.readdirSync(topPath).forEach(v => {
-					const p = Path.join(topPath, v);
-					queue.push(p);
+					const spath = Path.join(topPath, v);
+					queue.push(spath);
 				});
 			} else if (stat.isFile()) {
 				paths.push(topPath);
