@@ -42,7 +42,6 @@ import {
 } from "./string";
 import {
 	CompareObj,
-	DataType,
 	EnvType,
 	IsArguments,
 	IsArray,
@@ -69,7 +68,8 @@ import {
 	IsUndefined,
 	IsWeakMap,
 	IsWeakSet,
-	IsWeb
+	IsWeb,
+	TypeOf
 } from "./type";
 
 export {
@@ -79,7 +79,6 @@ export {
 	CheckText,
 	CheckTextPlus,
 	CompareObj,
-	DataType,
 	Debounce,
 	DesePhone,
 	EnvType,
@@ -129,5 +128,6 @@ export {
 	StatMemKeyword,
 	ThousandNum,
 	Throttle,
+	TypeOf,
 	WaitFor
 };

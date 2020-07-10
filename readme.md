@@ -1,7 +1,7 @@
 # Trample <img src="https://img.shields.io/badge/trample-Web/Node通用函数工具库-66f.svg">
 
 [![author](https://img.shields.io/badge/author-JowayYoung-f66.svg)](https://github.com/JowayYoung/trample)
-[![version](https://img.shields.io/badge/version-0.2.1-f66.svg)](https://github.com/JowayYoung/trample)
+[![version](https://img.shields.io/badge/version-0.2.2-f66.svg)](https://github.com/JowayYoung/trample)
 [![web](https://img.shields.io/badge/web-%3E%3D%2095%25-3c9.svg)](https://github.com/JowayYoung/trample)
 [![node](https://img.shields.io/badge/node-%3E%3D%208.0.0-3c9.svg)](https://github.com/JowayYoung/trample)
 [![test](https://img.shields.io/badge/test-passing-f90.svg)](https://github.com/JowayYoung/trample)
@@ -72,7 +72,7 @@
 <body>
     <script src="js/trample/web.js"></script>
     <script>
-        trample.DataType("trample");
+        trample.TypeOf("trample");
         trample.BrowserType();
     </script>
 </body>
@@ -100,12 +100,12 @@ require(["trample"], function(trample) {
 ```js
 // Web
 const TW = require("trample/web");
-TW.DataType("trample");
+TW.TypeOf("trample");
 TW.BrowserType();
 
 // Node
 const TN = require("trample/node");
-TN.DataType("trample");
+TN.TypeOf("trample");
 TN.NodeType();
 ```
 
@@ -123,24 +123,24 @@ TN.NodeType();
 ```js
 // Web：全部导入
 import TW from "trample/web";
-TW.DataType("trample");
+TW.TypeOf("trample");
 TW.BrowserType();
 
 // Web：按需导入
-import { DataType } from "trample/common/index";
+import { TypeOf } from "trample/common/index";
 import { BrowserType } from "trample/web/index";
-DataType("trample");
+TypeOf("trample");
 BrowserType();
 
 // Node：全部导入
 import TN from "trample/node";
-TN.DataType("trample");
+TN.TypeOf("trample");
 TN.NodeType();
 
 // Node：按需导入
-import { DataType } from "trample/common/index";
+import { TypeOf } from "trample/common/index";
 import { NodeType } from "trample/node/index";
-DataType("trample");
+TypeOf("trample");
 NodeType();
 ```
 
@@ -172,7 +172,7 @@ import TN from "trample/node";
 
 ```js
 // 公共函数工具库
-import { DataType } from "trample/common/index";
+import { TypeOf } from "trample/common/index";
 // Web函数工具库
 import { BrowserType } from "trample/common/index";
 // Node函数工具库
@@ -424,7 +424,16 @@ StartScore(8, 10); // "★★★★★★★★☆☆"
 
 [Type 类型工具](https://github.com/JowayYoung/trample/blob/master/src/common/type.js)
 
-- [x] **DataType()**：数据类型
+- [x] **CompareObj()**：比较对象(`包含数组`)
+	- obj1：对象1
+	- obj2：对象2
+- [x] **EnvType()**：环境类型
+	- **IsNode()**：判断Node
+	- **IsWeb()**：判断Web
+- [x] **IsEqual()**：判断相等
+	- data1：数据1
+	- data2：数据2
+- [x] **TypeOf()**：数据类型
 	- data：数据
 	- type：类型
 	- **IsArguments()**：判断Arguments
@@ -450,20 +459,9 @@ StartScore(8, 10); // "★★★★★★★★☆☆"
 	- **IsUndefined()**：判断未定义
 	- **IsWeakMap()**：判断WeakMap
 	- **IsWeakSet()**：判断WeakSet
-- [x] **EnvType()**：环境类型
-	- **IsNode()**：判断Node
-	- **IsWeb()**：判断Web
-- [x] **IsEqual()**：判断相等
-	- data1：数据1
-	- data2：数据2
-- [x] **CompareObj()**：比较对象(`包含数组`)
-	- obj1：对象1
-	- obj2：对象2
 
 ```js
-DataType(168); // "number"
-IsEmptyObject({ a: 1, b: 2 }); // false
-IsString(168); // false
+CompareObj({ a: 1, b: 2 }, { b: 3, a: 1 }); // { a: true, b: false }
 
 EnvType(); // "node"
 IsNode(); // true
@@ -471,7 +469,9 @@ IsWeb(); // false
 
 IsEqual({ a: 1, b: 2 }, { b: 2, a: 1 }); // true
 
-CompareObj({ a: 1, b: 2 }, { b: 3, a: 1 }); // { a: true, b: false }
+TypeOf(168); // "number"
+IsEmptyObject({ a: 1, b: 2 }); // false
+IsString(168); // false
 ```
 
 > Web函数工具库：`trample/web/index`

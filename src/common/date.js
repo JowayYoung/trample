@@ -1,5 +1,4 @@
 /** 日期工具 **/
-import Day from "dayjs";
 
 /**
  * @name 格式倒计时
@@ -25,11 +24,11 @@ function FormatCountdown(time = null) {
  * @param {string} [time=null] 日期：YYYY-MM-DD HH:mm:ss
  */
 function FormatDiffTime(time = null) {
-	const nowTime = Day();
-	const tgtTime = Day(time);
-	const diff = nowTime.diff(tgtTime);
-	const absDiff = Math.abs(diff);
+	const nowTime = +new Date();
+	const tgtTime = +new Date(time);
+	const diff = nowTime - tgtTime;
 	const slot = diff >= 0 ? "前" : "后";
+	const absDiff = Math.abs(diff);
 	const monNum = 1461 / 48;
 	const yearNum = 1461 / 4;
 	const min = 1000 * 60;

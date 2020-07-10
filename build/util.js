@@ -91,6 +91,7 @@ function WebpackConfig(type = "common", isEs5 = false) {
 			extensions: [".js", ".json"],
 			mainFields: ["jsnext:main", "main"]
 		},
+		stats: "errors-only",
 		target: type === "web" ? "web" : "node"
 	};
 }

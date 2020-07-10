@@ -1,122 +1,15 @@
 /** 类型工具 **/
 
 /**
- * @name 数据类型
- * @param {*} data 数据
- * @param {*} type 类型
+ * @name 比较对象
+ * @param {object} obj1 对象1
+ * @param {object} obj2 对象
  */
-function DataType(data, type) {
-	const dataType = Object.prototype.toString.call(data).replace(/\[object (\w+)\]/, "$1").toLowerCase();
-	return type ? dataType === type : dataType;
-}
-
-/**
- * @name 判断基础数据类型：undefined、null、string、number、boolean、array、object、symbol、date、regexp、function、class
- * @param {*} data 数据
- */
-function IsUndefined(data) {
-	return DataType(data, "undefined");
-}
-
-function IsNull(data) {
-	return DataType(data, "null");
-}
-
-function IsString(data) {
-	return DataType(data, "string");
-}
-
-function IsNumber(data) {
-	return DataType(data, "number");
-}
-
-function IsBoolean(data) {
-	return DataType(data, "boolean");
-}
-
-function IsArray(data) {
-	return DataType(data, "array");
-}
-
-function IsObject(data) {
-	return DataType(data, "object");
-}
-
-function IsSymbol(data) {
-	return DataType(data, "symbol");
-}
-
-function IsDate(data) {
-	return DataType(data, "date");
-}
-
-function IsRegExp(data) {
-	return DataType(data, "regexp");
-}
-
-function IsFunction(data) {
-	return DataType(data, "function");
-}
-
-function IsClass(data) {
-	const classRegexp = /^class\s|^function\s+[A-Z]/;
-	return DataType(data, "function") && classRegexp.test(data.toString());
-}
-
-/**
- * @name 判断复合数据类型：set、map、weakset、weakmap
- * @param {*} data 数据
- */
-function IsSet(data) {
-	return DataType(data, "set");
-}
-
-function IsMap(data) {
-	return DataType(data, "map");
-}
-
-function IsWeakSet(data) {
-	return DataType(data, "weakset");
-}
-
-function IsWeakMap(data) {
-	return DataType(data, "weakmap");
-}
-
-/**
- * @name 判断函数类型：asyncfunction、function、arguments
- * @param {*} data 数据
- */
-function IsAsyncFunction(data) {
-	return DataType(data, "asyncfunction");
-}
-
-function IsSyncFunction(data) {
-	return DataType(data, "function");
-}
-
-function IsArguments(data) {
-	return DataType(data, "arguments");
-}
-
-/**
- * @name 判断空类型：error、empty、emptyarray、emptyobject
- * @param {*} data 数据
- */
-function IsError(data) {
-	return data instanceof Error;
-}
-
-function IsEmpty(data) {
-	return !data; // undefined null "" 0 false NaN
-}
-
-function IsEmptyArray(data) {
-	return Array.isArray(data) && !data.length;
-}
-
-function IsEmptyObject(data) {
-	return IsObject(data) && !Object.keys(data).length;
+function CompareObj(obj1, obj2) {
+	const result = {};
+	const keys = Object.keys(obj1);
+	keys.forEach(k => (result[k] = IsEqual(obj1[k], obj2[k])));
+	return result;
 }
 
 /**
@@ -173,20 +66,126 @@ function IsEqual(data1, data2) {
 }
 
 /**
- * @name 比较对象
- * @param {object} obj1 对象1
- * @param {object} obj2 对象
+ * @name 数据类型
+ * @param {*} data 数据
+ * @param {*} type 类型
  */
-function CompareObj(obj1, obj2) {
-	const result = {};
-	const keys = Object.keys(obj1);
-	keys.forEach(k => (result[k] = IsEqual(obj1[k], obj2[k])));
-	return result;
+function TypeOf(data, type) {
+	const dataType = Object.prototype.toString.call(data).replace(/\[object (\w+)\]/, "$1").toLowerCase();
+	return type ? dataType === type : dataType;
+}
+
+/**
+ * @name 判断基础数据类型：undefined、null、string、number、boolean、array、object、symbol、date、regexp、function、class
+ * @param {*} data 数据
+ */
+function IsUndefined(data) {
+	return TypeOf(data, "undefined");
+}
+
+function IsNull(data) {
+	return TypeOf(data, "null");
+}
+
+function IsString(data) {
+	return TypeOf(data, "string");
+}
+
+function IsNumber(data) {
+	return TypeOf(data, "number");
+}
+
+function IsBoolean(data) {
+	return TypeOf(data, "boolean");
+}
+
+function IsArray(data) {
+	return TypeOf(data, "array");
+}
+
+function IsObject(data) {
+	return TypeOf(data, "object");
+}
+
+function IsSymbol(data) {
+	return TypeOf(data, "symbol");
+}
+
+function IsDate(data) {
+	return TypeOf(data, "date");
+}
+
+function IsRegExp(data) {
+	return TypeOf(data, "regexp");
+}
+
+function IsFunction(data) {
+	return TypeOf(data, "function");
+}
+
+function IsClass(data) {
+	const classRegexp = /^class\s|^function\s+[A-Z]/;
+	return TypeOf(data, "function") && classRegexp.test(data.toString());
+}
+
+/**
+ * @name 判断复合数据类型：set、map、weakset、weakmap
+ * @param {*} data 数据
+ */
+function IsSet(data) {
+	return TypeOf(data, "set");
+}
+
+function IsMap(data) {
+	return TypeOf(data, "map");
+}
+
+function IsWeakSet(data) {
+	return TypeOf(data, "weakset");
+}
+
+function IsWeakMap(data) {
+	return TypeOf(data, "weakmap");
+}
+
+/**
+ * @name 判断函数类型：asyncfunction、function、arguments
+ * @param {*} data 数据
+ */
+function IsAsyncFunction(data) {
+	return TypeOf(data, "asyncfunction");
+}
+
+function IsSyncFunction(data) {
+	return TypeOf(data, "function");
+}
+
+function IsArguments(data) {
+	return TypeOf(data, "arguments");
+}
+
+/**
+ * @name 判断空类型：error、empty、emptyarray、emptyobject
+ * @param {*} data 数据
+ */
+function IsError(data) {
+	return data instanceof Error;
+}
+
+function IsEmpty(data) {
+	return !data; // undefined null "" 0 false NaN
+}
+
+function IsEmptyArray(data) {
+	return Array.isArray(data) && !data.length;
+}
+
+function IsEmptyObject(data) {
+	return IsObject(data) && !Object.keys(data).length;
 }
 
 export {
 	CompareObj,
-	DataType,
 	EnvType,
 	IsArguments,
 	IsArray,
@@ -213,11 +212,11 @@ export {
 	IsUndefined,
 	IsWeakMap,
 	IsWeakSet,
-	IsWeb
+	IsWeb,
+	TypeOf
 };
 
 export default {
-	DataType, // 数据类型
 	EnvType, // 环境类型
 	IsArguments, // 判断Arguments
 	IsArray, // 判断数组
@@ -243,5 +242,6 @@ export default {
 	IsUndefined, // 判断未定义
 	IsWeakMap, // 判断WeakMap
 	IsWeakSet, // 判断WeakSet
-	IsWeb // 判断Web
+	IsWeb, // 判断Web
+	TypeOf // 数据类型
 };
