@@ -1,5 +1,5 @@
 /** 字符工具 **/
-import { MATCH } from "./regexp";
+import { MATCH } from "./regexp.js";
 
 /**
  * @name 脱敏手机
@@ -69,16 +69,6 @@ function StartScore(rate = 0, len = 5) {
 }
 
 export {
-	DesePhone,
-	FormatPhone,
-	RandomColor,
-	RandomId,
-	RemoveTag,
-	ReverseText,
-	StartScore
-};
-
-export default {
 	DesePhone,
 	FormatPhone,
 	RandomColor,

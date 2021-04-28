@@ -185,38 +185,7 @@ function IsEmptyObject(data) {
 }
 
 export {
-	CompareObj,
-	EnvType,
-	IsArguments,
-	IsArray,
-	IsAsyncFunction,
-	IsBoolean,
-	IsClass,
-	IsDate,
-	IsEmpty,
-	IsEmptyArray,
-	IsEmptyObject,
-	IsEqual,
-	IsError,
-	IsFunction,
-	IsMap,
-	IsNode,
-	IsNull,
-	IsNumber,
-	IsObject,
-	IsRegExp,
-	IsSet,
-	IsString,
-	IsSymbol,
-	IsSyncFunction,
-	IsUndefined,
-	IsWeakMap,
-	IsWeakSet,
-	IsWeb,
-	TypeOf
-};
-
-export default {
+	CompareObj, // 比较对象
 	EnvType, // 环境类型
 	IsArguments, // 判断Arguments
 	IsArray, // 判断数组
@@ -227,6 +196,7 @@ export default {
 	IsEmpty, // 判断空
 	IsEmptyArray, // 判断空数组
 	IsEmptyObject, // 判断空对象
+	IsEqual, // 判断相等
 	IsError, // 判断错误
 	IsFunction, // 判断函数
 	IsMap, // 判断Map

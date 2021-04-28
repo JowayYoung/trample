@@ -1,4 +1,5 @@
 /** DOM工具 **/
+import { AsyncTo } from "../common/function.js";
 
 /**
  * @name 自适应
@@ -59,8 +60,8 @@ function FilterXss(html = "") {
  * @param {string} [url=""] 地址
  * @param {string} [type="image/png"] 类型：image/jpeg、image/png
  */
-function Img2Base64(url = "", type = "image/png") {
-	return new Promise((resolve, reject) => {
+async function Img2Base64(url = "", type = "image/png") {
+	const promise = new Promise((resolve, reject) => {
 		const img = new Image();
 		img.setAttribute("src", url);
 		img.setAttribute("crossOrigin", "");
@@ -75,6 +76,8 @@ function Img2Base64(url = "", type = "image/png") {
 		});
 		img.addEventListener("error", err => reject(new Error(err)));
 	});
+	const [err, res] = await AsyncTo(promise);
+	return !err && res ? res : "";
 }
 
 /**
@@ -96,8 +99,8 @@ function Jsonp(url = "", name = "jsonp", cb = null) {
  * @param {string} [url=""] 地址
  * @param {string} [pst="head"] 插入位置
  */
-function LoadScript(url = "", pst = "head") {
-	return new Promise((resolve, reject) => {
+async function LoadScript(url = "", pst = "head") {
+	const promise = new Promise((resolve, reject) => {
 		if ([...document.getElementsByTagName("script")].some(v => v.src === url || v.src.includes(url))) {
 			reject(new Error(`<${pst}>已存在此脚本`));
 		}
@@ -107,24 +110,8 @@ function LoadScript(url = "", pst = "head") {
 		script.addEventListener("error", err => reject(new Error(err)));
 		document[pst].appendChild(script);
 	});
-}
-
-/**
- * @name 提示消息
- * @param {string} [msg="Tips"] 消息
- * @param {number} [delay=1000] 时延
- * @param {string} [classNames=""] 类名
- * @param {string} [id="toast"] ID
- */
-function ToastMsg(msg = "Tips", delay = 1000, classNames = "", id = "toast") {
-	if (document.getElementById(id)) return false;
-	const body = document.getElementsByTagName("body")[0];
-	const toast = document.createElement("div");
-	toast.setAttribute("class", classNames);
-	toast.setAttribute("id", id);
-	toast.innerHTML = msg;
-	body.appendChild(toast);
-	setTimeout(() => body.removeChild(toast), delay);
+	const [err, res] = await AsyncTo(promise);
+	return !err && res;
 }
 
 export {
@@ -134,17 +121,5 @@ export {
 	FilterXss,
 	Img2Base64,
 	Jsonp,
-	LoadScript,
-	ToastMsg
-};
-
-export default {
-	AutoResponse,
-	CopyPaste,
-	DownloadFile,
-	FilterXss,
-	Img2Base64,
-	Jsonp,
-	LoadScript,
-	ToastMsg
+	LoadScript
 };

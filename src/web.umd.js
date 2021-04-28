@@ -108,7 +108,7 @@ import {
 	StringifyUrlSearch
 } from "./web/url.js";
 
-export {
+export default {
 	Ajax,
 	AsyncTo,
 	AutoResponse,

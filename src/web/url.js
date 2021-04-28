@@ -1,5 +1,5 @@
 /** URL工具 **/
-import { IsEmptyArray, IsEmptyObject } from "../common/type";
+import { IsEmptyArray, IsEmptyObject } from "../common/type.js";
 
 /**
  * @name URL参数反序列化
@@ -57,13 +57,6 @@ function StringifyUrlSearch(search = {}, clear = false) {
 }
 
 export {
-	ParseUrlSearch,
-	RemoveUrlSearch,
-	SetUrlSearch,
-	StringifyUrlSearch
-};
-
-export default {
 	ParseUrlSearch,
 	RemoveUrlSearch,
 	SetUrlSearch,

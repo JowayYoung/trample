@@ -1,7 +1,7 @@
 /** 类型工具 **/
 import Os from "os";
 
-import { RunCmd } from "./process";
+import { RunCmd } from "./process.js";
 
 /**
  * @name Node类型
@@ -26,9 +26,5 @@ function NodeType() {
 }
 
 export {
-	NodeType
-};
-
-export default {
 	NodeType
 };
