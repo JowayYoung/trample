@@ -1,7 +1,7 @@
 # Trample <img src="https://img.shields.io/badge/trample-Web/Node通用函数工具库-66f.svg">
 
 [![author](https://img.shields.io/badge/author-JowayYoung-f66.svg)](https://github.com/JowayYoung/trample)
-[![version](https://img.shields.io/badge/version-0.2.3-f66.svg)](https://github.com/JowayYoung/trample)
+[![version](https://img.shields.io/badge/version-0.3.0-f66.svg)](https://github.com/JowayYoung/trample)
 [![web](https://img.shields.io/badge/web-%3E%3D%2095%25-3c9.svg)](https://github.com/JowayYoung/trample)
 [![node](https://img.shields.io/badge/node-%3E%3D%208.0.0-3c9.svg)](https://github.com/JowayYoung/trample)
 [![test](https://img.shields.io/badge/test-passing-f90.svg)](https://github.com/JowayYoung/trample)
@@ -13,83 +13,63 @@
 
 **工欲善其事，必先利其器**。应用在项目开发上就是：`做好一个项目，前期的工作准备非常重要`。项目开发的前期准备无非都是`合理规划项目结构`、`按需编写构建代码`、`批量创建入口文件`、`复制粘贴工具函数`等。
 
-在这里先推荐笔者写的一个**React/Vue应用自动化构建脚手架**[bruce-cli](https://github.com/JowayYoung/bruce-cli)，其零配置开箱即用的优点非常适合入门级、初中级、快速开发项目的前端同学使用，还可通过创建`brucerc.js`文件来覆盖其默认配置，只需专注业务代码的编写无需关注构建代码的编写，让项目结构更简洁。
+在此先推荐笔者写的一个**React/Vue应用自动化构建脚手架**[bruce-cli](https://github.com/JowayYoung/bruce-cli)，其零配置开箱即用的优点非常适合入门级、初中级、快速开发项目的前端同学使用，还可通过创建`brucerc.js`文件来覆盖其默认配置，只需专注业务代码的编写无需关注构建代码的编写，让项目结构更简洁。
 
-通过`bruce-cli`能把常规的前期准备都解决了，但是我们经常会复制粘贴一些之前项目常用的工具函数过来新项目上，新开其他项目时又会重新执行这些操作。
+通过`bruce-cli`能把常规的前期准备都解决了，但我们经常会复制粘贴一些之前项目常用的工具函数过来新项目上，新开其他项目时又会重新执行这些操作。
 
-项目开发过程中时常会重复使用一些工具函数，例如`浏览器类型`、`格式时间差`、`URL参数反序列化`、`过滤XSS`等，为了避免项目开发时重复的复制粘贴操作所带来不必要的麻烦，笔者将平时常用的一些工具函数按功能分类和统一封装，并发布到`npm`上。每次项目开发时直接安装，提高开发效率，将时间用在正确的位置上。
+项目开发过程中时常会重复使用一些工具函数，例如`浏览器类型`、`格式时间差`、`URL参数反序列化`、`过滤XSS`等，为了避免项目开发时重复的复制粘贴操作带来不必要的麻烦，笔者将平时常用的一些工具函数按功能分类和统一封装，并发布到`npm`上。每次项目开发时直接安装，提高开发效率，将时间用在正确的事情上。
 
 ### 安装
 
-`npm i trample`
-
-> 安装失败
-
-- 切换**NPM镜像**为淘宝镜像：`npm config set registry https://registry.npm.taobao.org/`
-- 重新执行安装命令：`npm i trample`
+- 使用`npm`安装：`npm i trample`
+- 使用`yarn`安装：`yarn add trample`
 
 ### 使用
 
-`trample`根据**Web**和**Node**两种JS运行环境进行代码划分，生成两个`bundle`文件。每个文件在不同的JS运行环境下运行，必须根据JS运行环境引用文件，否则会报错。
+`trample`根据**Web**和**Node**两种JS运行环境划分代码，生成两种`bundle.js`。每种文件在不同JS运行环境下运行，必须根据JS运行环境引用文件，否则会报错。
 
 ##### 区别
 
-模块|工具库|运行环境|对应文件|兼容ES5的对应文件
+模块|工具库|运行环境|对应文件|ESM的对应文件
 :-:|:-:|:-:|-|-
-**Common**|公共函数工具库|浏览器和服务器|被下面文件包含|被下面文件包含
-**Web**|Web函数工具库|浏览器|`web.js`|`web.es5.js`
-**Node**|Node函数工具库|服务器|`node.js`|`node.es5.js`
+**Web**|Web函数工具库|浏览器|`web.js`|`web.esm.js`
+**Node**|Node函数工具库|服务器|`node.js`|`node.esm.js`
 
 ##### 兼容
 
-- `web.js`兼容状态：**ES6**
-	- Chrome：`>= 60`
-	- Firefox：`>= 54`
-	- Opera：`>= 50`
-	- Safari：`>= 10.1`
-	- Edge：`>= 15`
-	- iOS：`>= 10.3`
-- `web.es5.js`兼容状态：**ES5**
-	- Chrome：`last 20 versions`
-	- Firefox：`last 20 versions`
-	- Opera：`last 20 versions`
-	- Explorer：`>= 10`
-	- Safari：`>= 8`
-	- Android：`>= 5`
-	- iOS：`>= 8`
-- `node.js`兼容状态：`node >= 10.0.0`
-- `node.es5.js`兼容状态：`node >= 8.0.0`
+- **Web**：`>= 95%`
+- **Node**：`>= 8.0.0`
 
 ##### 引用
 
-`trample`使用`UMD`通用模块规范进行打包，因此可使用`IIFE`、`AMD`、`CJS`和`ESM`四种方式引用。但是推荐使用`IIFE`、`CJS`、`ESM`三种引用方式。工具库的代码使用`ESM`的形式进行开发，使用`export default {}`进行导出。
+`trample`使用`rollup`打包，因此可使用`IIFE`、`AMD`、`CJS`、`UMD`和`ESM`五种方式引用。但推荐使用`IIFE`、`CJS`、`ESM`三种引用方式。工具库的代码使用`ESM`规范开发，使用`export {}`导出。
 
 > IIFE引用方式
 
-适用于`Web`，最简单最方便的引用方式没有之一。把`node_modules/trample/web.js`复制出来，放到新建的`js/trample`文件夹下，通过HTML的`<script>`直接引用。
+适用于`Web`，最简单最方便的引用方式没有之一。把`node_modules/trample/dist/web.umd.js`复制出来，放到新建的`js/trample`文件夹下，通过HTML的`<script>`直接引用。
 
 ```html
 <body>
-    <script src="js/trample/web.js"></script>
+    <script src="js/trample/web.umd.js"></script>
     <script>
-        trample.TypeOf("trample");
-        trample.BrowserType();
+        console.log(window.trample.TypeOf("trample"));
+        console.log(window.trample.BrowserType());
     </script>
 </body>
 ```
 
 > AMD引用方式
 
-适用于`Web`。把`node_modules/trample/web.js`复制出来，放到新建的`js/trample`文件夹下，需建立在`require.js`下使用。
+适用于`Web`。把`node_modules/trample/dist/web.umd.js`复制出来，放到新建的`js/trample`文件夹下，需建立在`require.js`下使用。
 
 ```js
 require.config({
     paths: {
-        trample: "js/trample/web.js"
+        trample: "js/trample/web.umd.js"
     }
 });
 require(["trample"], function(trample) {
-    trample.BrowserType();
+    console.log(trample.BrowserType());
 });
 ```
 
@@ -99,127 +79,82 @@ require(["trample"], function(trample) {
 
 ```js
 // Web
-const TW = require("trample/web");
-TW.TypeOf("trample");
-TW.BrowserType();
+const { BrowserType, TypeOf } = require("trample");
+// const { BrowserType, TypeOf } = require("trample/dist/web");
+
+console.log(TypeOf("trample"));
+console.log(BrowserType());
 
 // Node
-const TN = require("trample/node");
-TN.TypeOf("trample");
-TN.NodeType();
+const { NodeType, TypeOf } = require("trample/dist/node");
+
+console.log(TypeOf("trample"));
+console.log(NodeType());
 ```
 
 > ESM引用方式
 
-适用于`Web`和`Node`。如果使用`ESM`的形式进行项目开发，推荐使用`按需导入`的方式，有利于Wepack启用`TreeSharking`移除没有使用的代码。
-
-- 全部导入
-	- [x] Web
-	- [x] Node
-- 按需导入
-	- [x] Web
-	- [x] Node
+适用于`Web`和`Node`。若使用`ESM`规范开发项目，有利于Wepack启用`TreeSharking`移除未使用的代码。
 
 ```js
-// Web：全部导入
-import TW from "trample/web";
-TW.TypeOf("trample");
-TW.BrowserType();
+// Web
+import { BrowserType, TypeOf } from "trample";
+// import { BrowserType, TypeOf } from "trample/dist/web";
 
-// Web：按需导入
-import { TypeOf } from "trample/common/index";
-import { BrowserType } from "trample/web/index";
-TypeOf("trample");
-BrowserType();
+console.log(TypeOf("trample"));
+console.log(BrowserType());
 
-// Node：全部导入
-import TN from "trample/node";
-TN.TypeOf("trample");
-TN.NodeType();
+// Node
+import { NodeType, TypeOf } from "trample/dist/node";
 
-// Node：按需导入
-import { TypeOf } from "trample/common/index";
-import { NodeType } from "trample/node/index";
-TypeOf("trample");
-NodeType();
+console.log(TypeOf("trample"));
+console.log(NodeType());
 ```
 
 ##### 再次提醒
 
-在Web环境下，请使用以下导入方式⏬。`trample`默认引用`node_modules/trample/web.js`这个文件。
+在`Web`环境下，请使用以下导入方式⏬。`trample`默认引用`node_modules/trample/dist/web.js`这个文件。
 
 ```js
-const TW = require("trample/web");
+const { BrowserType, TypeOf } = require("trample");
 // 或
-import TW from "trample/web";
+import { BrowserType, TypeOf } from "trample";
 
 // 『上面两段代码』 等价 『下面两段代码』(推荐)
 
-const TW = require("trample");
+const { BrowserType, TypeOf } = require("trample/dist/web");
 // 或
-import TW from "trample";
+import { BrowserType, TypeOf } from "trample/dist/web";
 ```
 
-在Node环境下，请使用以下导入方式⏬。
+在`Node`环境下，请使用以下导入方式⏬。
 
 ```js
-const TN = require("trample/node");
+const { NodeType, TypeOf } = require("trample/dist/node");
 // 或
-import TN from "trample/node";
+import { NodeType, TypeOf } from "trample/dist/node";
 ```
 
-使用ESM的按需导入，请使用以下导入方式⏬。记得带上`/index`以表明是一个文件，防止和同名的文件夹冲突。
+`trample`提供`ESM`规范的`index.esm.js`，在`package.json`中已配置`module`字段指向`index.esm.js`。
+
+若使用`webpack`打包项目可利用`Tree Sharking`特性移除未使用代码，有效减小打包体积。配置如下。
 
 ```js
-// 公共函数工具库
-import { TypeOf } from "trample/common/index";
-// Web函数工具库
-import { BrowserType } from "trample/common/index";
-// Node函数工具库
-import { NodeType } from "trample/common/index";
-```
-
-另外，以上示例都是基于JS最终运行环境是`ES6`或后续使用`webpack+babel`将代码打包成`ES5`这两种情况才生效。如果JS最终运行环境是`ES5`或不使用`webpack+babel`将代码打包成`ES5`，则需对导入路径进行如下修改，才能使用编译好的ES5文件。
-
-- `trample`或`trample/web`：修改成`trample/web.es5`
-- `trample/node`：修改成`trample/node.es5`
-
-##### 结合Babel编译
-
-以上的`trample/web`和`trample/node`都是引用编译好的ES6文件，项目如需编译成ES5，需配置`webpack -> resolve -> alias`，直接引用编译好的ES5文件`web.es5.js`或`node.es5.js`。
-
-```js
-{
+module.exports = {
+    // webpack其他配置
     resolve: {
-        alias: {
-            trample: "node_modules/trample/web.es5.js",
-            // trample: "node_modules/trample/node.es5.js"
-        }
+        mainFields: ["module", "jsnext:main", "main"]
     }
-}
-```
-
-如需使用ESM模块的按需导入，需配置`webpack -> module -> rules -> babel-loader`的`include`，将`trample`列入编译白名单，否则源码的ES6语法不被编译。
-
-```js
-{
-    module: {
-        rules: [{
-            include: /src|node_modules\/trample/,
-            test: /\.js$/,
-            use: [{ loader: "babel-loader" }]
-        }]
-    }
-}
+};
 ```
 
 ### 文档
 
 ```!
-暂时没有接入TypeScript进行函数入参校验，请遵循文档指定的入参类型传参
+暂时未接入TypeScript实现函数入参校验，请遵循文档指定的入参类型传参
 ```
 
-> 公共函数工具库：`trample/common/index`
+##### 公共函数工具库
 
 [Array 数组工具](https://github.com/JowayYoung/trample/blob/master/src/common/array.js)
 
@@ -277,12 +212,6 @@ FormatDiffTime("2019-03-31"); // "10个月前"
 
 [Function 函数工具](https://github.com/JowayYoung/trample/blob/master/src/common/function.js)
 
-- [x] **Ajax({ ... })**：异步请求
-	- data：参数集合(`{}`)
-	- error：失败回调函数(`null`)
-	- success：成功回调函数(`null`)
-	- type：类型(`"get"`，可选`get、post`)
-	- url: 地址(`""`)
 - [x] **AsyncTo()**：格式异步返回值
 	- pfn：Promise函数(`Promise.resolve(true)`)
 	- 备注：必须在`async函数`或`自执行async函数`下使用
@@ -297,14 +226,6 @@ FormatDiffTime("2019-03-31"); // "10个月前"
 	- 备注：必须在`async函数`或`自执行async函数`下使用
 
 ```js
-Ajax({
-    data: { a: 1, b: 2 },
-    error: err => console.log(err),
-    success: res => console.log(res),
-    type: "post",
-    url: "https://xxx.yyy"
-});
-
 document.body.addEventListener("click", () => Debounce(() => console.log("Click"), 2000));
 
 document.body.addEventListener("scroll", () => Throttle(() => console.log("Scroll"), 2000));
@@ -397,13 +318,13 @@ MatchBracketText(
 	- sign：标记(`"-"`，可选`-、\s`)
 - [x] **RandomColor()**：随机HEX色值
 - [x] **RandomId()**：随机长度ID
-	- len：长度(`5`，在`1~10`之间)
+	- len：长度(`5`，在`1~10`间)
 - [x] **RemoveTag()**：移除标签
 	- text：文本(`""`)
 - [x] **ReverseText()**：翻转文本
 	- text：文本(`""`)
 - [x] **StartScore()**：星级评分
-	- rate：星级(`0`，在`0~len`之间)
+	- rate：星级(`0`，在`0~len`间)
 	- len：长度(`5`)
 
 ```js
@@ -474,7 +395,7 @@ IsEmptyObject({ a: 1, b: 2 }); // false
 IsString(168); // false
 ```
 
-> Web函数工具库：`trample/web/index`
+##### Web函数工具库
 
 [Cookie Cookie工具](https://github.com/JowayYoung/trample/blob/master/src/web/cookie.js)
 
@@ -515,12 +436,7 @@ SetCookie("user_id", "123abc", 7);
 	- cb：回调函数(`null`)
 - [x] **LoadScript()**：加载脚本
 	- url：地址(`""`)
-	- pst：插入位置(`"head"`，可选`head、body`)
-- [x] **ToastMsg()**：提示消息
-	- msg：消息(`""`)
-	- delay：时延(`1000`)
-	- classNames：类名(`""`)
-	- id：ID(`"toast"`)
+	- pst：插入位置(`"body"`，可选`head、body`)
 
 ```js
 AutoResponse(640);
@@ -531,13 +447,30 @@ DownloadFile("https://xxx.yyy/pig.jpg", "pig.jpg");
 
 FilterXss("<script>alert(123)</script>"); // "&lt;script&gt;alert(123)&lt;/script&gt;"
 
-Img2Base64("https://xxx.yyy/pig.jpg", "image/jpeg"); // "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQAB..."
+const img = await Img2Base64("https://xxx.yyy/pig.jpg", "image/jpeg"); // "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQAB..."
 
-Jsonp("https://xxx.yyy/trample.js", "trample", () => console.log(window.trample));
+const flag = await Jsonp("https://xxx.yyy/trample.js", "trample", () => console.log(window.trample));
 
-LoadScript("https://xxx.yyy/trample.js", "body");
+const flag = await LoadScript("https://xxx.yyy/trample.js", "body");
+```
 
-ToastMsg("hello world", 2000, "ellipsis");
+[Function 函数工具](https://github.com/JowayYoung/trample/blob/master/src/web/function.js)
+
+- [x] **Ajax({ ... })**：异步请求
+	- data：参数集合(`{}`)
+	- error：失败回调函数(`null`)
+	- success：成功回调函数(`null`)
+	- type：类型(`"get"`，可选`get、post`)
+	- url: 地址(`""`)
+
+```js
+Ajax({
+    data: { a: 1, b: 2 },
+    error: err => console.log(err),
+    success: res => console.log(res),
+    type: "post",
+    url: "https://xxx.yyy"
+});
 ```
 
 [Storage Storage工具](https://github.com/JowayYoung/trample/blob/master/src/web/storage.js)
@@ -607,7 +540,7 @@ SetUrlSearch({ name: "tong", sex: "female" });
 StringifyUrlSearch({ address: "", name: "young", sex: "male" }, true); // "?name=young&sex=male"
 ```
 
-> Node函数工具库
+##### Node函数工具库
 
 [Fs 文件工具](https://github.com/JowayYoung/trample/blob/master/src/node/fs.js)
 
@@ -672,9 +605,6 @@ NodeType(); // { nodeVs: "12.12.0", npmVs: "6.11.3", system: "macos", systemVs: 
 
 ```txt
 trample
-├─ build
-│  ├─ index.js
-│  └─ util.js
 ├─ src
 │  ├─ common
 │  │  ├─ array.js
@@ -694,60 +624,29 @@ trample
 │  ├─ web
 │  │  ├─ cookie.js
 │  │  ├─ dom.js
+│  │  ├─ function.js
 │  │  ├─ index.js
 │  │  ├─ storage.js
 │  │  ├─ type.js
 │  │  └─ url.js
 │  ├─ node.js
-│  └─ web.js
+│  ├─ web.js
+│  └─ web.umd.js
 ├─ .gitignore
 ├─ .npmignore
 ├─ license
 ├─ package.json
-└─ readme.md
-```
-
-> 编译目录(`不包含以上的目录，可认为是编译后增加的目录`)
-
-执行`npm run build`后会增加以下文件
-
-```txt
-trample
-├─ common
-│  ├─ array.js
-│  ├─ date.js
-│  ├─ function.js
-│  ├─ index.js
-│  ├─ number.js
-│  ├─ object.js
-│  ├─ regexp.js
-│  ├─ string.js
-│  └─ type.js
-├─ node
-│  ├─ fs.js
-│  ├─ index.js
-│  ├─ process.js
-│  └─ type.js
-├─ web
-│  ├─ cookie.js
-│  ├─ dom.js
-│  ├─ index.js
-│  ├─ storage.js
-│  ├─ type.js
-│  └─ url.js
-├─ node.js
-├─ node.es5.js
-├─ web.js
-└─ web.es5.js
+├─ readme.md
+└─ rollup.config.js
 ```
 
 ### 构建编译
 
-后续补发，构建编译过程正在完善当中......
+后续补发，构建编译过程正在完善中......
 
 ### 测试用例
 
-后续补发，测试用例流程正在书写当中......
+后续补发，测试用例流程正在书写中......
 
 ### 待做
 
@@ -758,7 +657,7 @@ trample
 
 `trample`是笔者为了节省项目开发过程中常用工具函数复制粘贴的时间，而封装的一个**Web/Node通用函数工具库**。设计目的是为了`减少无谓的复制粘贴动作`和`统一管理项目开发中常用的工具函数`。
 
-由于笔者是针对个人需求而定制的工具库，所以应用范围可能没有包含上你常用的工具函数，可在[Issue](https://github.com/JowayYoung/trample/issues)上`提出你的宝贵建议`或`贴上你想增加的工具函数`。笔者会认真阅读你的宝贵建议和整合各位同学贡献的工具函数。
+由于笔者是针对个人需求而定制的工具库，所以应用范围可能未包含上你常用的工具函数，可在[Issue](https://github.com/JowayYoung/trample/issues)上`提出你的宝贵建议`或`贴上你想增加的工具函数`。笔者会认真阅读你的宝贵建议和整合各位同学贡献的工具函数。
 
 也可[Fork](https://github.com/JowayYoung/trample)本项目到自己的`Github`上，在原有的基础上增加自己`常用`、`易忘`和`代码量多`的工具函数，同时也可扩展原有的功能和构建方式，封装成自己熟悉的工具库，提升自己的开发能力，间接`减少晚上加班时间`和`增加上班摸鱼时间`。
 
