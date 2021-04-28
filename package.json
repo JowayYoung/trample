@@ -1,6 +1,6 @@
 {
 	"name": "trample",
-	"version": "0.3.0",
+	"version": "0.4.0",
 	"description": "A Web/Node General Utils Library",
 	"keywords": [
 		"trample",
@@ -40,7 +40,6 @@
 	"license": "MIT",
 	"main": "dist/web.js",
 	"module": "dist/web.esm.js",
-	"browser": "dist/web.umd.js",
 	"scripts": {
 		"build": "rollup -c",
 		"remove": "rimraf node_modules package-lock.json yarn.lock",

@@ -1,7 +1,7 @@
 # Trample <img src="https://img.shields.io/badge/trample-Web/Node通用函数工具库-66f.svg">
 
 [![author](https://img.shields.io/badge/author-JowayYoung-f66.svg)](https://github.com/JowayYoung/trample)
-[![version](https://img.shields.io/badge/version-0.3.0-f66.svg)](https://github.com/JowayYoung/trample)
+[![version](https://img.shields.io/badge/version-0.4.0-f66.svg)](https://github.com/JowayYoung/trample)
 [![web](https://img.shields.io/badge/web-%3E%3D%2095%25-3c9.svg)](https://github.com/JowayYoung/trample)
 [![node](https://img.shields.io/badge/node-%3E%3D%208.0.0-3c9.svg)](https://github.com/JowayYoung/trample)
 [![test](https://img.shields.io/badge/test-passing-f90.svg)](https://github.com/JowayYoung/trample)
